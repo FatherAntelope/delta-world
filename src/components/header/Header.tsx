@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.css';
 import { Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   children: JSX.Element;
@@ -61,9 +62,9 @@ Header.Auth = ({ authData }: IPropsAuth) => {
   }
   return (
     <div className="header__auth">
-      <p className="header__auth-text">Вход</p>
+      <Link to="/login"><p className="header__auth-text">Вход</p></Link>
       <div className="header__auth-divider" />
-      <p className="header__auth-text">Регистрация</p>
+      <Link to="/register"><p className="header__auth-text">Регистрация</p></Link>
     </div>
   );
 };
