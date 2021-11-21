@@ -1,72 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../flex-grid/FlexGrid.css';
-import { Pagination } from 'antd';
+import { Alert, Pagination } from 'antd';
 import CardPost from '../../cards/card-post/CardPost';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useActions } from '../../../hooks/useActions';
+import { IResponsePostPreview } from '../../../types/api/dumMyApi';
+import { getUserFullName } from '../../../utils/common';
+import Preloader from '../../preloader/Preloader';
 
-const url = 'https://cdn.dribbble.com/users/985736/screenshots/2745335/086._progress_bar.png';
+const PostsForm = () => {
+  const { posts, isLoading, error } = useTypedSelector((state) => state.postsForm);
+  const { loadPostsFormAC } = useActions();
 
-const PostsForm = () => (
-  <>
-    <div className="row">
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
+  useEffect(() => {
+    loadPostsFormAC(0, 6);
+  }, []);
+
+  const handlePaginationChange = (e: number) => {
+    loadPostsFormAC(e - 1, 6);
+  };
+
+  if (isLoading) {
+    return <Preloader />;
+  }
+
+  if (error !== undefined) {
+    return <Alert message={error} type="error" showIcon />;
+  }
+
+  return (
+    <>
+      <div className="row">
+        {posts.data.map((item: IResponsePostPreview) => (
+          <div className="col-4" key={item.id}>
+            <CardPost
+              imageURL={item.image}
+              text={item.text}
+              userAvatarURL={item.owner.picture}
+              userFullName={getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
+              dateOfPublication={item.publishDate}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="row row__justify_end">
+        <Pagination
+          pageSize={posts.limit}
+          total={posts.total}
+          current={posts.page + 1}
+          showSizeChanger={false}
+          onChange={handlePaginationChange}
         />
       </div>
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
-        />
-      </div>
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
-        />
-      </div>
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
-        />
-      </div>
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
-        />
-      </div>
-      <div className="col-4">
-        <CardPost
-          imageURL={url}
-          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, sequi."
-          userAvatarURL={url}
-          userFullName="mr. Will Smith"
-          dateOfPublication="10 мая в 04:20"
-        />
-      </div>
-    </div>
-    <div className="row row__justify_end">
-      <Pagination total={121} showSizeChanger={false} />
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 export default PostsForm;
