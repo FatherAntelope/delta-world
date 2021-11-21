@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {
   Redirect, Route, Switch
 } from 'react-router-dom';
@@ -7,17 +6,20 @@ import Wrapper from '../wrapper/Wrapper';
 import Main from '../main/Main';
 import Container from '../container/Container';
 import Segment from '../segment/Segment';
-import HeaderForm from '../forms/HeaderForm/HeaderForm';
-import FooterForm from '../forms/FooterForm/FooterForm';
-import LoginForm from '../forms/AuthForms/LoginForm';
-import RegisterForm from '../forms/AuthForms/RegisterForm';
+import HeaderForm from '../forms/header-form/HeaderForm';
+import FooterForm from '../forms/footer-form/FooterForm';
+import LoginForm from '../forms/auth-forms/LoginForm';
+import RegisterForm from '../forms/auth-forms/RegisterForm';
+import UsersForm from '../forms/users-form/UsersForm';
+import PostsForm from '../forms/posts-form/PostsForm';
 
 function App() {
   return (
     <div className="App">
       <Wrapper>
         <HeaderForm />
-        <Main paddings={{ top: 40, bottom: 40 }}>
+        <Main>
+          {/* paddings={{ top: 40, bottom: 40 }} */}
           <Container>
             <Switch>
               <Route exact path="/register">
@@ -30,8 +32,12 @@ function App() {
                   <LoginForm />
                 </Segment>
               </Route>
-              <Route exact path="/posts" />
-              <Route exact path="/users" />
+              <Route exact path="/users">
+                <UsersForm />
+              </Route>
+              <Route exact path="/posts">
+                <PostsForm />
+              </Route>
               <Route exact path="/user/:id" />
               <Route exact path="/lk" />
               <Redirect from="/" to="/login" />

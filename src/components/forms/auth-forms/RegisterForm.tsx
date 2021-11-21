@@ -15,6 +15,7 @@ const RegisterForm = () => {
           <Form.Item
             style={{ marginBottom: 10 }}
             name="userFirstName"
+            hasFeedback
             label={<b>Имя:</b>}
             rules={[
               {

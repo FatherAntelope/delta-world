@@ -18,8 +18,8 @@ const HeaderForm = () => {
           <Header.Logo src={APPLICATION_LOGO} text={APPLICATION_NAME} />
           <Menu>
             {menuItems.map((item, index) => (
-              <Link to={item.path}>
-                <Menu.Item key={index}>
+              <Link to={item.path} key={index}>
+                <Menu.Item>
                   {item.icon}
                   {item.label}
                 </Menu.Item>
