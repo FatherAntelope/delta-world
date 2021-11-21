@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar } from 'antd';
 import './CardPost.css';
 
-interface IProps {
+interface IPropsCardPreview {
   imageURL: string;
   text: string;
   userAvatarURL: string;
@@ -10,9 +10,16 @@ interface IProps {
   dateOfPublication: string;
 }
 
-const CardPost = ({
+interface IPropsCardMini {
+  imageURL: string;
+  text: string;
+}
+
+const CardPost = () => undefined;
+
+CardPost.Preview = ({
   imageURL, text, userAvatarURL, userFullName, dateOfPublication
-}: IProps) => (
+}: IPropsCardPreview) => (
   <div className="card-post">
     <div className="card-post__header">
       <Avatar src={userAvatarURL} />
@@ -21,6 +28,19 @@ const CardPost = ({
         <p className="card-post__subtitle">{dateOfPublication}</p>
       </div>
     </div>
+    <div className="card-post__image">
+      <img src={imageURL} alt="img" />
+    </div>
+    <p className="card-post__text">
+      {text}
+    </p>
+  </div>
+);
+
+CardPost.Mini = ({
+  imageURL, text
+}: IPropsCardMini) => (
+  <div className="card-post">
     <div className="card-post__image">
       <img src={imageURL} alt="img" />
     </div>

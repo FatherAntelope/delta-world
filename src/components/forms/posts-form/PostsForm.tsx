@@ -36,7 +36,7 @@ const PostsForm = () => {
       <div className="row">
         {posts.data.map((item: IResponsePostPreview) => (
           <div className="col-4" key={item.id}>
-            <CardPost
+            <CardPost.Preview
               imageURL={item.image}
               text={item.text}
               userAvatarURL={item.owner.picture}

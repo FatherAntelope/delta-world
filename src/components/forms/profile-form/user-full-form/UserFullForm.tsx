@@ -4,10 +4,10 @@ import { Alert } from 'antd';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { useActions } from '../../../../hooks/useActions';
 import Preloader from '../../../preloader/Preloader';
-import CardUserFull from '../../../cards/card-user-full/CardUserFull';
 import {
   checkPictureAndGet, getDateRU, getUserFullName, getUserGenderRu
 } from '../../../../utils/common';
+import CardUser from '../../../cards/card-user/CardUser';
 
 interface ISearchParams {
   id: string;
@@ -33,7 +33,7 @@ const UserFullForm = () => {
 
   return (
     <div>
-      <CardUserFull
+      <CardUser.Full
         isEdit
         id={user.id}
         imageURL={checkPictureAndGet(user.picture)}

@@ -36,7 +36,7 @@ const UsersForm = () => {
       <div className="row">
         {users.data.map((item: IResponseUserPreview) => (
           <div className="col-4" key={item.id}>
-            <CardUser
+            <CardUser.Preview
               imageURL={checkPictureAndGet(item.picture)}
               fullName={(
                 <Tooltip textInfo={item.id}>

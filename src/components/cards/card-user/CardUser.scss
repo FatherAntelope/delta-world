@@ -1,6 +1,6 @@
 @import "../../../constants/styles/colors";
 
-.card-user {
+.card-user, .card-user-full {
   height: 100%;
   width: 100%;
   border-radius: 20px;
@@ -8,6 +8,9 @@
   border: 3px solid $colorShadow;
   padding: 15px;
   display: flex;
+}
+
+.card-user {
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,5 +35,82 @@
     padding: 0;
     margin: 0;
     color: $colorBlack;
+  }
+}
+
+.card-user-full {
+  justify-content: space-between;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__body {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    @media (max-width: 900px) {
+      order: 1;
+      justify-content: space-around;
+    }
+  }
+
+  &__edit {
+    color: $colorBlack;
+    font-size: 16px;
+
+    @media (max-width: 900px) {
+      order: 0;
+      align-self: flex-end;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__image {
+    width: auto;
+    height: 280px;
+
+    @media (max-width: 400px) {
+      height: 200px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 20px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 24px;
+    color: $colorBlack;
+    font-weight: 700;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  &__info {
+    font-size: 16px;
+    color: $colorBlack;
+  }
+
+  &__text {
+    padding: 0;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
   }
 }

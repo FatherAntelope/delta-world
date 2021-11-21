@@ -16,6 +16,11 @@ const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<stri
 
 const fetchUsersForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_USER, { page, limit });
 const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}/${id}`);
+const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
+  BASE_URL, `${API_POINT_USER}/${id}${API_POINT_POST}`, { page, limit }
+);
 const fetchPostsForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_POST, { page, limit });
 
-export { fetchUsersForm, fetchPostsForm, fetchUserFullForm };
+export {
+  fetchUsersForm, fetchPostsForm, fetchUserFullForm, fetchUserPostsForm
+};
