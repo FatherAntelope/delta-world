@@ -4,7 +4,7 @@ import {
 
 const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<string, any>) => {
   let url = baseURL + apiPoint;
-  url += searchParams && `?${new URLSearchParams(searchParams)}`;
+  url += searchParams ? `?${new URLSearchParams(searchParams)}` : '';
 
   return fetch(url.toString(), {
     method: 'GET',
@@ -15,6 +15,7 @@ const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<stri
 };
 
 const fetchUsersForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_USER, { page, limit });
-
+const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}/${id}`);
 const fetchPostsForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_POST, { page, limit });
-export { fetchUsersForm, fetchPostsForm };
+
+export { fetchUsersForm, fetchPostsForm, fetchUserFullForm };

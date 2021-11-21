@@ -12,6 +12,7 @@ import LoginForm from '../forms/auth-forms/LoginForm';
 import RegisterForm from '../forms/auth-forms/RegisterForm';
 import UsersForm from '../forms/users-form/UsersForm';
 import PostsForm from '../forms/posts-form/PostsForm';
+import ProfileForm from '../forms/profile-form/ProfileForm';
 
 function App() {
   return (
@@ -38,7 +39,9 @@ function App() {
               <Route exact path="/posts">
                 <PostsForm />
               </Route>
-              <Route exact path="/user/:id" />
+              <Route exact path="/user/:id">
+                <ProfileForm />
+              </Route>
               <Route exact path="/lk" />
               <Redirect from="/" to="/login" />
             </Switch>

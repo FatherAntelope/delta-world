@@ -3,7 +3,7 @@ import './CardUser.css';
 
 interface IProps {
   imageURL: string;
-  fullName: string;
+  fullName: React.ReactNode;
 }
 
 const CardUser = ({ imageURL, fullName }: IProps) => (
@@ -11,9 +11,9 @@ const CardUser = ({ imageURL, fullName }: IProps) => (
     <div className="card-user__image">
       <img src={imageURL} alt="img" />
     </div>
-    <p className="card-user__text">
+    <div className="card-user__text">
       {fullName}
-    </p>
+    </div>
   </div>
 );
 

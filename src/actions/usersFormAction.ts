@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { UsersFormAC, UsersFormACTypes } from '../types/redux/usersForm';
 import { fetchUsersForm } from '../utils/fetchDumMyApi';
+import { LOADING_EMULATION_TIME } from '../constants/common';
 
 const loadUsersFormAC = (page: number, limit: number) => async (dispatch: Dispatch<UsersFormAC>) => {
   dispatch({
@@ -19,7 +20,7 @@ const loadUsersFormAC = (page: number, limit: number) => async (dispatch: Dispat
             data: users.data, total: users.total, page: users.page, limit: users.limit
           }
         });
-      }, 500);
+      }, LOADING_EMULATION_TIME);
     } else {
       throw new Error(`${response.status.toString()} – ${users.error}`);
     }

@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { fetchPostsForm } from '../utils/fetchDumMyApi';
 import { PostsFormAC, PostsFormACTypes } from '../types/redux/postsForm';
+import { LOADING_EMULATION_TIME } from '../constants/common';
 
 const loadPostsFormAC = (page: number, limit: number) => async (dispatch: Dispatch<PostsFormAC>) => {
   dispatch({
@@ -19,7 +20,7 @@ const loadPostsFormAC = (page: number, limit: number) => async (dispatch: Dispat
             data: posts.data, total: posts.total, page: posts.page, limit: posts.limit
           }
         });
-      }, 500);
+      }, LOADING_EMULATION_TIME);
     } else {
       throw new Error(`${response.status.toString()} – ${posts.error}`);
     }

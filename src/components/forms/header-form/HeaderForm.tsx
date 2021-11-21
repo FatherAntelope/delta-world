@@ -8,7 +8,7 @@ import Menu from '../../menu/Menu';
 
 const HeaderForm = () => {
   const menuItems = [
-    { icon: <TeamOutlined />, label: 'Пользователи', path: 'users' },
+    { icon: <TeamOutlined />, label: 'Пользователи', path: '/users' },
     { icon: <ReadOutlined />, label: 'Посты', path: '/posts' },
   ];
   return (

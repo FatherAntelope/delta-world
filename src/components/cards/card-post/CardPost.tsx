@@ -6,7 +6,7 @@ interface IProps {
   imageURL: string;
   text: string;
   userAvatarURL: string;
-  userFullName: string;
+  userFullName: React.ReactNode;
   dateOfPublication: string;
 }
 
@@ -17,7 +17,7 @@ const CardPost = ({
     <div className="card-post__header">
       <Avatar src={userAvatarURL} />
       <div className="card-post__info">
-        <p className="card-post__title">{userFullName}</p>
+        <div className="card-post__title">{userFullName}</div>
         <p className="card-post__subtitle">{dateOfPublication}</p>
       </div>
     </div>

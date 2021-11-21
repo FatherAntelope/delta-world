@@ -1,8 +1,9 @@
 import { IPostsFormState, PostsFormAC, PostsFormACTypes } from '../types/redux/postsForm';
+import { FORM_LIMIT_POSTS } from '../constants/common';
 
 const initialState: IPostsFormState = {
   posts: {
-    data: [], total: 0, limit: 6, page: 0
+    data: [], total: 0, limit: FORM_LIMIT_POSTS, page: 0
   },
   isLoading: true
 };

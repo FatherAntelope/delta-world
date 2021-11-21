@@ -1,8 +1,9 @@
 import { IUsersFormState, UsersFormAC, UsersFormACTypes } from '../types/redux/usersForm';
+import { FORM_LIMIT_USERS } from '../constants/common';
 
 const initialState: IUsersFormState = {
   users: {
-    data: [], total: 0, limit: 6, page: 0
+    data: [], total: 0, limit: FORM_LIMIT_USERS, page: 0
   },
   isLoading: true
 };
