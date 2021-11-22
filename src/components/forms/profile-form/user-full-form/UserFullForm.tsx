@@ -8,6 +8,7 @@ import {
   checkPictureAndGet, getDateRU, getUserFullName, getUserGenderRu
 } from '../../../../utils/common';
 import CardUser from '../../../cards/card-user/CardUser';
+import '../../../flex-grid/FlexGrid.css';
 
 interface ISearchParams {
   id: string;
@@ -24,7 +25,7 @@ const UserFullForm = () => {
   }, []);
 
   if (isLoading) {
-    return <Preloader />;
+    return <div style={{ height: 316 }}><Preloader /></div>;
   }
 
   if (error !== undefined) {
@@ -32,7 +33,7 @@ const UserFullForm = () => {
   }
 
   return (
-    <div>
+    <div className="row">
       <CardUser.Full
         isEdit
         id={user.id}

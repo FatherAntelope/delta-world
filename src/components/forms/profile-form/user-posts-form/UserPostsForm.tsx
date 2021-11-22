@@ -6,6 +6,8 @@ import { useActions } from '../../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../../types/api/dumMyApi';
 import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS } from '../../../../constants/common';
+import '../../../flex-grid/FlexGrid.css';
+import Preloader from '../../../preloader/Preloader';
 
 interface ISearchParams {
   id: string;
@@ -14,7 +16,7 @@ interface ISearchParams {
 const UserPostsForm = () => {
   const searchParams = useParams<ISearchParams>();
 
-  const { userPosts, error } = useTypedSelector((state) => state.userPostsForm);
+  const { userPosts, isLoading, error } = useTypedSelector((state) => state.userPostsForm);
   const { loadUserPostsFormAC } = useActions();
 
   useEffect(() => {
@@ -24,6 +26,10 @@ const UserPostsForm = () => {
   const handlePaginationChange = (e: number) => {
     loadUserPostsFormAC(searchParams.id, e - 1, FORM_LIMIT_USER_POSTS);
   };
+
+  if (isLoading) {
+    return <div style={{ height: 200 }}><Preloader /></div>;
+  }
 
   if (error !== undefined) {
     return <Alert message={error} type="error" showIcon />;
@@ -41,6 +47,7 @@ const UserPostsForm = () => {
           </div>
         ))}
       </div>
+      {userPosts.total > FORM_LIMIT_USER_POSTS && (
       <div className="row row__justify_end">
         <Pagination
           pageSize={userPosts.limit}
@@ -50,6 +57,7 @@ const UserPostsForm = () => {
           onChange={handlePaginationChange}
         />
       </div>
+      )}
     </>
   );
 };
