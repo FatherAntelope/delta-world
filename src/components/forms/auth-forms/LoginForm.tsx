@@ -13,7 +13,7 @@ const LoginForm = () => {
   const [form] = Form.useForm();
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
-  const { user, error } = useTypedSelector((state) => state.loginUserForm);
+  const { loginUser, error } = useTypedSelector((state) => state.loginUserForm);
   const { loginUserFormAC } = useActions();
 
   const handleFinishForm = () => {
@@ -30,16 +30,16 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (
-      error === undefined && user.id && (
+      error === undefined && loginUser.id && (
         cookies.user_id === undefined || cookies.user_first_name === undefined || cookies.user_picture === undefined
       )
     ) {
-      setCookies('user_id', user.id, { maxAge: COOKIE_LIFETIME });
-      setCookies('user_first_name', user.firstName, { maxAge: COOKIE_LIFETIME });
-      setCookies('user_picture', user.picture, { maxAge: COOKIE_LIFETIME });
-      localeHistory.push(`/user/${user.id}`);
+      setCookies('user_id', loginUser.id, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_first_name', loginUser.firstName, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_picture', loginUser.picture, { maxAge: COOKIE_LIFETIME });
+      localeHistory.push(`/user/${loginUser.id}`);
     }
-  }, [user.id]);
+  }, [loginUser.id]);
 
   return (
     <div className="user-auth">
@@ -69,7 +69,7 @@ const LoginForm = () => {
               {' '}
               <Link to="/register">Зарегистрироваться</Link>
             </p>
-            {(error !== undefined && !user.id) && (
+            {(error !== undefined && !loginUser.id) && (
               <Alert message="Введен неверный ID, повторите авторизацию" type="error" />
             )}
           </Form.Item>

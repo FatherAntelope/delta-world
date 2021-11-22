@@ -26,7 +26,7 @@ export interface IResponseUserFull {
   picture: string;
 }
 
-export interface IResponseUserLogin {
+export interface IResponseUserAuth {
   id: string;
   firstName: string;
   picture: string;
@@ -40,4 +40,14 @@ export interface IResponsePostPreview {
   tags?: Array<string>;
   publishDate: string;
   owner: IResponseUserPreview;
+}
+
+export interface ICreateUser {
+  title: 'ms' | 'mr';
+  firstName: string;
+  lastName: string;
+  gender: 'male' | 'female';
+  email: string;
+  dateOfBirth: string;
+  phone: string;
 }

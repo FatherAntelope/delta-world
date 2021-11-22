@@ -5,7 +5,7 @@ const initialState: IPostsFormState = {
   posts: {
     data: [], total: 0, limit: FORM_LIMIT_POSTS, page: 0
   },
-  isLoading: true
+  isLoading: false
 };
 
 const postsFormReducer = (state = initialState, action: PostsFormAC): IPostsFormState => {

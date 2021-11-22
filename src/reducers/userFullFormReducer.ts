@@ -14,7 +14,7 @@ const initialState: IUserFullFormState = {
     lastName: EMPTY_STRING,
     title: EMPTY_STRING
   },
-  isLoading: true
+  isLoading: false
 };
 
 const userFullFormReducer = (state = initialState, action: UserFullFormAC): IUserFullFormState => {

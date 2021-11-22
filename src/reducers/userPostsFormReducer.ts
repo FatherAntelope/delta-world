@@ -5,7 +5,7 @@ const initialState: IUserPostsFormState = {
   userPosts: {
     data: [], total: 0, limit: FORM_LIMIT_USER_POSTS, page: 0
   },
-  isLoading: true
+  isLoading: false
 };
 
 const userPostsFormReducer = (state = initialState, action: UserPostsFormAC): IUserPostsFormState => {

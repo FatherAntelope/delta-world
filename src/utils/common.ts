@@ -1,4 +1,5 @@
 import defaultUserAvatar from '../images/default-user-avatar.jpg';
+import { ICreateUser } from '../types/api/dumMyApi';
 
 const getUserFullName = (title: string, firstName: string, lastName: string): string => (
   `${title ? `${title}.` : ''} ${firstName} ${lastName}`
@@ -40,6 +41,17 @@ const getDateTimePublication = (dateTime: string): string => {
   } в ${date.getHours()}:${date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes()}`;
 };
 
+const getJSONStringifyFromFormData = (formData: ICreateUser): string => JSON.stringify({
+  firstName: formData.firstName,
+  lastName: formData.lastName,
+  email: formData.email,
+  phone: formData.phone,
+  title: formData.gender === 'male' ? 'mr' : 'ms',
+  gender: formData.gender,
+  dateOfBirth: formData.dateOfBirth,
+  registerDate: new Date(),
+});
+
 export {
-  getUserFullName, checkPictureAndGet, getDateTimePublication, getUserGenderRu, getDateRU
+  getUserFullName, checkPictureAndGet, getDateTimePublication, getUserGenderRu, getDateRU, getJSONStringifyFromFormData
 };

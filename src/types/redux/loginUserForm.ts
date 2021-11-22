@@ -1,7 +1,7 @@
-import { IResponseUserLogin } from '../api/dumMyApi';
+import { IResponseUserAuth } from '../api/dumMyApi';
 
 export interface ILoginUserFormState {
-  user: IResponseUserLogin;
+  loginUser: IResponseUserAuth;
   isLoading: boolean;
   error?: string;
 }
@@ -11,6 +11,7 @@ export enum LoginUserFormACTypes {
   LOGIN_USER_FORM_SUCCESS = 'LOGIN_USER_FORM/LOGIN_USER_FORM_SUCCESS',
   LOGIN_USER_FORM_ERROR = 'LOGIN_USER_FORM/LOGIN_USER_FORM_ERROR',
   LOGIN_USER_FORM_CLEAR = 'LOGIN_USER_FORM/LOGIN_USER_FORM_CLEAR',
+  LOGIN_USER_FORM_SET_VALUES = 'LOGIN_USER_FORM/LOGIN_USER_FORM_SET_VALUES',
 }
 
 interface ILoginUserFormAC {
@@ -19,7 +20,7 @@ interface ILoginUserFormAC {
 
 interface ILoginUserFormSuccessAC {
   type: LoginUserFormACTypes.LOGIN_USER_FORM_SUCCESS;
-  payload: IResponseUserLogin;
+  payload: IResponseUserAuth;
 }
 
 interface ILoginUserFormErrorAC {
@@ -29,8 +30,13 @@ interface ILoginUserFormErrorAC {
 
 interface ILoginUserFormClearAC {
   type: LoginUserFormACTypes.LOGIN_USER_FORM_CLEAR;
-  payload: IResponseUserLogin;
+  payload: IResponseUserAuth;
+}
+
+interface ILoginUserFormSetValuesAC {
+  type: LoginUserFormACTypes.LOGIN_USER_FORM_SET_VALUES;
+  payload: IResponseUserAuth;
 }
 
 export type LoginUserFormAC = ILoginUserFormAC | ILoginUserFormSuccessAC
-| ILoginUserFormErrorAC | ILoginUserFormClearAC;
+| ILoginUserFormErrorAC | ILoginUserFormClearAC | ILoginUserFormSetValuesAC;
