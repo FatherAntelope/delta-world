@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert, Pagination } from 'antd';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
@@ -18,10 +18,6 @@ const UserPostsForm = () => {
 
   const { userPosts, isLoading, error } = useTypedSelector((state) => state.userPostsForm);
   const { loadUserPostsFormAC } = useActions();
-
-  useEffect(() => {
-    loadUserPostsFormAC(searchParams.id, 0, FORM_LIMIT_USER_POSTS);
-  }, []);
 
   const handlePaginationChange = (e: number) => {
     loadUserPostsFormAC(searchParams.id, e - 1, FORM_LIMIT_USER_POSTS);

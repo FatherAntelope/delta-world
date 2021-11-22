@@ -5,7 +5,7 @@ const getUserFullName = (title: string, firstName: string, lastName: string): st
 );
 
 const checkPictureAndGet = (picture: string): string => (
-  picture || defaultUserAvatar
+  (picture && picture !== 'undefined') ? picture : defaultUserAvatar
 );
 
 const getUserGenderRu = (gender: string): string => {

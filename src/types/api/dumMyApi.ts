@@ -26,6 +26,12 @@ export interface IResponseUserFull {
   picture: string;
 }
 
+export interface IResponseUserLogin {
+  id: string;
+  firstName: string;
+  picture: string;
+}
+
 export interface IResponsePostPreview {
   id: string;
   text: string;

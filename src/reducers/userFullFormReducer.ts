@@ -1,17 +1,18 @@
 import { IUserFullFormState, UserFullFormAC, UserFullFormACTypes } from '../types/redux/userFullForm';
+import { EMPTY_STRING } from '../constants/common';
 
 const initialState: IUserFullFormState = {
   user: {
-    id: '-',
-    gender: '-',
-    phone: '-',
-    picture: '',
-    email: '-',
-    registerDate: '-',
-    dateOfBirth: '-',
-    firstName: '-',
-    lastName: '-',
-    title: '-'
+    id: EMPTY_STRING,
+    gender: EMPTY_STRING,
+    phone: EMPTY_STRING,
+    picture: EMPTY_STRING,
+    email: EMPTY_STRING,
+    registerDate: EMPTY_STRING,
+    dateOfBirth: EMPTY_STRING,
+    firstName: EMPTY_STRING,
+    lastName: EMPTY_STRING,
+    title: EMPTY_STRING
   },
   isLoading: true
 };

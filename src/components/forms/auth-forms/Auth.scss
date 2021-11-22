@@ -32,8 +32,11 @@
   &__button {
     background-color: $colorBlack;
     border: $colorBlack;
-    &:hover, &:active, &::selection, &:focus {
+    &:hover, &::selection {
       background-color: $colorGray;
+    }
+    &:active, &:focus {
+      background-color: $colorBlack;
     }
   }
 }

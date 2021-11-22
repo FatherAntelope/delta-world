@@ -42,7 +42,6 @@ function App() {
               <Route exact path="/user/:id">
                 <ProfileForm />
               </Route>
-              <Route exact path="/lk" />
               <Redirect from="/" to="/login" />
             </Switch>
           </Container>

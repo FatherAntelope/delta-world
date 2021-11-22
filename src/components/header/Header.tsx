@@ -1,7 +1,10 @@
 import React from 'react';
 import './Header.css';
 import { Avatar } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { EMPTY_STRING } from '../../constants/common';
+import { useActions } from '../../hooks/useActions';
 
 interface IProps {
   children: JSX.Element;
@@ -17,6 +20,7 @@ interface IPropsIcon {
 }
 
 interface IAuthData {
+  userID: string;
   userAvatarSrc: string;
   userFirstName: string;
 }
@@ -48,15 +52,33 @@ Header.Logo = ({ src, text }: IPropsIcon) => (
 );
 
 Header.Auth = ({ authData }: IPropsAuth) => {
+  const [cookies, setCookies] = useCookies();
+  const { logoutUserFormAC } = useActions();
+  const localeHistory = useHistory();
+
+  const handleExitClick = () => {
+    setCookies('user_id', EMPTY_STRING, { maxAge: -1 });
+    setCookies('user_picture', EMPTY_STRING, { maxAge: -1 });
+    setCookies('user_first_name', EMPTY_STRING, { maxAge: -1 });
+    logoutUserFormAC();
+    localeHistory.push('/login');
+  };
+
+  const handleGoProfileClick = () => {
+    localeHistory.push(`/user/${cookies.user_id}`);
+  };
+
   if (authData) {
     return (
       <div className="header__auth">
         <div className="header__auth-avatar">
           <Avatar src={authData.userAvatarSrc} alt="user-avatar" />
-          <p className="header__auth-text">{authData.userFirstName}</p>
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+          <p className="header__auth-text" onClick={handleGoProfileClick}>{authData.userFirstName}</p>
         </div>
         <div className="header__auth-divider" />
-        <p className="header__auth-text header__auth-text_active">Выход</p>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+        <p className="header__auth-text header__auth-text_active" onClick={handleExitClick}>Выход</p>
       </div>
     );
   }
