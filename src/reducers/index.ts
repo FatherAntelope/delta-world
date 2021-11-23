@@ -4,7 +4,7 @@ import postsFormReducer from './postsFormReducer';
 import userFullFormReducer from './userFullFormReducer';
 import userPostsFormReducer from './userPostsFormReducer';
 import loginUserFormReducer from './loginUserFormReducer';
-import registerUserFormReducer from './registerUserFormReducer';
+import sendUserFormReducer from './sendUserFormReducer';
 import modalFormReducer from './modalFormReducer';
 import postCommentsReducer from './postCommentsReducer';
 import postFormReducer from './postFormReducer';
@@ -15,7 +15,7 @@ export const rootReducer = combineReducers({
   userFullForm: userFullFormReducer,
   userPostsForm: userPostsFormReducer,
   loginUserForm: loginUserFormReducer,
-  registerUserForm: registerUserFormReducer,
+  sendUserForm: sendUserFormReducer,
   modalForm: modalFormReducer,
   postCommentsForm: postCommentsReducer,
   postForm: postFormReducer

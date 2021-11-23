@@ -3,11 +3,6 @@ interface IApiHeads {
   CONTENT_TYPE: string
 }
 
-interface IApiMethods {
-  POST: string;
-  GET: string
-}
-
 const API_KEY: string = '617d424dbe5f9771bd07c1b0';
 
 const BASE_URL: string = 'https://dummyapi.io/data/v1';
@@ -16,9 +11,10 @@ const API_POINT_USER_CREATE: string = '/user/create';
 const API_POINT_POST: string = '/post';
 const API_POINT_COMMENT: string = '/comment';
 
-const METHODS_QUERY: IApiMethods = {
+const METHODS_QUERY = {
   POST: 'POST',
-  GET: 'GET'
+  GET: 'GET',
+  PUT: 'PUT'
 };
 
 const API_HEADS: IApiHeads = {

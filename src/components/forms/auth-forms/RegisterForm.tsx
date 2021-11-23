@@ -18,7 +18,7 @@ const RegisterForm = () => {
   const [form] = Form.useForm();
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
-  const { registerUser, error } = useTypedSelector((state) => state.registerUserForm);
+  const { sendUser, error } = useTypedSelector((state) => state.sendUserForm);
   const { registerUserFormAction, loginUserSetValuesFormAC } = useActions();
 
   const handleFinishForm = () => {
@@ -35,17 +35,17 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (
-      error === undefined && registerUser.id && (
+      error === undefined && sendUser.id && (
         cookies.user_id === undefined || cookies.user_first_name === undefined || cookies.user_picture === undefined
       )
     ) {
-      setCookies('user_id', registerUser.id, { maxAge: COOKIE_LIFETIME });
-      setCookies('user_first_name', registerUser.firstName, { maxAge: COOKIE_LIFETIME });
-      setCookies('user_picture', registerUser.picture, { maxAge: COOKIE_LIFETIME });
-      loginUserSetValuesFormAC(registerUser.id, registerUser.picture, registerUser.firstName);
-      localeHistory.push(`/user/${registerUser.id}`);
+      setCookies('user_id', sendUser.id, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_first_name', sendUser.firstName, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_picture', sendUser.picture, { maxAge: COOKIE_LIFETIME });
+      loginUserSetValuesFormAC(sendUser.id, sendUser.picture, sendUser.firstName);
+      localeHistory.push(`/user/${sendUser.id}`);
     }
-  }, [registerUser.id]);
+  }, [sendUser.id]);
 
   return (
     <div className="user-auth">
@@ -196,7 +196,7 @@ const RegisterForm = () => {
               {' '}
               <Link to="/login">Войти</Link>
             </p>
-            {(error !== undefined && !registerUser.id) && (
+            {(error !== undefined && !sendUser.id) && (
               <Alert message="Аккаунт с таким email уже существует" type="error" />
             )}
           </Form.Item>

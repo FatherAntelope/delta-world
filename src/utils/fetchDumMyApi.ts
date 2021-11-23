@@ -22,11 +22,11 @@ const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<stri
   });
 };
 
-const fetchBasePost = (baseURL: string, apiPoint: string, body?: string) => {
+const fetchBaseSend = (baseURL: string, apiPoint: string, method: string, body?: string) => {
   const url = baseURL + apiPoint;
 
   return fetch(url.toString(), {
-    method: METHODS_QUERY.POST,
+    method,
     headers: new Headers({
       [API_HEADS.APP_ID]: API_KEY,
       [API_HEADS.CONTENT_TYPE]: ContentTypes.JSON
@@ -46,9 +46,12 @@ const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetch
 );
 const fetchPostsForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_POST, { page, limit });
 
-const fetchRegisterUser = (body: string) => fetchBasePost(BASE_URL, API_POINT_USER_CREATE, body);
+const fetchRegisterUser = (body: string) => fetchBaseSend(BASE_URL, API_POINT_USER_CREATE, METHODS_QUERY.POST, body);
+const fetchUpdateUser = (id:string, body: string) => fetchBaseSend(
+  BASE_URL, `${API_POINT_USER}/${id}`, METHODS_QUERY.PUT, body
+);
 
 export {
   fetchUsersForm, fetchPostsForm, fetchUserFullForm, fetchUserPostsForm, fetchRegisterUser, fetchPostCommentsForm,
-  fetchPostForm
+  fetchPostForm, fetchUpdateUser
 };
