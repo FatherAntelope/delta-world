@@ -8,6 +8,7 @@ import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS } from '../../../../constants/common';
 import '../../../flex-grid/FlexGrid.css';
 import Preloader from '../../../preloader/Preloader';
+import ModalPostFormWihoutHeader from '../../modal-forms/ModalPostFormWihoutHeader';
 
 interface ISearchParams {
   id: string;
@@ -17,10 +18,14 @@ const UserPostsForm = () => {
   const searchParams = useParams<ISearchParams>();
 
   const { userPosts, isLoading, error } = useTypedSelector((state) => state.userPostsForm);
-  const { loadUserPostsFormAC } = useActions();
+  const { loadUserPostsFormAC, openModalFormAC } = useActions();
 
   const handlePaginationChange = (e: number) => {
     loadUserPostsFormAC(searchParams.id, e - 1, FORM_LIMIT_USER_POSTS);
+  };
+
+  const handleOpenModal = (id: string) => {
+    openModalFormAC({ postID: id });
   };
 
   if (isLoading) {
@@ -37,9 +42,12 @@ const UserPostsForm = () => {
         {userPosts.data.map((item: IResponsePostPreview) => (
           <div className="col-4" key={item.id}>
             <CardPost.Mini
-              imageURL={item.image}
               text={item.text}
-            />
+            >
+              <div style={{ width: '100%', cursor: 'pointer' }} onClick={() => handleOpenModal(item.id)}>
+                <CardPost.Image imageURL={item.image} />
+              </div>
+            </CardPost.Mini>
           </div>
         ))}
       </div>
@@ -54,6 +62,7 @@ const UserPostsForm = () => {
         />
       </div>
       )}
+      <ModalPostFormWihoutHeader />
     </>
   );
 };

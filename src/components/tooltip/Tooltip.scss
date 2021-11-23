@@ -7,11 +7,12 @@
 
 .tooltip__info {
   position: absolute;
-  top: -30px;
-  font-size: 12px;
+  z-index: 10;
+  top: -20px;
+  font-size: 10px !important;
   color: $colorGray;
   background-color: $colorWhite;
   border: 1px solid $colorGray;
-  padding: 3px;
+  padding: 2px;
   border-radius: 7px;
 }

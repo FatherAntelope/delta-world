@@ -3,7 +3,9 @@ import { fetchUserPostsForm } from '../utils/fetchDumMyApi';
 import { LOADING_EMULATION_TIME } from '../constants/common';
 import { UserPostsFormAC, UserPostsFormACTypes } from '../types/redux/userPostsForm';
 
-const loadUserPostsFormAC = (userID: string, page: number, limit: number) => async (dispatch: Dispatch<UserPostsFormAC>) => {
+const loadUserPostsFormAC = (
+  userID: string, page: number, limit: number
+) => async (dispatch: Dispatch<UserPostsFormAC>) => {
   dispatch({
     type: UserPostsFormACTypes.LOAD_USER_POSTS_FORM
   });

@@ -4,6 +4,9 @@ import * as UserFullFormAC from './userFullFormAction';
 import * as UserPostsFormAC from './userPostsAction';
 import * as LoginUserFormAC from './loginUserFormAction';
 import * as RegisterUserFormAC from './registerUserFormAction';
+import * as ModalFormAC from './modalFormAction';
+import * as PostCommentsFormAC from './postCommentsAction';
+import * as PostFormAC from './postFormAction';
 
 export default {
   ...UsersFormAC,
@@ -11,5 +14,8 @@ export default {
   ...UserFullFormAC,
   ...UserPostsFormAC,
   ...LoginUserFormAC,
-  ...RegisterUserFormAC
+  ...RegisterUserFormAC,
+  ...ModalFormAC,
+  ...PostCommentsFormAC,
+  ...PostFormAC
 };

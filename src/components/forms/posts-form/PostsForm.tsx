@@ -6,18 +6,23 @@ import CardPost from '../../cards/card-post/CardPost';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../types/api/dumMyApi';
-import { getDateTimePublication, getUserFullName } from '../../../utils/common';
+import { checkPictureAndGet, getDateTimePublication, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import { FORM_LIMIT_POSTS } from '../../../constants/common';
 import Tooltip from '../../tooltip/Tooltip';
+import ModalPostForm from '../modal-forms/ModalPostForm';
 
 const PostsForm = () => {
   const { posts, isLoading, error } = useTypedSelector((state) => state.postsForm);
-  const { loadPostsFormAC } = useActions();
+  const { loadPostsFormAC, openModalFormAC } = useActions();
 
   useEffect(() => {
     loadPostsFormAC(0, FORM_LIMIT_POSTS);
   }, []);
+
+  const handleOpenModal = (id: string) => {
+    openModalFormAC({ postID: id });
+  };
 
   const handlePaginationChange = (e: number) => {
     loadPostsFormAC(e - 1, FORM_LIMIT_POSTS);
@@ -37,18 +42,21 @@ const PostsForm = () => {
         {posts.data.map((item: IResponsePostPreview) => (
           <div className="col-4" key={item.id}>
             <CardPost.Preview
-              imageURL={item.image}
               text={item.text}
-              userAvatarURL={item.owner.picture}
+              userAvatarURL={checkPictureAndGet(item.owner.picture)}
               userFullName={(
                 <Tooltip textInfo={item.owner.id}>
                   <Link to={`/user/${item.owner.id}`}>
                     {getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
                   </Link>
                 </Tooltip>
-              )}
+                )}
               dateOfPublication={getDateTimePublication(item.publishDate)}
-            />
+            >
+              <div style={{ width: '100%', cursor: 'pointer' }} onClick={() => handleOpenModal(item.id)}>
+                <CardPost.Image imageURL={item.image} />
+              </div>
+            </CardPost.Preview>
           </div>
         ))}
       </div>
@@ -61,6 +69,7 @@ const PostsForm = () => {
           onChange={handlePaginationChange}
         />
       </div>
+      <ModalPostForm />
     </>
   );
 };

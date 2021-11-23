@@ -13,6 +13,14 @@ export interface IResponseUserPreview {
   picture: string;
 }
 
+export interface IResponseCommentPreview {
+  id: string;
+  message: string;
+  owner: IResponseUserPreview;
+  post: string;
+  publishDate: string;
+}
+
 export interface IResponseUserFull {
   id: string;
   title: string;
@@ -36,8 +44,6 @@ export interface IResponsePostPreview {
   id: string;
   text: string;
   image: string;
-  likes?: number;
-  tags?: Array<string>;
   publishDate: string;
   owner: IResponseUserPreview;
 }

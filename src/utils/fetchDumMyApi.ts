@@ -1,5 +1,13 @@
 import {
-  API_HEADS, API_KEY, API_POINT_POST, API_POINT_USER, API_POINT_USER_CREATE, BASE_URL, ContentTypes, METHODS_QUERY
+  API_HEADS,
+  API_KEY,
+  API_POINT_COMMENT,
+  API_POINT_POST,
+  API_POINT_USER,
+  API_POINT_USER_CREATE,
+  BASE_URL,
+  ContentTypes,
+  METHODS_QUERY
 } from '../constants/api/dumMyApi';
 
 const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<string, any>) => {
@@ -29,13 +37,18 @@ const fetchBasePost = (baseURL: string, apiPoint: string, body?: string) => {
 
 const fetchUsersForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_USER, { page, limit });
 const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}/${id}`);
+const fetchPostForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_POST}/${id}`);
 const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
   BASE_URL, `${API_POINT_USER}/${id}${API_POINT_POST}`, { page, limit }
+);
+const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetchBase(
+  BASE_URL, `${API_POINT_POST}/${id}${API_POINT_COMMENT}`, { page, limit }
 );
 const fetchPostsForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_POST, { page, limit });
 
 const fetchRegisterUser = (body: string) => fetchBasePost(BASE_URL, API_POINT_USER_CREATE, body);
 
 export {
-  fetchUsersForm, fetchPostsForm, fetchUserFullForm, fetchUserPostsForm, fetchRegisterUser
+  fetchUsersForm, fetchPostsForm, fetchUserFullForm, fetchUserPostsForm, fetchRegisterUser, fetchPostCommentsForm,
+  fetchPostForm
 };
