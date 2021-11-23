@@ -2,12 +2,12 @@ import React from 'react';
 import './Container.css';
 
 interface IProps {
-  children: Array<JSX.Element> | JSX.Element;
+  children: React.ReactNode;
 }
 
 const Container = ({ children }: IProps) => (
   <div className="container">
-    {Array.isArray(children) ? children.map((item: JSX.Element) => item) : children}
+    {children}
   </div>
 );
 

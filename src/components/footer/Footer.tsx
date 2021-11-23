@@ -2,11 +2,11 @@ import React from 'react';
 import './Footer.css';
 
 interface IProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 interface IPropsBody {
-  children: Array<JSX.Element> | JSX.Element;
+  children: React.ReactNode;
 }
 
 interface IPropsCopyright {
@@ -21,7 +21,7 @@ const Footer = ({ children }: IProps) => (
 
 Footer.Body = ({ children }: IPropsBody) => (
   <div className="footer__body">
-    {Array.isArray(children) ? children.map((item: JSX.Element) => item) : children}
+    {children}
   </div>
 );
 

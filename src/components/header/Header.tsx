@@ -7,11 +7,11 @@ import { EMPTY_STRING } from '../../constants/common';
 import { useActions } from '../../hooks/useActions';
 
 interface IProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 interface IPropsBody {
-  children: Array<JSX.Element> | JSX.Element;
+  children: React.ReactNode;
 }
 
 interface IPropsIcon {
@@ -38,7 +38,7 @@ const Header = ({ children }: IProps) => (
 
 Header.Body = ({ children }: IPropsBody) => (
   <div className="header__body">
-    {Array.isArray(children) ? children.map((item: JSX.Element) => item) : children}
+    {children}
   </div>
 );
 

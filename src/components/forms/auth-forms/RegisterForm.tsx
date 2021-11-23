@@ -3,8 +3,9 @@ import './Auth.css';
 import moment from 'moment';
 import {
   Alert,
-  Button, Col, DatePicker, Form, Input, Radio, Row
+  Button, DatePicker, Form, Input, Radio
 } from 'antd';
+import '../../flex-grid/FlexGrid.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { ICreateUser } from '../../../types/api/dumMyApi';
@@ -51,8 +52,8 @@ const RegisterForm = () => {
       <div className="user-auth__body">
         <h2 className="user-auth__header">Регистрация</h2>
         <Form form={form} name="formRegisterUser" layout="vertical" onFinish={handleFinishForm}>
-          <Row gutter={10}>
-            <Col span={12}>
+          <div className="row">
+            <div className="col-6">
               <Form.Item
                 style={{ marginBottom: 10 }}
                 name="firstName"
@@ -78,8 +79,8 @@ const RegisterForm = () => {
               >
                 <Input type="text" placeholder="Введите свое имя" />
               </Form.Item>
-            </Col>
-            <Col span={12}>
+            </div>
+            <div className="col-6">
               <Form.Item
                 style={{ marginBottom: 10 }}
                 name="lastName"
@@ -105,8 +106,8 @@ const RegisterForm = () => {
               >
                 <Input type="text" placeholder="Введите свою фамилию" />
               </Form.Item>
-            </Col>
-          </Row>
+            </div>
+          </div>
           <Form.Item
             className="user-auth__inline-item"
             name="gender"

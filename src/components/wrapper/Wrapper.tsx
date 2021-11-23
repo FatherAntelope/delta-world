@@ -2,13 +2,13 @@ import React from 'react';
 import './Wrapper.css';
 
 interface IProps {
-  children: Array<JSX.Element>;
+  children: React.ReactNode;
 }
 
 const Wrapper = ({ children }: IProps) => (
   <div className="wrapper">
     <div className="wrapper__grid">
-      { children.map((item: JSX.Element) => item) }
+      { children }
     </div>
   </div>
 );

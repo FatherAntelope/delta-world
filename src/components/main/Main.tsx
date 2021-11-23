@@ -7,7 +7,7 @@ interface IPaddings {
 }
 
 interface IProps {
-  children?: Array<JSX.Element> | JSX.Element;
+  children?: React.ReactNode;
   paddings?: IPaddings
 }
 
@@ -16,7 +16,7 @@ const Main = ({ children, paddings }: IProps) => (
     className="main"
     style={{ paddingTop: `${paddings?.top}px`, paddingBottom: `${paddings?.bottom}px` }}
   >
-    {Array.isArray(children) ? children.map((item: JSX.Element) => item) : children}
+    {children}
   </main>
 );
 
