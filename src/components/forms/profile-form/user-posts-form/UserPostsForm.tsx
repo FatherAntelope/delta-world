@@ -5,7 +5,7 @@ import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { useActions } from '../../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../../types/api/dumMyApi';
 import CardPost from '../../../cards/card-post/CardPost';
-import { FORM_LIMIT_USER_POSTS } from '../../../../constants/common';
+import { FORM_LIMIT_USER_POSTS, ModalID } from '../../../../constants/common';
 import '../../../flex-grid/FlexGrid.css';
 import Preloader from '../../../preloader/Preloader';
 import ModalPostFormWihoutHeader from '../../modal-forms/ModalPostFormWihoutHeader';
@@ -18,14 +18,14 @@ const UserPostsForm = () => {
   const searchParams = useParams<ISearchParams>();
 
   const { userPosts, isLoading, error } = useTypedSelector((state) => state.userPostsForm);
-  const { loadUserPostsFormAC, openModalFormAC } = useActions();
+  const { loadUserPostsFormAC, openModalsFormAC } = useActions();
 
   const handlePaginationChange = (e: number) => {
     loadUserPostsFormAC(searchParams.id, e - 1, FORM_LIMIT_USER_POSTS);
   };
 
   const handleOpenModal = (id: string) => {
-    openModalFormAC({ postID: id });
+    openModalsFormAC(ModalID.POSTS_USER, { postID: id });
   };
 
   if (isLoading) {

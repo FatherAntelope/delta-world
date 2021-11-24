@@ -4,23 +4,25 @@ import CommentsForm from '../comments-form/CommentsForm';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useActions';
 import PostForm from '../post-form/PostForm';
+import { ModalID } from '../../../constants/common';
 
 const ModalPostForm = () => {
-  const { modalData, isActive } = useTypedSelector((state) => state.modalForm);
-  const { loadPostFormAC, closeModalFormAC } = useActions();
+  const modals = useTypedSelector((state) => state.modalsForm);
+  const modalPostStore = modals[ModalID.POSTS];
+  const { loadPostFormAC, closeModalsFormAC } = useActions();
 
   useEffect(() => {
-    if (modalData?.postID !== undefined && isActive) {
-      loadPostFormAC(modalData?.postID);
+    if (modalPostStore?.modalData?.postID !== undefined && modalPostStore?.isActive) {
+      loadPostFormAC(modalPostStore?.modalData?.postID);
     }
-  }, [modalData]);
+  }, [modalPostStore?.modalData]);
 
   useEffect(() => () => {
-    closeModalFormAC();
+    closeModalsFormAC();
   }, []);
 
   return (
-    <Modal isActive={isActive}>
+    <Modal isActive={modalPostStore?.isActive}>
       <PostForm />
       <CommentsForm />
     </Modal>

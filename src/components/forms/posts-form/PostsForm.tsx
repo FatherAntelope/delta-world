@@ -8,20 +8,20 @@ import { useActions } from '../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../types/api/dumMyApi';
 import { checkPictureAndGet, getDateTimePublication, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
-import { FORM_LIMIT_POSTS } from '../../../constants/common';
+import { FORM_LIMIT_POSTS, ModalID } from '../../../constants/common';
 import Tooltip from '../../tooltip/Tooltip';
 import ModalPostForm from '../modal-forms/ModalPostForm';
 
 const PostsForm = () => {
   const { posts, isLoading, error } = useTypedSelector((state) => state.postsForm);
-  const { loadPostsFormAC, openModalFormAC } = useActions();
+  const { loadPostsFormAC, openModalsFormAC } = useActions();
 
   useEffect(() => {
     loadPostsFormAC(0, FORM_LIMIT_POSTS);
   }, []);
 
   const handleOpenModal = (id: string) => {
-    openModalFormAC({ postID: id });
+    openModalsFormAC(ModalID.POSTS, { postID: id });
   };
 
   const handlePaginationChange = (e: number) => {

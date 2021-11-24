@@ -5,9 +5,9 @@ import userFullFormReducer from './userFullFormReducer';
 import userPostsFormReducer from './userPostsFormReducer';
 import loginUserFormReducer from './loginUserFormReducer';
 import sendUserFormReducer from './sendUserFormReducer';
-import modalFormReducer from './modalFormReducer';
 import postCommentsReducer from './postCommentsReducer';
 import postFormReducer from './postFormReducer';
+import modalsFormReducer from './modalsFormReducer';
 
 export const rootReducer = combineReducers({
   usersForm: usersFormReducer,
@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
   userPostsForm: userPostsFormReducer,
   loginUserForm: loginUserFormReducer,
   sendUserForm: sendUserFormReducer,
-  modalForm: modalFormReducer,
+  modalsForm: modalsFormReducer,
   postCommentsForm: postCommentsReducer,
   postForm: postFormReducer
 });

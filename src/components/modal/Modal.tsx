@@ -8,11 +8,11 @@ interface IPropsChild {
 }
 
 const Modal = ({ children, isActive }: IPropsChild) => {
-  const { closeModalFormAC } = useActions();
+  const { closeModalsFormAC } = useActions();
 
   return (
     <div className={`modal ${isActive && 'modal_active'}`}>
-      <div className="modal__close" onClick={() => closeModalFormAC()}>
+      <div className="modal__close" onClick={() => closeModalsFormAC()}>
         <span className="modal__close-icon" />
       </div>
       <div className="modal__dialog">
