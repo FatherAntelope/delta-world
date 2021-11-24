@@ -21,7 +21,6 @@ function App() {
       <Wrapper>
         <HeaderForm />
         <Main>
-          {/* paddings={{ top: 40, bottom: 40 }} */}
           <Container>
             <Switch>
               <Route exact path="/register">

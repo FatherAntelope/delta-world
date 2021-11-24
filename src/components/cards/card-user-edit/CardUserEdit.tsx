@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import './CardUserEdit.css';
 import {
-  Button, DatePicker, Form, Input, Radio
+  Button, DatePicker, Form, Input, Radio, Upload
 } from 'antd';
 import moment from 'moment';
+import { UploadOutlined } from '@ant-design/icons';
 import { MAXIMUM_DATE } from '../../../constants/common';
 
 interface IProps {
@@ -18,11 +19,11 @@ interface IProps {
 const CardUserEdit = ({
   avatar, gender, firstName, lastName, dateOfBirth, phone
 }: IProps) => {
-  const [form] = Form.useForm();
+  const [formEditDataUser] = Form.useForm();
 
   useEffect(() => {
     if (firstName && gender && lastName && dateOfBirth && phone) {
-      form.setFields([
+      formEditDataUser.setFields([
         { name: 'firstName', value: firstName },
         { name: 'lastName', value: lastName },
         { name: 'gender', value: gender },
@@ -39,7 +40,23 @@ const CardUserEdit = ({
           <img src={avatar} alt="user-img" />
         </div>
       </div>
-      <Form form={form} name="formRegisterUser" layout="vertical">
+
+      <div className="user-edit-form__image-edit">
+        <Upload
+          name="file"
+          multiple={false}
+          accept="image/jpeg, image/png"
+          customRequest={(info) => {
+            console.log(info.filename);
+          }}
+        >
+          <Button size="small" icon={<UploadOutlined />}>Обновить фото</Button>
+        </Upload>
+
+        <Button size="small">Удалить фото</Button>
+      </div>
+
+      <Form form={formEditDataUser} name="formEditDataUser" layout="vertical">
         <Form.Item
           style={{ marginBottom: 10, width: '100%' }}
           name="firstName"
@@ -134,8 +151,8 @@ const CardUserEdit = ({
               message: 'Необходимо заполнить данное поле'
             },
             {
-              pattern: new RegExp(/^[0-9]+$/, 'g'),
-              message: 'Поле должно содержать цифры'
+              pattern: new RegExp(/^(\+)?[0-9-()]+$/, 'g'),
+              message: 'Поле должно содержать цифры или символы -() и + в начале'
             }
           ]}
         >

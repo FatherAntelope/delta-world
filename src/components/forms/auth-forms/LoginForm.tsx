@@ -13,7 +13,7 @@ const LoginForm = () => {
   const [form] = Form.useForm();
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
-  const { loginUser, error } = useTypedSelector((state) => state.loginUserForm);
+  const { loginUser, error, isLoading } = useTypedSelector((state) => state.loginUserForm);
   const { loginUserFormAC } = useActions();
 
   const handleFinishForm = () => {
@@ -57,6 +57,7 @@ const LoginForm = () => {
           </Form.Item>
           <Form.Item>
             <Button
+              loading={isLoading}
               type="primary"
               block
               htmlType="submit"

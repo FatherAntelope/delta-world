@@ -7,9 +7,16 @@
     justify-content: center;
   }
 
+  &__image-edit {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
   &__image {
     width: auto;
-    height: 200px;
+    height: 180px;
+    margin-bottom: 10px;
 
     @media (max-width: 400px) {
       height: 150px;

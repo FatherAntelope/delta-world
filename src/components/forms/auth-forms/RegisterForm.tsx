@@ -17,7 +17,7 @@ const RegisterForm = () => {
   const [form] = Form.useForm();
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
-  const { sendUser, error } = useTypedSelector((state) => state.sendUserForm);
+  const { sendUser, error, isLoading } = useTypedSelector((state) => state.sendUserForm);
   const { registerUserFormAction, loginUserSetValuesFormAC } = useActions();
 
   const handleFinishForm = () => {
@@ -168,8 +168,8 @@ const RegisterForm = () => {
                 message: 'Необходимо заполнить данное поле'
               },
               {
-                pattern: new RegExp(/^[0-9]+$/, 'g'),
-                message: 'Поле должно содержать цифры'
+                pattern: new RegExp(/^(\+)?[0-9-()]+$/, 'g'),
+                message: 'Поле должно содержать цифры или символы -() и + в начале'
               }
             ]}
           >
@@ -177,6 +177,7 @@ const RegisterForm = () => {
           </Form.Item>
           <Form.Item>
             <Button
+              loading={isLoading}
               type="primary"
               block
               htmlType="submit"
