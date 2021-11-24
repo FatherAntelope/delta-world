@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../flex-grid/FlexGrid.css';
-import { Alert, Pagination } from 'antd';
+import { Alert } from 'antd';
 import { Link } from 'react-router-dom';
-import CardComment from '../../cards/card-comment/CardComment';
 import { useActions } from '../../../hooks/useActions';
+import CardComment from '../../cards/card-comment/CardComment';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { FORM_LIMIT_POST_COMMENTS, ModalID } from '../../../constants/common';
 import { IResponseCommentPreview } from '../../../types/api/dumMyApi';
 import { getDateTimePublication, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import Tooltip from '../../tooltip/Tooltip';
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
+import PaginationWrapper from '../../PaginationWrapper/PaginationWrapper';
 
 const CommentsForm = () => {
   const modals = useTypedSelector((state) => state.modalsForm);
   const modalPostUserStore = modals[ModalID.POSTS_USER];
-
   const { postComments, isLoading, error } = useTypedSelector((state) => state.postCommentsForm);
   const { loadPostCommentsFormAC, closeModalsFormAC } = useActions();
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handlePaginationChange = (e: number) => {
     loadPostCommentsFormAC(modalPostUserStore?.modalData?.postID, e - 1, FORM_LIMIT_POST_COMMENTS);
   };
 
   if (isLoading) {
-    return <div style={{ height: 70 }}><Preloader /></div>;
+    return <div style={{ height: 70 }}><Preloader isDarkTheme={themeCheckboxContext.isDarkTheme} /></div>;
   }
 
   if (error !== undefined) {
@@ -36,10 +38,11 @@ const CommentsForm = () => {
         {postComments.data.map((item: IResponseCommentPreview) => (
           <div className="col-6" key={item.id}>
             <CardComment
+              isDarkTheme={themeCheckboxContext.isDarkTheme}
               text={item.message}
               userAvatarURL={item.owner.picture}
               userFullName={(
-                <Tooltip textInfo={item.owner.id}>
+                <Tooltip textInfo={item.owner.id} isDarkTheme={themeCheckboxContext.isDarkTheme}>
                   <Link to={`/user/${item.owner.id}`}>
                     <span onClick={closeModalsFormAC}>
                       {getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
@@ -54,12 +57,12 @@ const CommentsForm = () => {
       </div>
       {postComments.total > FORM_LIMIT_POST_COMMENTS && (
       <div className="row row__justify_end">
-        <Pagination
+        <PaginationWrapper
           pageSize={postComments.limit}
           total={postComments.total}
           current={postComments.page + 1}
-          showSizeChanger={false}
           onChange={handlePaginationChange}
+          isDarkTheme={themeCheckboxContext.isDarkTheme}
         />
       </div>
       )}

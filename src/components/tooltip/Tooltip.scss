@@ -15,4 +15,10 @@
   border: 1px solid $colorGray;
   padding: 2px;
   border-radius: 7px;
+
+  &_theme_dark {
+    color: $colorWhite;
+    background-color: $colorBlueDark;
+    border: none;
+  }
 }

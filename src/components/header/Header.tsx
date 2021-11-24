@@ -8,6 +8,7 @@ import { useActions } from '../../hooks/useActions';
 
 interface IProps {
   children: React.ReactNode;
+  isDarkTheme?: boolean;
 }
 
 interface IPropsBody {
@@ -28,13 +29,19 @@ interface IAuthData {
 interface IPropsAuth {
   // eslint-disable-next-line react/require-default-props
   authData?: IAuthData;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
-const Header = ({ children }: IProps) => (
-  <header className="header">
+const Header = ({ children, isDarkTheme }: IProps) => (
+  <header className={`header ${isDarkTheme ? 'header_theme_dark' : ''} `}>
     {children}
   </header>
 );
+
+Header.defaultProps = {
+  isDarkTheme: false
+};
 
 Header.Body = ({ children }: IPropsBody) => (
   <div className="header__body">
@@ -51,7 +58,7 @@ Header.Logo = ({ src, text }: IPropsIcon) => (
   </div>
 );
 
-Header.Auth = ({ authData }: IPropsAuth) => {
+Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
   const [cookies, setCookies] = useCookies();
   const { logoutUserFormAC } = useActions();
   const localeHistory = useHistory();
@@ -74,7 +81,12 @@ Header.Auth = ({ authData }: IPropsAuth) => {
         <div className="header__auth-avatar">
           <Avatar src={authData.userAvatarSrc} alt="user-avatar" />
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <p className="header__auth-text" onClick={handleGoProfileClick}>{authData.userFirstName}</p>
+          <p
+            className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}
+            onClick={handleGoProfileClick}
+          >
+            {authData.userFirstName}
+          </p>
         </div>
         <div className="header__auth-divider" />
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
@@ -84,9 +96,13 @@ Header.Auth = ({ authData }: IPropsAuth) => {
   }
   return (
     <div className="header__auth">
-      <Link to="/login"><p className="header__auth-text">Вход</p></Link>
+      <Link to="/login">
+        <p className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}>Вход</p>
+      </Link>
       <div className="header__auth-divider" />
-      <Link to="/register"><p className="header__auth-text">Регистрация</p></Link>
+      <Link to="/register">
+        <p className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}>Регистрация</p>
+      </Link>
     </div>
   );
 };

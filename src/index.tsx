@@ -7,14 +7,17 @@ import { HashRouter } from 'react-router-dom';
 import { store } from './store';
 import 'antd/dist/antd.css';
 import App from './components/app/App';
+import { ThemeCheckboxContextProvider } from './contexts/theme-checkbox/ThemeCheckboxContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
       <Provider store={store}>
-        <HashRouter>
-          <App />
-        </HashRouter>
+        <ThemeCheckboxContextProvider>
+          <HashRouter>
+            <App />
+          </HashRouter>
+        </ThemeCheckboxContextProvider>
       </Provider>
     </CookiesProvider>
   </React.StrictMode>,

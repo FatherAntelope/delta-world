@@ -4,6 +4,14 @@
   grid-area: header;
   background-color: $colorWhite;
   border-bottom: 2px solid $colorShadow;
+  color: $colorBlack;
+  transition: 0.3s color ease-out, 0.3s background-color ease-out, 0.3s border-bottom-color ease-out;
+
+  &_theme_dark {
+    color: $colorWhite;
+    background-color: $colorBlue;
+    border-bottom: 2px solid $colorBlueLight;
+  }
 
   &__body {
     display: flex;
@@ -32,7 +40,6 @@
     }
 
     &-text {
-      color: $colorBlack;
       font-weight: 900;
       font-size: 24px;
       margin: 0;
@@ -55,10 +62,23 @@
       font-size: 18px;
       color: $colorBlack;
       cursor: pointer;
+      transition: 0.3s color ease-out;
+
+      &:hover {
+        color: $colorShadow;
+      }
+
+      &_theme_dark {
+        color: $colorWhite;
+      }
 
       &_active {
         color: $colorGray;
         font-size: 16px;
+
+        &:hover {
+          color: $colorShadow;
+        }
       }
     }
 

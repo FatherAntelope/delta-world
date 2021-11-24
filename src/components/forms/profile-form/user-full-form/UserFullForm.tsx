@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useCookies } from 'react-cookie';
 import { Alert } from 'antd';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
@@ -10,18 +10,20 @@ import CardUser from '../../../cards/card-user/CardUser';
 import '../../../flex-grid/FlexGrid.css';
 import { useActions } from '../../../../hooks/useActions';
 import { ModalID } from '../../../../constants/common';
+import { ThemeCheckboxContext } from '../../../../contexts/theme-checkbox/ThemeCheckboxContext';
 
 const UserFullForm = () => {
   const [cookies] = useCookies();
   const { user, isLoading, error } = useTypedSelector((state) => state.userFullForm);
   const { openModalsFormAC } = useActions();
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handleClickOpenModalUpdateUser = () => {
     openModalsFormAC(ModalID.UPDATE_USER, { userID: cookies.user_id });
   };
 
   if (isLoading) {
-    return <div style={{ height: 316 }}><Preloader /></div>;
+    return <div style={{ height: 316 }}><Preloader isDarkTheme={themeCheckboxContext.isDarkTheme} /></div>;
   }
 
   if (error !== undefined) {
@@ -31,6 +33,7 @@ const UserFullForm = () => {
   return (
     <div className="row">
       <CardUser.Full
+        isDarkTheme={themeCheckboxContext.isDarkTheme}
         edit={
           (cookies.user_id === user.id) && (
             <CardUser.Edit onClick={handleClickOpenModalUpdateUser} />

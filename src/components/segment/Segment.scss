@@ -7,4 +7,9 @@
   background-color: $colorWhite;
   border: 3px solid $colorShadow;
   padding: 15px;
+
+  &_theme_dark {
+    background-color: $colorBlue;
+    border: none;
+  }
 }

@@ -5,9 +5,17 @@
   width: 100%;
   border-radius: 20px;
   background-color: $colorWhite;
+  color: $colorBlack;
   border: 3px solid $colorShadow;
   padding: 15px;
   display: flex;
+  transition: 0.3s color ease-out, 0.3s background-color ease-out, 0.3s border ease-out;
+
+  &_theme_dark {
+    background-color: $colorBlue;
+    color: $colorWhite;
+    border: 3px solid $colorBlueLight;
+  }
 }
 
 .card-user {
@@ -35,6 +43,15 @@
     padding: 0;
     margin: 0;
     color: $colorBlack;
+    transition: 0.3s color ease-out;
+  }
+
+  &__text *:hover {
+    color: $colorShadow;
+  }
+
+  &__text_theme_dark, &__text_theme_dark * {
+    color: $colorWhite;
   }
 }
 
@@ -58,9 +75,14 @@
   }
 
   &__edit {
-    color: $colorBlack;
+    color: inherit;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s color ease-out;
+
+    &:hover {
+      color: $colorShadow;
+    }
 
     @media (max-width: 900px) {
       order: 0;
@@ -95,7 +117,7 @@
 
   &__title {
     font-size: 24px;
-    color: $colorBlack;
+    color: inherit;
     font-weight: 700;
     padding: 0;
     margin-bottom: 10px;
@@ -103,12 +125,13 @@
 
   &__info {
     font-size: 16px;
-    color: $colorBlack;
+    color: inherit;
   }
 
   &__text {
     padding: 0;
     margin: 0;
+    color: inherit;
 
     &:not(:last-child) {
       margin-bottom: 5px;

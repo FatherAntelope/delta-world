@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Auth.css';
 import {
   Alert, Button, Form, Input
@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { COOKIE_LIFETIME } from '../../../constants/common';
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
 
 const LoginForm = () => {
   const [form] = Form.useForm();
@@ -15,6 +16,8 @@ const LoginForm = () => {
   const localeHistory = useHistory();
   const { loginUser, error, isLoading } = useTypedSelector((state) => state.loginUserForm);
   const { loginUserFormAC } = useActions();
+
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handleFinishForm = () => {
     if (!cookies.user_id) {
@@ -44,9 +47,12 @@ const LoginForm = () => {
   return (
     <div className="user-auth">
       <div className="user-auth__body">
-        <h2 className="user-auth__header">Вход</h2>
+        <h2 className={`user-auth__header ${themeCheckboxContext.isDarkTheme ? 'user-auth__header_theme_dark' : ''}`}>
+          Вход
+        </h2>
         <Form form={form} name="formAuthUser" layout="vertical" onFinish={handleFinishForm}>
           <Form.Item
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="userID"
             label={<b>ID:</b>}
             rules={[{
@@ -65,7 +71,11 @@ const LoginForm = () => {
             >
               Войти
             </Button>
-            <p style={{ textAlign: 'center', marginTop: '7px' }}>
+            <p
+              className={`user-auth__info ${
+                themeCheckboxContext.isDarkTheme ? 'user-auth__info_theme_dark' : ''
+              }`}
+            >
               Еще нет аккаунта?
               {' '}
               <Link to="/register">Зарегистрироваться</Link>

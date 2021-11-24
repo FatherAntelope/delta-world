@@ -9,18 +9,24 @@ interface IPropsCardPreview {
   dateOfPublication: string;
   // eslint-disable-next-line react/require-default-props
   children?: React.ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
 interface IPropsCardBig {
   text: string;
   // eslint-disable-next-line react/require-default-props
   children?: React.ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
 interface IPropsHeaderBig {
   userAvatarURL: string;
   userFullName: React.ReactNode;
   dateOfPublication: string;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
 interface IPropsImage {
@@ -31,14 +37,16 @@ interface IPropsCardMini {
   text: string;
   // eslint-disable-next-line react/require-default-props
   children?: React.ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
 const CardPost = () => undefined;
 
 CardPost.Big = ({
-  text, children
+  text, children, isDarkTheme
 }: IPropsCardBig) => (
-  <div className="card-post card-post_big">
+  <div className={`card-post card-post_big ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     {children}
     <p className="card-post__text_big">
       {text}
@@ -47,14 +55,18 @@ CardPost.Big = ({
 );
 
 CardPost.Preview = ({
-  text, userAvatarURL, userFullName, dateOfPublication, children
+  text, userAvatarURL, userFullName, dateOfPublication, children, isDarkTheme
 }: IPropsCardPreview) => (
-  <div className="card-post">
+  <div className={`card-post ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     <div className="card-post__header">
       <Avatar src={userAvatarURL} />
       <div className="card-post__info">
-        <div className="card-post__title">{userFullName}</div>
-        <p className="card-post__subtitle">{dateOfPublication}</p>
+        <div className={`card-post__title ${isDarkTheme ? 'card-post__title_theme_dark' : ''}`}>
+          {userFullName}
+        </div>
+        <p className={`card-post__subtitle ${isDarkTheme ? 'card-post__subtitle_theme_dark' : ''}`}>
+          {dateOfPublication}
+        </p>
       </div>
     </div>
     {children}
@@ -76,18 +88,28 @@ CardPost.ImageBig = ({ imageURL }: IPropsImage) => (
   </div>
 );
 
-CardPost.HeaderBig = ({ userAvatarURL, userFullName, dateOfPublication }: IPropsHeaderBig) => (
+CardPost.HeaderBig = ({
+  userAvatarURL, userFullName, dateOfPublication, isDarkTheme
+}: IPropsHeaderBig) => (
   <div className="card-post__header">
     <Avatar src={userAvatarURL} style={{ width: 32 }} />
     <div className="card-post__info card-post__info_big">
-      <div className="card-post__title card-post__title_big">{userFullName}</div>
-      <p className="card-post__subtitle card-post__subtitle_big">{dateOfPublication}</p>
+      <div className={`card-post__title card-post__title_big ${isDarkTheme ? 'card-post__title_theme_dark' : ''}`}>
+        {userFullName}
+      </div>
+      <p
+        className={
+        `card-post__subtitle card-post__subtitle_big ${isDarkTheme ? 'card-post__subtitle_theme_dark' : ''}`
+        }
+      >
+        {dateOfPublication}
+      </p>
     </div>
   </div>
 );
 
-CardPost.Mini = ({ text, children }: IPropsCardMini) => (
-  <div className="card-post">
+CardPost.Mini = ({ text, children, isDarkTheme }: IPropsCardMini) => (
+  <div className={`card-post ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     {children}
     <p className="card-post__text">
       {text}

@@ -14,42 +14,51 @@ import RegisterForm from '../forms/auth-forms/RegisterForm';
 import UsersForm from '../forms/users-form/UsersForm';
 import PostsForm from '../forms/posts-form/PostsForm';
 import ProfileForm from '../forms/profile-form/ProfileForm';
+import { IThemeState, ThemeCheckboxContext } from '../../contexts/theme-checkbox/ThemeCheckboxContext';
 
-function App() {
-  return (
-    <div className="App">
-      <Wrapper>
-        <HeaderForm />
-        <Main>
-          <Container>
-            <Switch>
-              <Route exact path="/register">
-                <Segment>
-                  <RegisterForm />
-                </Segment>
-              </Route>
-              <Route exact path="/login">
-                <Segment>
-                  <LoginForm />
-                </Segment>
-              </Route>
-              <Route exact path="/users">
-                <UsersForm />
-              </Route>
-              <Route exact path="/posts">
-                <PostsForm />
-              </Route>
-              <Route exact path="/user/:id">
-                <ProfileForm />
-              </Route>
-              <Redirect from="/" to="/login" />
-            </Switch>
-          </Container>
-        </Main>
-        <FooterForm />
-      </Wrapper>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeCheckboxContext.Consumer>
+        {
+          (context: Partial<IThemeState>) => (
+            <div className="App">
+              <Wrapper>
+                <HeaderForm />
+                <Main isDarkTheme={context.isDarkTheme}>
+                  <Container>
+                    <Switch>
+                      <Route exact path="/login">
+                        <Segment isDarkTheme={context.isDarkTheme}>
+                          <LoginForm />
+                        </Segment>
+                      </Route>
+                      <Route exact path="/register">
+                        <Segment isDarkTheme={context.isDarkTheme}>
+                          <RegisterForm />
+                        </Segment>
+                      </Route>
+                      <Route exact path="/users">
+                        <UsersForm />
+                      </Route>
+                      <Route exact path="/posts">
+                        <PostsForm />
+                      </Route>
+                      <Route exact path="/user/:id">
+                        <ProfileForm />
+                      </Route>
+                      <Redirect from="/" to="/login" />
+                    </Switch>
+                  </Container>
+                </Main>
+                <FooterForm />
+              </Wrapper>
+            </div>
+          )
+        }
+      </ThemeCheckboxContext.Consumer>
+    );
+  }
 }
 
 export default App;

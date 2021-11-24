@@ -5,6 +5,8 @@ import { EditOutlined } from '@ant-design/icons';
 interface IPropsCardPreview {
   imageURL: string;
   fullName: React.ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean;
 }
 
 interface IPropsCardFull {
@@ -18,6 +20,8 @@ interface IPropsCardFull {
   phone: string;
   // eslint-disable-next-line react/require-default-props
   edit?: React.ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?:boolean;
 }
 
 interface IPropsEdit {
@@ -27,12 +31,12 @@ interface IPropsEdit {
 
 const CardUser = () => undefined;
 
-CardUser.Preview = ({ imageURL, fullName }: IPropsCardPreview) => (
-  <div className="card-user">
+CardUser.Preview = ({ imageURL, fullName, isDarkTheme }: IPropsCardPreview) => (
+  <div className={`card-user ${isDarkTheme ? 'card-user_theme_dark' : ''}`}>
     <div className="card-user__image">
       <img src={imageURL} alt="img" />
     </div>
-    <div className="card-user__text">
+    <div className={`card-user__text ${isDarkTheme ? 'card-user__text_theme_dark' : ''}`}>
       {fullName}
     </div>
   </div>
@@ -46,9 +50,9 @@ CardUser.Edit = ({ onClick }: IPropsEdit) => (
 );
 
 CardUser.Full = ({
-  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, edit
+  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, edit, isDarkTheme
 }: IPropsCardFull) => (
-  <div className="card-user-full">
+  <div className={`card-user-full ${isDarkTheme ? 'card-user-full_theme_dark' : ''}`}>
     <div className="card-user-full__body">
       <div className="card-user-full__image">
         <img src={imageURL} alt="img-user" />

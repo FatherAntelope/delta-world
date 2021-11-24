@@ -15,18 +15,12 @@
   &__header {
     font-size: 20px;
     font-weight: 700;
+    color: $colorBlack;
     text-align: center;
-  }
 
-  &__inline-item {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row !important;
-    align-items: center;
-    &>* {
-      padding: 0 !important;
+    &_theme_dark {
+      color: $colorWhite;
     }
-    gap: 10px;
   }
 
   &__button {
@@ -37,6 +31,40 @@
     }
     &:active, &:focus {
       background-color: $colorBlack;
+    }
+  }
+
+  &__field:not(:last-child) {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  &__field_inline {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    &>* {
+      padding: 0 !important;
+    }
+    gap: 10px;
+  }
+
+  &__field label {
+    color: $colorBlack;
+  }
+
+  &__field_theme_dark label {
+    color: $colorWhite;
+  }
+
+  &__info {
+    text-align: center;
+    margin-top: 7px;
+    color: $colorBlack;
+
+    &_theme_dark {
+      color: $colorWhite;
     }
   }
 }

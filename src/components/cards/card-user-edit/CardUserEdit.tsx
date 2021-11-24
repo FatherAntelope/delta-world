@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './CardUserEdit.css';
+import '../../forms/auth-forms/Auth.css';
 import {
   Button, DatePicker, Form, Input, Radio, Upload
 } from 'antd';
 import moment from 'moment';
 import { UploadOutlined } from '@ant-design/icons';
 import { MAXIMUM_DATE } from '../../../constants/common';
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
 
 interface IProps {
   avatar: string;
@@ -20,6 +22,7 @@ const CardUserEdit = ({
   avatar, gender, firstName, lastName, dateOfBirth, phone
 }: IProps) => {
   const [formEditDataUser] = Form.useForm();
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   useEffect(() => {
     if (firstName && gender && lastName && dateOfBirth && phone) {
@@ -58,7 +61,7 @@ const CardUserEdit = ({
 
       <Form form={formEditDataUser} name="formEditDataUser" layout="vertical">
         <Form.Item
-          style={{ marginBottom: 10, width: '100%' }}
+          className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
           name="firstName"
           label={<b>Имя:</b>}
           rules={[
@@ -82,7 +85,7 @@ const CardUserEdit = ({
           <Input type="text" placeholder="Введите свое имя" style={{ width: '100%' }} />
         </Form.Item>
         <Form.Item
-          style={{ marginBottom: 10, width: '100%' }}
+          className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
           name="lastName"
           label={<b>Фамилия:</b>}
           rules={[
@@ -106,7 +109,10 @@ const CardUserEdit = ({
           <Input type="text" placeholder="Введите свою фамилию" style={{ width: '100%' }} />
         </Form.Item>
         <Form.Item
-          className="user-auth__inline-item"
+          className={`
+              user-auth__field user-auth__field_inline
+              ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}
+            `}
           name="gender"
           label={<b>Пол:</b>}
           rules={[
@@ -122,7 +128,7 @@ const CardUserEdit = ({
           </Radio.Group>
         </Form.Item>
         <Form.Item
-          style={{ marginBottom: 10 }}
+          className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
           name="dateOfBirth"
           label={<b>Дата рождения:</b>}
           rules={[
@@ -142,7 +148,7 @@ const CardUserEdit = ({
           />
         </Form.Item>
         <Form.Item
-          style={{ marginBottom: 15 }}
+          className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
           name="phone"
           label={<b>Телефон:</b>}
           rules={[

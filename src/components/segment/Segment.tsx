@@ -2,11 +2,16 @@ import React from 'react';
 import './Segment.css';
 
 interface IProps {
-  children: JSX.Element;
+  children: React.ReactNode;
+  isDarkTheme?: boolean;
 }
 
-const Segment = ({ children }: IProps) => (
-  <div className="segment">{children}</div>
+const Segment = ({ children, isDarkTheme }: IProps) => (
+  <div className={`segment ${isDarkTheme ? 'segment_theme_dark' : ''} `}>{children}</div>
 );
+
+Segment.defaultProps = {
+  isDarkTheme: false
+};
 
 export default Segment;

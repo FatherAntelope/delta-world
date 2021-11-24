@@ -10,5 +10,10 @@
   &__spin {
     color: $colorBlack;
     font-size: 70px;
+    transition: 0.3s color ease-out;
+
+    &_theme_dark {
+      color: $colorWhite;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Auth.css';
 import moment from 'moment';
 import {
@@ -12,6 +12,7 @@ import { getJSONStringifyFromFormData } from '../../../utils/common';
 import { useActions } from '../../../hooks/useActions';
 import { COOKIE_LIFETIME, MAXIMUM_DATE } from '../../../constants/common';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
 
 const RegisterForm = () => {
   const [form] = Form.useForm();
@@ -19,6 +20,8 @@ const RegisterForm = () => {
   const localeHistory = useHistory();
   const { sendUser, error, isLoading } = useTypedSelector((state) => state.sendUserForm);
   const { registerUserFormAction, loginUserSetValuesFormAC } = useActions();
+
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handleFinishForm = () => {
     const formData: ICreateUser = form.getFieldsValue();
@@ -49,10 +52,12 @@ const RegisterForm = () => {
   return (
     <div className="user-auth">
       <div className="user-auth__body">
-        <h2 className="user-auth__header">Регистрация</h2>
+        <h2 className={`user-auth__header ${themeCheckboxContext.isDarkTheme ? 'user-auth__header_theme_dark' : ''}`}>
+          Регистрация
+        </h2>
         <Form form={form} name="formRegisterUser" layout="vertical" onFinish={handleFinishForm}>
           <Form.Item
-            style={{ marginBottom: 10, width: '100%' }}
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="firstName"
             hasFeedback
             label={<b>Имя:</b>}
@@ -77,7 +82,7 @@ const RegisterForm = () => {
             <Input type="text" placeholder="Введите свое имя" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
-            style={{ marginBottom: 10, width: '100%' }}
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="lastName"
             hasFeedback
             label={<b>Фамилия:</b>}
@@ -102,7 +107,10 @@ const RegisterForm = () => {
             <Input type="text" placeholder="Введите свою фамилию" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
-            className="user-auth__inline-item"
+            className={`
+              user-auth__field user-auth__field_inline
+              ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}
+            `}
             name="gender"
             hasFeedback
             label={<b>Пол:</b>}
@@ -119,7 +127,7 @@ const RegisterForm = () => {
             </Radio.Group>
           </Form.Item>
           <Form.Item
-            style={{ marginBottom: 10 }}
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="dateOfBirth"
             hasFeedback
             label={<b>Дата рождения:</b>}
@@ -140,7 +148,7 @@ const RegisterForm = () => {
             />
           </Form.Item>
           <Form.Item
-            style={{ marginBottom: 10 }}
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="email"
             label={<b>Email:</b>}
             hasFeedback
@@ -158,7 +166,7 @@ const RegisterForm = () => {
             <Input type="email" placeholder="example@mail.com" />
           </Form.Item>
           <Form.Item
-            style={{ marginBottom: 15 }}
+            className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
             name="phone"
             hasFeedback
             label={<b>Телефон:</b>}
@@ -185,7 +193,11 @@ const RegisterForm = () => {
             >
               Зарегистрироваться
             </Button>
-            <p style={{ textAlign: 'center', marginTop: '7px' }}>
+            <p
+              className={`user-auth__info ${
+                themeCheckboxContext.isDarkTheme ? 'user-auth__info_theme_dark' : ''
+              }`}
+            >
               Уже есть аккаунт?
               {' '}
               <Link to="/login">Войти</Link>

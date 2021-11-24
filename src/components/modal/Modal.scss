@@ -41,7 +41,12 @@
     padding: 15px;
     width: 100%;
     transform: scale(0.5);
-    transition: 0.3s transform ease-in;
+    transition: 0.3s transform ease-in, 0.3s background-color ease-out, 0.3s border ease-out;
+
+    &_theme_dark {
+      background-color: $colorBlue;
+      border: 2px solid $colorBlueLight;
+    }
 
     &_active {
       transform: scale(1);
@@ -51,7 +56,7 @@
   &__close {
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 5px;
     height: 30px;
     width: 30px;
     background-color: $colorWhite;
@@ -59,6 +64,20 @@
     border: 2px solid $colorGray;
     cursor: pointer;
     transform: translateX(-50%);
+    transition: 0.3s background-color ease-out;
+
+    &:hover {
+      background-color: $colorShadow;
+    }
+
+    &_theme_dark {
+      background-color: $colorBlue;
+      border: 2px solid $colorBlueLight;
+
+      &:hover {
+        background-color: $colorBlueDark;
+      }
+    }
 
     &-icon {
       display: block;
@@ -77,6 +96,12 @@
         height: 100%;
         width: 100%;
         background-color: $colorGray;
+      }
+
+      &_theme_dark {
+        &:before, &:after {
+          background-color: $colorBlueLight;
+        }
       }
 
       &:before {

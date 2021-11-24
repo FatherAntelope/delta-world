@@ -6,7 +6,15 @@
   border-radius: 10px;
   background-color: $colorWhite;
   border: 3px solid $colorShadow;
+  color: $colorBlack;
   padding: 10px;
+  transition: 0.3s background-color ease-out, 0.3s color ease-out, 0.3s border ease-out;
+
+  &_theme_dark {
+    background-color: $colorBlueLight;
+    border: 3px solid $colorBlueDark;
+    color: $colorWhite;
+  }
 
   &__content {
     display: flex;
@@ -42,17 +50,35 @@
 
   &__date {
     color: $colorGray;
+    transition: 0.3s color ease-out;
+
+    &_theme_dark {
+      color: $colorShadow;
+    }
   }
 
   &__name {
     font-weight: 500;
   }
 
-  &__name, &__name *, &__name *:hover {
+  &__name, &__name * {
     color: $colorBlack;
+    transition: 0.3s color ease-out;
+  }
+
+  &__name_theme_dark {
+    color: $colorWhite;
+  }
+
+  &__name *:hover{
+    color: $colorShadow;
+  }
+
+  &__name_theme_dark, &__name_theme_dark * {
+    color: $colorWhite;
   }
 
   &__name, &__text {
-    color: $colorBlack;
+    color: inherit;
   }
 }

@@ -3,6 +3,7 @@ import './Footer.css';
 
 interface IProps {
   children: React.ReactNode;
+  isDarkTheme?: boolean
 }
 
 interface IPropsBody {
@@ -13,11 +14,15 @@ interface IPropsCopyright {
   children: string;
 }
 
-const Footer = ({ children }: IProps) => (
-  <footer className="footer">
+const Footer = ({ children, isDarkTheme }: IProps) => (
+  <footer className={`footer ${isDarkTheme ? 'footer_theme_dark' : ''} `}>
     {children}
   </footer>
 );
+
+Footer.defaultProps = {
+  isDarkTheme: false
+};
 
 Footer.Body = ({ children }: IPropsBody) => (
   <div className="footer__body">

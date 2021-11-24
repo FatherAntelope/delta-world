@@ -4,9 +4,10 @@ import './Tooltip.css';
 interface IProps {
   children: React.ReactNode;
   textInfo: string;
+  isDarkTheme?: boolean;
 }
 
-const Tooltip = ({ children, textInfo }: IProps) => {
+const Tooltip = ({ children, textInfo, isDarkTheme }: IProps) => {
   const [hovered, setHovered] = useState(false as boolean);
 
   const mouseOver = (e: React.SyntheticEvent): void => {
@@ -24,7 +25,7 @@ const Tooltip = ({ children, textInfo }: IProps) => {
     <div className="tooltip" onMouseOver={mouseOver} onMouseOut={mouseOut}>
       {
         hovered && (
-          <div className="tooltip__info">
+          <div className={`tooltip__info ${isDarkTheme ? 'tooltip__info_theme_dark' : ''}`}>
             {textInfo}
           </div>
         )
@@ -32,6 +33,10 @@ const Tooltip = ({ children, textInfo }: IProps) => {
       {children}
     </div>
   );
+};
+
+Tooltip.defaultProps = {
+  isDarkTheme: false
 };
 
 export default Tooltip;

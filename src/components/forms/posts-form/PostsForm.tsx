@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../../flex-grid/FlexGrid.css';
-import { Alert, Pagination } from 'antd';
+import { Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import CardPost from '../../cards/card-post/CardPost';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
@@ -11,10 +11,14 @@ import Preloader from '../../preloader/Preloader';
 import { FORM_LIMIT_POSTS, ModalID } from '../../../constants/common';
 import Tooltip from '../../tooltip/Tooltip';
 import ModalPostForm from '../modal-forms/ModalPostForm';
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
+import PaginationWrapper from '../../PaginationWrapper/PaginationWrapper';
 
 const PostsForm = () => {
   const { posts, isLoading, error } = useTypedSelector((state) => state.postsForm);
   const { loadPostsFormAC, openModalsFormAC } = useActions();
+
+  const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   useEffect(() => {
     loadPostsFormAC(0, FORM_LIMIT_POSTS);
@@ -29,7 +33,7 @@ const PostsForm = () => {
   };
 
   if (isLoading) {
-    return <Preloader />;
+    return <Preloader isDarkTheme={themeCheckboxContext.isDarkTheme} />;
   }
 
   if (error !== undefined) {
@@ -38,14 +42,16 @@ const PostsForm = () => {
 
   return (
     <>
+      <ModalPostForm />
       <div className="row">
         {posts.data.map((item: IResponsePostPreview) => (
           <div className="col-4" key={item.id}>
             <CardPost.Preview
+              isDarkTheme={themeCheckboxContext.isDarkTheme}
               text={item.text}
               userAvatarURL={checkPictureAndGet(item.owner.picture)}
               userFullName={(
-                <Tooltip textInfo={item.owner.id}>
+                <Tooltip isDarkTheme={themeCheckboxContext.isDarkTheme} textInfo={item.owner.id}>
                   <Link to={`/user/${item.owner.id}`}>
                     {getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
                   </Link>
@@ -61,15 +67,14 @@ const PostsForm = () => {
         ))}
       </div>
       <div className="row row__justify_end">
-        <Pagination
+        <PaginationWrapper
+          isDarkTheme={themeCheckboxContext.isDarkTheme}
           pageSize={posts.limit}
           total={posts.total}
           current={posts.page + 1}
-          showSizeChanger={false}
           onChange={handlePaginationChange}
         />
       </div>
-      <ModalPostForm />
     </>
   );
 };

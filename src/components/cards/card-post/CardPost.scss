@@ -6,7 +6,15 @@
   border-radius: 20px;
   background-color: $colorWhite;
   border: 3px solid $colorShadow;
+  color: $colorBlack;
   padding: 15px;
+  transition: 0.3s color ease-out, 0.3s background-color ease-out, 0.3s border ease-out;
+
+  &_theme_dark {
+    background-color: $colorBlue;
+    color: $colorWhite;
+    border: 3px solid $colorBlueLight;
+  }
 
   &_big {
     padding: 0;
@@ -49,8 +57,17 @@
   }
 
   &__title, &__title *, &__title *:hover {
-    font-size: 14px;
+    font-size: 16px;
     color: $colorBlack;
+    transition: 0.3s color ease-out;
+  }
+
+  &__title *:hover {
+    color: $colorShadow;
+  }
+
+  &__title_theme_dark, &__title_theme_dark * {
+    color: $colorWhite;
   }
 
   &__title {
@@ -63,6 +80,10 @@
     font-size: 12px;
     color: $colorGray;
 
+    &_theme_dark {
+      color: $colorGrayLight;
+    }
+
     &_big {
       font-size: 16px;
     }
@@ -70,12 +91,13 @@
 
   &__text {
     font-size: 12px;
-    color: $colorBlack;
+    color: inherit;
 
     &_big {
       font-size: 16px;
       margin: 5px 0;
       padding: 0;
+      color: inherit;
     }
   }
 
