@@ -8,7 +8,6 @@ import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS, ModalID } from '../../../../constants/common';
 import '../../../flex-grid/FlexGrid.css';
 import Preloader from '../../../preloader/Preloader';
-import ModalPostFormWihoutHeader from '../../modal-forms/ModalPostFormWihoutHeader';
 
 interface ISearchParams {
   id: string;
@@ -62,7 +61,6 @@ const UserPostsForm = () => {
         />
       </div>
       )}
-      <ModalPostFormWihoutHeader />
     </>
   );
 };

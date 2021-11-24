@@ -18,7 +18,8 @@ const FORM_LIMIT_POST_COMMENTS: number = 6;
 
 export enum ModalID {
   POSTS = 'selectPost',
-  POSTS_USER = 'selectPostUser'
+  POSTS_USER = 'selectPostUser',
+  UPDATE_USER = 'openUpdateUser'
 }
 
 export {

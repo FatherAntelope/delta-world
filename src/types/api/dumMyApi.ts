@@ -7,7 +7,7 @@ export interface IResponseList<T> {
 
 export interface IResponseUserPreview {
   id: string;
-  title: string;
+  title: 'ms' | 'mr' | '';
   firstName: string;
   lastName: string;
   picture: string;
@@ -21,17 +21,12 @@ export interface IResponseCommentPreview {
   publishDate: string;
 }
 
-export interface IResponseUserFull {
-  id: string;
-  title: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
+export interface IResponseUserFull extends IResponseUserPreview {
+  gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
   registerDate: string;
   phone: string;
-  picture: string;
 }
 
 export interface IResponseUserAuth {
@@ -49,10 +44,10 @@ export interface IResponsePostPreview {
 }
 
 export interface ICreateUser {
-  title: 'ms' | 'mr';
+  title: 'ms' | 'mr' | '';
   firstName: string;
   lastName: string;
-  gender: 'male' | 'female';
+  gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
   phone: string;

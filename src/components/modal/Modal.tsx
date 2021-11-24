@@ -5,9 +5,10 @@ import { useActions } from '../../hooks/useActions';
 interface IPropsChild {
   children: React.ReactNode;
   isActive: boolean;
+  size?: 'mini' | ''
 }
 
-const Modal = ({ children, isActive }: IPropsChild) => {
+const Modal = ({ children, isActive, size }: IPropsChild) => {
   const { closeModalsFormAC } = useActions();
 
   return (
@@ -15,7 +16,7 @@ const Modal = ({ children, isActive }: IPropsChild) => {
       <div className="modal__close" onClick={() => closeModalsFormAC()}>
         <span className="modal__close-icon" />
       </div>
-      <div className="modal__dialog">
+      <div className={`modal__dialog ${size === 'mini' && 'modal__dialog_mini'} `}>
         <div
           className={`modal__content ${isActive && 'modal__content_active'}`}
           onClick={(e) => e.stopPropagation()}
@@ -25,6 +26,10 @@ const Modal = ({ children, isActive }: IPropsChild) => {
       </div>
     </div>
   );
+};
+
+Modal.defaultProps = {
+  size: ''
 };
 
 export default Modal;

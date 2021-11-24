@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../../flex-grid/FlexGrid.css';
 import { Alert, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
@@ -16,17 +16,11 @@ const CommentsForm = () => {
   const modalPostUserStore = modals[ModalID.POSTS_USER];
 
   const { postComments, isLoading, error } = useTypedSelector((state) => state.postCommentsForm);
-  const { loadPostCommentsFormAC } = useActions();
+  const { loadPostCommentsFormAC, closeModalsFormAC } = useActions();
 
   const handlePaginationChange = (e: number) => {
     loadPostCommentsFormAC(modalPostUserStore?.modalData?.postID, e - 1, FORM_LIMIT_POST_COMMENTS);
   };
-
-  useEffect(() => {
-    if (modalPostUserStore?.modalData?.postID !== undefined) {
-      loadPostCommentsFormAC(modalPostUserStore?.modalData?.postID, 0, FORM_LIMIT_POST_COMMENTS);
-    }
-  }, [modalPostUserStore?.modalData?.postID]);
 
   if (isLoading) {
     return <div style={{ height: 70 }}><Preloader /></div>;
@@ -47,7 +41,9 @@ const CommentsForm = () => {
               userFullName={(
                 <Tooltip textInfo={item.owner.id}>
                   <Link to={`/user/${item.owner.id}`}>
-                    {getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
+                    <span onClick={closeModalsFormAC}>
+                      {getUserFullName(item.owner.title, item.owner.firstName, item.owner.lastName)}
+                    </span>
                   </Link>
                 </Tooltip>
               )}

@@ -16,7 +16,13 @@ interface IPropsCardFull {
   dateOfRegister: string;
   email: string;
   phone: string;
-  isEdit: boolean;
+  // eslint-disable-next-line react/require-default-props
+  edit?: React.ReactNode;
+}
+
+interface IPropsEdit {
+  // eslint-disable-next-line react/require-default-props
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const CardUser = () => undefined;
@@ -32,8 +38,15 @@ CardUser.Preview = ({ imageURL, fullName }: IPropsCardPreview) => (
   </div>
 );
 
+CardUser.Edit = ({ onClick }: IPropsEdit) => (
+  <div className="card-user-full__edit" onClick={onClick}>
+    <EditOutlined />
+    <span>Редактировать</span>
+  </div>
+);
+
 CardUser.Full = ({
-  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, isEdit
+  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, edit
 }: IPropsCardFull) => (
   <div className="card-user-full">
     <div className="card-user-full__body">
@@ -74,12 +87,7 @@ CardUser.Full = ({
         </div>
       </div>
     </div>
-    {isEdit && (
-    <div className="card-user-full__edit">
-      <EditOutlined />
-      <span>Редактировать</span>
-    </div>
-    )}
+    {edit}
   </div>
 );
 

@@ -4,6 +4,8 @@ import UserFullForm from './user-full-form/UserFullForm';
 import UserPostsForm from './user-posts-form/UserPostsForm';
 import { FORM_LIMIT_USER_POSTS } from '../../../constants/common';
 import { useActions } from '../../../hooks/useActions';
+import ModalPostFormWihoutHeader from '../modal-forms/ModalPostFormWihoutHeader';
+import ModalUpdateUserForm from '../modal-forms/ModalUpdateUserForm';
 
 interface ISearchParams {
   id: string;
@@ -23,6 +25,8 @@ const ProfileForm = () => {
     <>
       <UserFullForm />
       <UserPostsForm />
+      <ModalPostFormWihoutHeader />
+      <ModalUpdateUserForm />
     </>
   );
 };

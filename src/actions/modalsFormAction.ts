@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux';
-import { ModalsFormAC, ModalsFormACTypes, IModalData } from '../types/redux/modalsForm';
+import {
+  ModalsFormAC, ModalsFormACTypes, IModalData, IModalsFormState
+} from '../types/redux/modalsForm';
 
 const openModalsFormAC = (id: string, data: IModalData) => (dispatch: Dispatch<ModalsFormAC>) => {
-  const obj: any = {};
+  const obj: IModalsFormState = {};
   obj[id] = { isActive: true, modalData: data };
   dispatch({
     type: ModalsFormACTypes.OPEN_MODALS_FORM,
