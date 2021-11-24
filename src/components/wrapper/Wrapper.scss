@@ -1,6 +1,10 @@
 .wrapper {
   height: 100vh;
 
+  &_scroll_hidden {
+    overflow: hidden;
+  }
+
   &__grid {
     display: grid;
     min-height: 100%;

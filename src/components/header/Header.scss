@@ -7,6 +7,68 @@
   color: $colorBlack;
   transition: 0.3s color ease-out, 0.3s background-color ease-out, 0.3s border-bottom-color ease-out;
 
+  @media (max-width: 640px) {
+    z-index: 100;
+  }
+
+  &__burger {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+
+    @media (max-width: 640px) {
+      display: block;
+    }
+
+    &-icon, &:before, &:after {
+      content: '';
+      left: 0;
+      position: absolute;
+      background-color: $colorGray;
+      width: 100%;
+      height: 2px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    &-icon_theme_dark {
+      background-color: $colorWhite;
+    }
+
+    &_theme_dark:before, &_theme_dark:after {
+      background-color: $colorWhite;
+    }
+
+    &-icon {
+      top: 9px;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
+
+    &_active {
+      span {
+        transform: rotate(180deg);
+      }
+
+      &:before {
+        transform: translateX(-5px) translateY(2px) rotate(-45deg);
+        width: 60%;
+      }
+
+      &:after {
+        transform: translateX(-5px) translateY(-4px) rotate(45deg);
+        width: 60%;
+      }
+    }
+  }
+
   &_theme_dark {
     color: $colorWhite;
     background-color: $colorBlue;

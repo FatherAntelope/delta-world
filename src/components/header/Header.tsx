@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { EMPTY_STRING } from '../../constants/common';
 import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 interface IProps {
   children: React.ReactNode;
@@ -33,6 +34,11 @@ interface IPropsAuth {
   isDarkTheme?: boolean;
 }
 
+interface IPropsBurger {
+  // eslint-disable-next-line react/require-default-props
+  isDarkTheme?: boolean
+}
+
 const Header = ({ children, isDarkTheme }: IProps) => (
   <header className={`header ${isDarkTheme ? 'header_theme_dark' : ''} `}>
     {children}
@@ -49,6 +55,28 @@ Header.Body = ({ children }: IPropsBody) => (
   </div>
 );
 
+Header.Burger = ({ isDarkTheme }: IPropsBurger) => {
+  const { isActive } = useTypedSelector((state) => state.burgerHeader);
+  const { burgerHeaderSetActiveAC, burgerHeaderSetNotActiveAC } = useActions();
+
+  const handleClick = () => {
+    if (isActive) {
+      burgerHeaderSetNotActiveAC();
+    } else {
+      burgerHeaderSetActiveAC();
+    }
+  };
+
+  return (
+    <div
+      className={`header__burger ${isDarkTheme ? 'header__burger_theme_dark' : ''}`}
+      onClick={handleClick}
+    >
+      <span className={`header__burger-icon ${isDarkTheme ? 'header__burger-icon_theme_dark' : ''}`} />
+    </div>
+  );
+};
+
 Header.Logo = ({ src, text }: IPropsIcon) => (
   <div className="header__logo">
     <div className="header__logo-img">
@@ -62,16 +90,19 @@ Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
   const [cookies, setCookies] = useCookies();
   const { logoutUserFormAC } = useActions();
   const localeHistory = useHistory();
+  const { burgerHeaderSetNotActiveAC } = useActions();
 
   const handleExitClick = () => {
     setCookies('user_id', EMPTY_STRING, { maxAge: -1 });
     setCookies('user_picture', EMPTY_STRING, { maxAge: -1 });
     setCookies('user_first_name', EMPTY_STRING, { maxAge: -1 });
     logoutUserFormAC();
+    burgerHeaderSetNotActiveAC();
     localeHistory.push('/login');
   };
 
   const handleGoProfileClick = () => {
+    burgerHeaderSetNotActiveAC();
     localeHistory.push(`/user/${cookies.user_id}`);
   };
 
@@ -97,11 +128,23 @@ Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
   return (
     <div className="header__auth">
       <Link to="/login">
-        <p className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}>Вход</p>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+        <p
+          onClick={burgerHeaderSetNotActiveAC}
+          className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}
+        >
+          Вход
+        </p>
       </Link>
       <div className="header__auth-divider" />
       <Link to="/register">
-        <p className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}>Регистрация</p>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+        <p
+          onClick={burgerHeaderSetNotActiveAC}
+          className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}
+        >
+          Регистрация
+        </p>
       </Link>
     </div>
   );

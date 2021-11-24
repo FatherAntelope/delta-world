@@ -29,8 +29,9 @@ const HeaderForm = () => {
     <Header isDarkTheme={themeCheckboxContext.isDarkTheme}>
       <Container>
         <Header.Body>
+          <Header.Burger isDarkTheme={themeCheckboxContext.isDarkTheme} />
           <Header.Logo src={APPLICATION_LOGO} text={APPLICATION_NAME} />
-          <Menu>
+          <Menu isDarkTheme={themeCheckboxContext.isDarkTheme}>
             {menuItems.map((item: IMenuItem, index) => (
               <Link to={item.path} key={index}>
                 <Menu.Item isDarkTheme={themeCheckboxContext.isDarkTheme} label={item.label} icon={item.icon} />

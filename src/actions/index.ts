@@ -7,6 +7,7 @@ import * as RegisterUserFormAC from './sendUserFormAction';
 import * as ModalsFormAC from './modalsFormAction';
 import * as PostCommentsFormAC from './postCommentsAction';
 import * as PostFormAC from './postFormAction';
+import * as BurgerHeaderAC from './burgerHeaderAction';
 
 export default {
   ...UsersFormAC,
@@ -18,4 +19,5 @@ export default {
   ...ModalsFormAC,
   ...PostCommentsFormAC,
   ...PostFormAC,
+  ...BurgerHeaderAC
 };
