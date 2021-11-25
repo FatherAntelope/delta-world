@@ -15,8 +15,18 @@ import UsersForm from '../forms/users-form/UsersForm';
 import PostsForm from '../forms/posts-form/PostsForm';
 import ProfileForm from '../forms/profile-form/ProfileForm';
 import { IThemeState, ThemeCheckboxContext } from '../../contexts/theme-checkbox/ThemeCheckboxContext';
+import { clearImageEditFormAC } from '../../actions/imageEditFormAction';
+import { clearLoginUserFormAC } from '../../actions/loginUserFormAction';
+import { clearSendDataUserFormAction } from '../../actions/sendUserFormAction';
 
 class App extends React.Component {
+  /* Действия при размонтировании компонента для примера */
+  componentWillUnmount() {
+    clearImageEditFormAC();
+    clearLoginUserFormAC();
+    clearSendDataUserFormAction();
+  }
+
   render() {
     return (
       <ThemeCheckboxContext.Consumer>

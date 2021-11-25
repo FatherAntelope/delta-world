@@ -9,6 +9,7 @@ import postCommentsReducer from './postCommentsReducer';
 import postFormReducer from './postFormReducer';
 import modalsFormReducer from './modalsFormReducer';
 import burgerHeaderReducer from './burgerHeaderReducer';
+import imageEditFormReducer from './imageEditFormReducer';
 
 export const rootReducer = combineReducers({
   usersForm: usersFormReducer,
@@ -20,7 +21,8 @@ export const rootReducer = combineReducers({
   modalsForm: modalsFormReducer,
   postCommentsForm: postCommentsReducer,
   postForm: postFormReducer,
-  burgerHeader: burgerHeaderReducer
+  burgerHeader: burgerHeaderReducer,
+  imageEditForm: imageEditFormReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

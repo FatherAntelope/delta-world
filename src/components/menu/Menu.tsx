@@ -35,10 +35,17 @@ Menu.defaultProps = {
 
 Menu.Item = ({ isDarkTheme, icon, label }: IPropItem) => {
   const { burgerHeaderSetNotActiveAC } = useActions();
+  const { isActive } = useTypedSelector((state) => state.burgerHeader);
+
+  const burgerMenuSetNotActive = () => {
+    if (isActive) {
+      burgerHeaderSetNotActiveAC();
+    }
+  };
 
   return (
     <div
-      onClick={burgerHeaderSetNotActiveAC}
+      onClick={burgerMenuSetNotActive}
       className={`menu__item ${isDarkTheme ? 'menu__item_theme_dark' : ''} `}
     >
       {icon}

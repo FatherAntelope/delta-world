@@ -55,7 +55,7 @@ Header.Body = ({ children }: IPropsBody) => (
   </div>
 );
 
-Header.Burger = ({ isDarkTheme }: IPropsBurger) => {
+Header.Burger = ({ isDarkTheme = false }: IPropsBurger) => {
   const { isActive } = useTypedSelector((state) => state.burgerHeader);
   const { burgerHeaderSetActiveAC, burgerHeaderSetNotActiveAC } = useActions();
 
@@ -69,7 +69,9 @@ Header.Burger = ({ isDarkTheme }: IPropsBurger) => {
 
   return (
     <div
-      className={`header__burger ${isDarkTheme ? 'header__burger_theme_dark' : ''}`}
+      className={`
+      header__burger ${isActive ? 'header__burger_active' : ''} ${isDarkTheme ? 'header__burger_theme_dark' : ''}
+      `}
       onClick={handleClick}
     >
       <span className={`header__burger-icon ${isDarkTheme ? 'header__burger-icon_theme_dark' : ''}`} />
@@ -86,23 +88,30 @@ Header.Logo = ({ src, text }: IPropsIcon) => (
   </div>
 );
 
-Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
+Header.Auth = ({ authData, isDarkTheme = false }: IPropsAuth) => {
   const [cookies, setCookies] = useCookies();
-  const { logoutUserFormAC } = useActions();
+  const { clearLoginUserFormAC } = useActions();
   const localeHistory = useHistory();
   const { burgerHeaderSetNotActiveAC } = useActions();
+  const burgerMenu = useTypedSelector((state) => state.burgerHeader);
+
+  const burgerMenuSetNotActive = () => {
+    if (burgerMenu.isActive) {
+      burgerHeaderSetNotActiveAC();
+    }
+  };
 
   const handleExitClick = () => {
     setCookies('user_id', EMPTY_STRING, { maxAge: -1 });
     setCookies('user_picture', EMPTY_STRING, { maxAge: -1 });
     setCookies('user_first_name', EMPTY_STRING, { maxAge: -1 });
-    logoutUserFormAC();
-    burgerHeaderSetNotActiveAC();
+    clearLoginUserFormAC();
+    burgerMenuSetNotActive();
     localeHistory.push('/login');
   };
 
   const handleGoProfileClick = () => {
-    burgerHeaderSetNotActiveAC();
+    burgerMenuSetNotActive();
     localeHistory.push(`/user/${cookies.user_id}`);
   };
 
@@ -130,7 +139,7 @@ Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
       <Link to="/login">
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <p
-          onClick={burgerHeaderSetNotActiveAC}
+          onClick={burgerMenuSetNotActive}
           className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}
         >
           Вход
@@ -140,7 +149,7 @@ Header.Auth = ({ authData, isDarkTheme }: IPropsAuth) => {
       <Link to="/register">
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <p
-          onClick={burgerHeaderSetNotActiveAC}
+          onClick={burgerMenuSetNotActive}
           className={`header__auth-text ${isDarkTheme ? 'header__auth-text_theme_dark' : ''} `}
         >
           Регистрация

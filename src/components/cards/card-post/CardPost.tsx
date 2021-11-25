@@ -44,7 +44,7 @@ interface IPropsCardMini {
 const CardPost = () => undefined;
 
 CardPost.Big = ({
-  text, children, isDarkTheme
+  text, children, isDarkTheme = false
 }: IPropsCardBig) => (
   <div className={`card-post card-post_big ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     {children}
@@ -55,7 +55,7 @@ CardPost.Big = ({
 );
 
 CardPost.Preview = ({
-  text, userAvatarURL, userFullName, dateOfPublication, children, isDarkTheme
+  text, userAvatarURL, userFullName, dateOfPublication, children, isDarkTheme = false
 }: IPropsCardPreview) => (
   <div className={`card-post ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     <div className="card-post__header">
@@ -89,7 +89,7 @@ CardPost.ImageBig = ({ imageURL }: IPropsImage) => (
 );
 
 CardPost.HeaderBig = ({
-  userAvatarURL, userFullName, dateOfPublication, isDarkTheme
+  userAvatarURL, userFullName, dateOfPublication, isDarkTheme = false
 }: IPropsHeaderBig) => (
   <div className="card-post__header">
     <Avatar src={userAvatarURL} style={{ width: 32 }} />
@@ -108,7 +108,7 @@ CardPost.HeaderBig = ({
   </div>
 );
 
-CardPost.Mini = ({ text, children, isDarkTheme }: IPropsCardMini) => (
+CardPost.Mini = ({ text, children, isDarkTheme = false }: IPropsCardMini) => (
   <div className={`card-post ${isDarkTheme ? 'card-post_theme_dark' : ''}`}>
     {children}
     <p className="card-post__text">

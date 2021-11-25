@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from '../../modal/Modal';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useActions';
 import { ModalID } from '../../../constants/common';
 import CardUserEdit from '../../cards/card-user-edit/CardUserEdit';
-import {ThemeCheckboxContext} from "../../../contexts/theme-checkbox/ThemeCheckboxContext";
+import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
 
 const ModalPostForm = () => {
   const modals = useTypedSelector((state) => state.modalsForm);
@@ -12,12 +12,6 @@ const ModalPostForm = () => {
   const modalOpenUpdateUserStore = modals[ModalID.UPDATE_USER];
   const { closeModalsFormAC } = useActions();
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
-
-  useEffect(() => {
-    if (modalOpenUpdateUserStore?.modalData?.postID !== undefined && modalOpenUpdateUserStore?.isActive) {
-      console.log('ssss');
-    }
-  }, [modalOpenUpdateUserStore?.modalData]);
 
   useEffect(() => () => {
     closeModalsFormAC();

@@ -2,12 +2,17 @@ import React, { useContext, useEffect } from 'react';
 import './CardUserEdit.css';
 import '../../forms/auth-forms/Auth.css';
 import {
-  Button, DatePicker, Form, Input, Radio, Upload
+  Alert,
+  Button, DatePicker, Form, Input, message, Radio, Upload
 } from 'antd';
 import moment from 'moment';
 import { UploadOutlined } from '@ant-design/icons';
-import { MAXIMUM_DATE } from '../../../constants/common';
+import { useCookies } from 'react-cookie';
+import { COOKIE_LIFETIME, EMPTY_STRING, MAXIMUM_DATE } from '../../../constants/common';
 import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
+import { checkPictureAndGet, getJSONStringifyForEditDataUser } from '../../../utils/common';
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 interface IProps {
   avatar: string;
@@ -23,24 +28,70 @@ const CardUserEdit = ({
 }: IProps) => {
   const [formEditDataUser] = Form.useForm();
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
+  const {
+    updateUserFormAction, loadUserFullFormAC, clearSendDataUserFormAction, uploadImageEditAC, clearImageEditFormAC
+  } = useActions();
+  const [cookies, setCookies] = useCookies();
+  const sendData = useTypedSelector((state) => state.sendUserForm);
+  const sendImage = useTypedSelector((state) => state.imageEditForm);
 
   useEffect(() => {
-    if (firstName && gender && lastName && dateOfBirth && phone) {
+    if (firstName && lastName) {
       formEditDataUser.setFields([
         { name: 'firstName', value: firstName },
         { name: 'lastName', value: lastName },
         { name: 'gender', value: gender },
-        { name: 'dateOfBirth', value: moment(dateOfBirth) },
+        { name: 'dateOfBirth', value: dateOfBirth && moment(dateOfBirth) },
         { name: 'phone', value: phone }
       ]);
     }
-  }, [firstName, gender, lastName, dateOfBirth, phone]);
+  }, [firstName, lastName]);
+
+  const handleClickEditDataUser = () => {
+    const newDataUser = getJSONStringifyForEditDataUser(formEditDataUser.getFieldsValue());
+    updateUserFormAction(cookies.user_id, newDataUser);
+  };
+
+  const handleClickDeleteImage = () => {
+    updateUserFormAction(cookies.user_id, JSON.stringify({ picture: EMPTY_STRING }));
+  };
+
+  const beforeUpload = (file: any) => {
+    const imgType = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
+    const imgSize = file.size / 1024 / 1024 < 2;
+
+    if (!imgType) {
+      message.error('Разрешено изображение только в формате JPG/PNG/JPEG');
+    }
+    if (!imgSize) {
+      message.error('Размер изображения не должен превышать 2 МБ');
+    }
+
+    return imgType && imgSize;
+  };
+
+  useEffect(() => {
+    if (sendData.sendUser.id) {
+      setCookies('user_id', cookies.user_id, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_first_name', sendData.sendUser.firstName, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_picture', sendData.sendUser.picture, { maxAge: COOKIE_LIFETIME });
+      loadUserFullFormAC(cookies.user_id);
+      clearSendDataUserFormAction();
+    }
+  }, [sendData.sendUser.id]);
+
+  useEffect(() => {
+    if (sendImage.editImageURL) {
+      updateUserFormAction(cookies.user_id, JSON.stringify({ picture: sendImage.editImageURL }));
+      clearImageEditFormAC();
+    }
+  }, [sendImage.editImageURL]);
 
   return (
     <div className="user-edit-form">
       <div className="user-edit-form__header">
         <div className="user-edit-form__image">
-          <img src={avatar} alt="user-img" />
+          <img src={checkPictureAndGet(avatar)} alt="user-img" />
         </div>
       </div>
 
@@ -49,17 +100,24 @@ const CardUserEdit = ({
           name="file"
           multiple={false}
           accept="image/jpeg, image/png"
+          showUploadList={false}
+          beforeUpload={beforeUpload}
           customRequest={(info) => {
-            console.log(info.filename);
+            uploadImageEditAC(info.file);
           }}
         >
-          <Button size="small" icon={<UploadOutlined />}>Обновить фото</Button>
+          <Button loading={sendImage.isLoading} size="small" icon={<UploadOutlined />}>
+            Обновить фото
+          </Button>
         </Upload>
 
-        <Button size="small">Удалить фото</Button>
+        {avatar && <Button size="small" onClick={handleClickDeleteImage}>Удалить фото</Button>}
       </div>
+      {(sendImage.error !== undefined && !sendImage.editImageURL) && (
+        <Alert message={sendImage.error} type="error" />
+      )}
 
-      <Form form={formEditDataUser} name="formEditDataUser" layout="vertical">
+      <Form form={formEditDataUser} name="formEditDataUser" layout="vertical" onFinish={handleClickEditDataUser}>
         <Form.Item
           className={`user-auth__field ${themeCheckboxContext.isDarkTheme ? 'user-auth__field_theme_dark' : ''}`}
           name="firstName"
@@ -166,6 +224,7 @@ const CardUserEdit = ({
         </Form.Item>
         <Form.Item>
           <Button
+            loading={sendData.isLoading}
             type="primary"
             block
             htmlType="submit"
@@ -173,6 +232,9 @@ const CardUserEdit = ({
           >
             Сохранить
           </Button>
+          {(sendData.error !== undefined && !sendData.sendUser.id) && (
+            <Alert message={sendData.error} type="error" />
+          )}
         </Form.Item>
       </Form>
     </div>

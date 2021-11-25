@@ -9,7 +9,8 @@ export interface ISendUserFormState {
 export enum SendUserFormACTypes {
   SEND_USER_FORM = 'SEND_USER_FORM/SEND_USER_FORM',
   SEND_USER_FORM_SUCCESS = 'SEND_USER_FORM/SEND_USER_FORM_SUCCESS',
-  SEND_USER_FORM_ERROR = 'SEND_USER_FORM/SEND_USER_FORM_ERROR'
+  SEND_USER_FORM_ERROR = 'SEND_USER_FORM/SEND_USER_FORM_ERROR',
+  SEND_USER_FORM_CLEAR = 'SEND_USER_FORM/SEND_USER_FORM_CLEAR'
 }
 
 interface ISendUserFormAC {
@@ -26,4 +27,9 @@ interface ISendUserFormErrorAC {
   payload: string | undefined;
 }
 
-export type SendUserFormAC = ISendUserFormAC | ISendUserFormSuccessAC | ISendUserFormErrorAC;
+interface ISendUserFormClearAC {
+  type: SendUserFormACTypes.SEND_USER_FORM_CLEAR;
+  payload: IResponseUserAuth;
+}
+
+export type SendUserFormAC = ISendUserFormAC | ISendUserFormSuccessAC | ISendUserFormErrorAC | ISendUserFormClearAC;

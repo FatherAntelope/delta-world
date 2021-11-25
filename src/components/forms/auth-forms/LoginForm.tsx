@@ -15,7 +15,7 @@ const LoginForm = () => {
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
   const { loginUser, error, isLoading } = useTypedSelector((state) => state.loginUserForm);
-  const { loginUserFormAC } = useActions();
+  const { loginUserFormAC, clearLoginUserFormAC } = useActions();
 
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
@@ -41,6 +41,7 @@ const LoginForm = () => {
       setCookies('user_first_name', loginUser.firstName, { maxAge: COOKIE_LIFETIME });
       setCookies('user_picture', loginUser.picture, { maxAge: COOKIE_LIFETIME });
       localeHistory.push(`/user/${loginUser.id}`);
+      clearLoginUserFormAC();
     }
   }, [loginUser.id]);
 

@@ -1,6 +1,6 @@
 import { BurgerHeaderAC, BurgerHeaderACTypes, IBurgerHeaderState } from '../types/redux/burgerHeader';
 
-const initialState = {
+const initialState: IBurgerHeaderState = {
   isActive: false
 };
 

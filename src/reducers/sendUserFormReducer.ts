@@ -20,6 +20,8 @@ const sendUserFormReducer = (
       return { isLoading: false, sendUser: action.payload };
     case SendUserFormACTypes.SEND_USER_FORM_ERROR:
       return { isLoading: false, sendUser: state.sendUser, error: action.payload };
+    case SendUserFormACTypes.SEND_USER_FORM_CLEAR:
+      return { isLoading: false, sendUser: action.payload };
     default:
       return state;
   }

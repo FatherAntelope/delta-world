@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { fetchUserFullForm } from '../utils/fetchDumMyApi';
 import { LoginUserFormAC, LoginUserFormACTypes } from '../types/redux/loginUserForm';
+import { EMPTY_STRING } from '../constants/common';
 
 const loginUserFormAC = (id: string) => async (dispatch: Dispatch<LoginUserFormAC>) => {
   dispatch({
@@ -27,10 +28,10 @@ const loginUserFormAC = (id: string) => async (dispatch: Dispatch<LoginUserFormA
   }
 };
 
-const logoutUserFormAC = () => (dispatch: Dispatch<LoginUserFormAC>) => {
+const clearLoginUserFormAC = () => (dispatch: Dispatch<LoginUserFormAC>) => {
   dispatch({
     type: LoginUserFormACTypes.LOGIN_USER_FORM_CLEAR,
-    payload: { id: '', picture: '', firstName: '' }
+    payload: { id: EMPTY_STRING, picture: EMPTY_STRING, firstName: EMPTY_STRING }
   });
 };
 
@@ -43,4 +44,4 @@ const loginUserSetValuesFormAC = (
   });
 };
 
-export { loginUserFormAC, logoutUserFormAC, loginUserSetValuesFormAC };
+export { loginUserFormAC, clearLoginUserFormAC, loginUserSetValuesFormAC };

@@ -31,7 +31,7 @@ interface IPropsEdit {
 
 const CardUser = () => undefined;
 
-CardUser.Preview = ({ imageURL, fullName, isDarkTheme }: IPropsCardPreview) => (
+CardUser.Preview = ({ imageURL, fullName, isDarkTheme = false }: IPropsCardPreview) => (
   <div className={`card-user ${isDarkTheme ? 'card-user_theme_dark' : ''}`}>
     <div className="card-user__image">
       <img src={imageURL} alt="img" />
@@ -50,7 +50,7 @@ CardUser.Edit = ({ onClick }: IPropsEdit) => (
 );
 
 CardUser.Full = ({
-  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, edit, isDarkTheme
+  id, imageURL, fullName, gender, dateOfRegister, dateOfBirth, email, phone, edit, isDarkTheme = false
 }: IPropsCardFull) => (
   <div className={`card-user-full ${isDarkTheme ? 'card-user-full_theme_dark' : ''}`}>
     <div className="card-user-full__body">

@@ -8,7 +8,7 @@ import {
 import { Link, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { ICreateUser } from '../../../types/api/dumMyApi';
-import { getJSONStringifyFromFormData } from '../../../utils/common';
+import { getJSONStringifyForRegisterUser } from '../../../utils/common';
 import { useActions } from '../../../hooks/useActions';
 import { COOKIE_LIFETIME, MAXIMUM_DATE } from '../../../constants/common';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
@@ -19,13 +19,13 @@ const RegisterForm = () => {
   const [cookies, setCookies] = useCookies();
   const localeHistory = useHistory();
   const { sendUser, error, isLoading } = useTypedSelector((state) => state.sendUserForm);
-  const { registerUserFormAction, loginUserSetValuesFormAC } = useActions();
+  const { registerUserFormAction, loginUserSetValuesFormAC, clearSendDataUserFormAction } = useActions();
 
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handleFinishForm = () => {
     const formData: ICreateUser = form.getFieldsValue();
-    const formBody = getJSONStringifyFromFormData(formData);
+    const formBody = getJSONStringifyForRegisterUser(formData);
     registerUserFormAction(formBody);
   };
 
@@ -46,6 +46,7 @@ const RegisterForm = () => {
       setCookies('user_picture', sendUser.picture, { maxAge: COOKIE_LIFETIME });
       loginUserSetValuesFormAC(sendUser.id, sendUser.picture, sendUser.firstName);
       localeHistory.push(`/user/${sendUser.id}`);
+      clearSendDataUserFormAction();
     }
   }, [sendUser.id]);
 

@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { SendUserFormAC, SendUserFormACTypes } from '../types/redux/sendUserForm';
 import { fetchRegisterUser, fetchUpdateUser } from '../utils/fetchDumMyApi';
+import { EMPTY_STRING } from '../constants/common';
 
 const registerUserFormAction = (body: string) => async (dispatch: Dispatch<SendUserFormAC>) => {
   dispatch({
@@ -50,4 +51,11 @@ const updateUserFormAction = (id: string, body: string) => async (dispatch: Disp
   }
 };
 
-export { registerUserFormAction, updateUserFormAction };
+const clearSendDataUserFormAction = () => async (dispatch: Dispatch<SendUserFormAC>) => {
+  dispatch({
+    type: SendUserFormACTypes.SEND_USER_FORM_CLEAR,
+    payload: { id: EMPTY_STRING, picture: EMPTY_STRING, firstName: EMPTY_STRING }
+  });
+};
+
+export { registerUserFormAction, updateUserFormAction, clearSendDataUserFormAction };

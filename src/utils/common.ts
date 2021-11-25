@@ -41,7 +41,7 @@ const getDateTimePublication = (dateTime: string): string => {
   } в ${date.getHours()}:${date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes()}`;
 };
 
-const getJSONStringifyFromFormData = (formData: ICreateUser): string => JSON.stringify({
+const getJSONStringifyForRegisterUser = (formData: ICreateUser): string => JSON.stringify({
   firstName: formData.firstName,
   lastName: formData.lastName,
   email: formData.email,
@@ -52,6 +52,16 @@ const getJSONStringifyFromFormData = (formData: ICreateUser): string => JSON.str
   registerDate: new Date(),
 });
 
+const getJSONStringifyForEditDataUser = (formData: ICreateUser): string => JSON.stringify({
+  firstName: formData.firstName,
+  lastName: formData.lastName,
+  gender: formData.gender,
+  dateOfBirth: formData.dateOfBirth,
+  phone: formData.phone,
+  title: formData.gender === 'male' ? 'mr' : 'ms',
+});
+
 export {
-  getUserFullName, checkPictureAndGet, getDateTimePublication, getUserGenderRu, getDateRU, getJSONStringifyFromFormData
+  getUserFullName, checkPictureAndGet, getDateTimePublication, getUserGenderRu, getDateRU,
+  getJSONStringifyForRegisterUser, getJSONStringifyForEditDataUser
 };
