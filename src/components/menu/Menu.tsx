@@ -1,5 +1,5 @@
 import React from 'react';
-import './Menu.css';
+import './Menu.scss';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 

@@ -6,7 +6,7 @@ import { useActions } from '../../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../../types/api/dumMyApi';
 import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS, ModalID } from '../../../../constants/common';
-import '../../../flex-grid/FlexGrid.css';
+import '../../../flex-grid/FlexGrid.scss';
 import Preloader from '../../../preloader/Preloader';
 import { ThemeCheckboxContext } from '../../../../contexts/theme-checkbox/ThemeCheckboxContext';
 import PaginationWrapper from '../../../PaginationWrapper/PaginationWrapper';

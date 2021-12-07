@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from 'antd';
-import './CardPost.css';
+import './CardPost.scss';
 
 interface IPropsCardPreview {
   text: string;
