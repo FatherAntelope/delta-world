@@ -1,5 +1,5 @@
 import React from 'react';
-import './CardComment.css';
+import './CardComment.scss';
 import { Avatar } from 'antd';
 
 interface IProps {

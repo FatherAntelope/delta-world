@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pagination } from 'antd';
-import './PaginationWrapper.css';
+import './PaginationWrapper.scss';
 
 interface IProps {
   pageSize: number;

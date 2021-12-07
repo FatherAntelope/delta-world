@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Tooltip.css';
+import './Tooltip.scss';
 
 interface IProps {
   children: React.ReactNode;

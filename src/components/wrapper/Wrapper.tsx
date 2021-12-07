@@ -1,5 +1,5 @@
 import React from 'react';
-import './Wrapper.css';
+import './Wrapper.scss';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 interface IProps {
