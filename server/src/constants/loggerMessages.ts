@@ -10,8 +10,8 @@ const LOGGER_MESSAGES = {
       ERROR: '[UserController.getUsers] | ERROR | Response to the user. status={} message={}'
     },
     FETCH: {
-      SUCCESS: '[UserController.getUsers] | SUCCESS | Response from DymMyAPI. status={}',
-      ERROR: '[UserController.getUsers] | ERROR | Response from DymMyAPI. status={} message={}'
+      SUCCESS: '[UserService.getUsers] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[UserService.getUsers] | ERROR | Response from DymMyAPI. status={} message={}'
     }
   },
   GET_POST_LIST: {
@@ -21,8 +21,8 @@ const LOGGER_MESSAGES = {
       ERROR: '[PostController.getPosts] | ERROR | Response to the user. status={} message={}'
     },
     FETCH: {
-      SUCCESS: '[PostController.getPosts] | SUCCESS | Response from DymMyAPI. status={}',
-      ERROR: '[PostController.getPosts] | ERROR | Response from DymMyAPI. status={} message={}'
+      SUCCESS: '[PostService.getPosts] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[PostService.getPosts] | ERROR | Response from DymMyAPI. status={} message={}'
     }
   }
 };

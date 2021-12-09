@@ -3,7 +3,7 @@ import { IResponseList, IResponseUserPreviewFullName } from "../types/api/dumMyA
 import loggerMessages from "../constants/loggerMessages";
 import logger from '../logger';
 import format from 'string-format';
-import UserMapper from "../mapper/userMapper";
+import UserMapper from '../mapper/userMapper';
 
 class UserService {
   async getUsers(page: number, limit: number): Promise<IResponseList<IResponseUserPreviewFullName>> {

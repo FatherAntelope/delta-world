@@ -23,7 +23,7 @@ export interface IResponseUserPreviewFullName {
 export interface IResponseCommentPreview {
   id: string;
   message: string;
-  owner: IResponseUserPreview;
+  owner: IResponseUserPreviewFullName;
   post: string;
   publishDate: string;
 }
@@ -47,7 +47,7 @@ export interface IResponsePostPreview {
   text: string;
   image: string;
   publishDate: string;
-  owner: IResponseUserPreview;
+  owner: IResponseUserPreviewFullName;
 }
 
 export interface ICreateUser {
