@@ -13,6 +13,17 @@ const LOGGER_MESSAGES = {
       SUCCESS: '[UserController.getUsers] | SUCCESS | Response from DymMyAPI. status={}',
       ERROR: '[UserController.getUsers] | ERROR | Response from DymMyAPI. status={} message={}'
     }
+  },
+  GET_POST_LIST: {
+    REQUEST: '[PostController.getPosts] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[PostController.getPosts] | SUCCESS | Response to the user. data={}',
+      ERROR: '[PostController.getPosts] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[PostController.getPosts] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[PostController.getPosts] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
   }
 };
 

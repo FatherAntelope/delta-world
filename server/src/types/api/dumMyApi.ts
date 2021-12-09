@@ -13,6 +13,13 @@ export interface IResponseUserPreview {
   picture: string;
 }
 
+export interface IResponseUserPreviewFullName {
+  id: string;
+  title: 'ms' | 'mr' | '';
+  fullName: string
+  picture: string;
+}
+
 export interface IResponseCommentPreview {
   id: string;
   message: string;
