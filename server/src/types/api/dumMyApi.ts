@@ -13,7 +13,7 @@ export interface IResponseUserPreview {
   picture: string;
 }
 
-export interface IResponseUserPreviewFullName {
+export interface IResponseUserPreviewConvert {
   id: string;
   title: 'ms' | 'mr' | '';
   fullName: string
@@ -23,12 +23,20 @@ export interface IResponseUserPreviewFullName {
 export interface IResponseCommentPreview {
   id: string;
   message: string;
-  owner: IResponseUserPreviewFullName;
+  owner: IResponseUserPreviewConvert;
   post: string;
   publishDate: string;
 }
 
 export interface IResponseUserFull extends IResponseUserPreview {
+  gender: 'male' | 'female' | 'other' | '';
+  email: string;
+  dateOfBirth: string;
+  registerDate: string;
+  phone: string;
+}
+
+export interface IResponseUserFullConvert extends IResponseUserPreviewConvert {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
@@ -47,7 +55,7 @@ export interface IResponsePostPreview {
   text: string;
   image: string;
   publishDate: string;
-  owner: IResponseUserPreviewFullName;
+  owner: IResponseUserPreviewConvert;
 }
 
 export interface ICreateUser {

@@ -14,6 +14,28 @@ const LOGGER_MESSAGES = {
       ERROR: '[UserService.getUsers] | ERROR | Response from DymMyAPI. status={} message={}'
     }
   },
+  GET_USER_ID: {
+    REQUEST: '[UserController.getUser] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[UserController.getUser] | SUCCESS | Response to the user. data={}',
+      ERROR: '[UserController.getUser] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[UserService.getUser] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[UserService.getUser] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
+  },
+  GET_USER_LOGIN: {
+    REQUEST: '[UserController.loginUser] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[UserController.loginUser] | SUCCESS | Response to the user. data={}',
+      ERROR: '[UserController.loginUser] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[UserService.loginUser] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[UserService.loginUser] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
+  },
   GET_POST_LIST: {
     REQUEST: '[PostController.getPosts] Request from the user. search={}',
     RESPONSE: {

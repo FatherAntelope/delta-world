@@ -12,4 +12,13 @@ const getConvertUserFullName = (firstName: string, lastName: string): string => 
   return `${firstName} ${lastName}`;
 };
 
-export { getConvertDateOfPublish, getConvertUserFullName };
+const getDate = (dateTime: string): string => {
+  const date = new Date(dateTime);
+  const months: string[] = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+  ];
+
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+
+export { getConvertDateOfPublish, getConvertUserFullName, getDate };

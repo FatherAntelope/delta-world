@@ -1,5 +1,5 @@
 import SimpleLogger from 'simple-node-logger';
-import {getLoggerConfigs} from "./utils/configServer";
+import { getLoggerConfigs } from './utils/configServer';
 const context = require('request-context');
 
 const loggerOptions = getLoggerConfigs();
