@@ -17,6 +17,11 @@ interface ILoggerConfigs {
   dateFormat: string;
 }
 
+interface IApiKeysConfig {
+  dummyapi: string;
+  imgbb: string;
+}
+
 const path: string = './config.json';
 
 const getServerConfigs = (): IServerConfigs => {
@@ -27,4 +32,8 @@ const getLoggerConfigs = (): ILoggerConfigs => {
   return JSON.parse(fs.readFileSync(path, 'utf8')).logger;
 };
 
-export { getServerConfigs, getLoggerConfigs, IHttpHeader };
+const getApiKeysConfigs = (): IApiKeysConfig => {
+  return JSON.parse(fs.readFileSync(path, 'utf8')).apiKeys;
+};
+
+export { getServerConfigs, getLoggerConfigs, getApiKeysConfigs, IHttpHeader };

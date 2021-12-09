@@ -13,7 +13,7 @@
     "fileNamePattern": "<DATE>.log",
     "dateFormat": "DD.MM.YYYY"
   },
-  "api-keys": {
+  "apiKeys": {
     "dummyapi": "617d424dbe5f9771bd07c1b0",
     "imgbb": "563b9001db5870468591911bba787b38"
   }

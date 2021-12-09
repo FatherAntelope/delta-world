@@ -3,6 +3,8 @@ import { getServerConfigs, IHttpHeader } from './utils/configServer';
 import { v4 as generateUUID } from 'uuid';
 import routes from './routes';
 import logger from "./logger";
+import format from "string-format";
+import LOGGER_MESSAGES from "./constants/loggerMessages";
 const context = require('request-context');
 
 const { host, port, httpHeaders } = getServerConfigs();
@@ -18,13 +20,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use('/api', routes);
 
 app.listen(port, host, () => {
-  const message: string = `The server is started on http://${host}:${port}`;
-  console.log(message);
-  logger.message(message);
+  console.log(format(LOGGER_MESSAGES.SERVER.ON, host, String(port)));
+  logger.message(format(LOGGER_MESSAGES.SERVER.ON, host, String(port)));
 });
 
 process.on('SIGINT', () => {
-  const message: string = 'The server is turned off';
-  console.log(message);
-  logger.message(message);
+  console.log(LOGGER_MESSAGES.SERVER.OFF);
+  logger.message(LOGGER_MESSAGES.SERVER.OFF);
 });

@@ -4,16 +4,22 @@ interface IApiHeads {
 }
 
 const BASE_URL: string = 'https://dummyapi.io/data/v1';
-const API_POINT_USER: string = '/user';
-const API_POINT_USER_CREATE: string = '/user/create';
-const API_POINT_POST: string = '/post';
-const API_POINT_COMMENT: string = '/comment';
 
-const METHODS_QUERY = {
-  POST: 'POST',
-  GET: 'GET',
-  PUT: 'PUT'
-};
+enum API_POINTS {
+  USER = '/user',
+  POST = '/post',
+  COMMENT = '/comment',
+  USER_CREATE = '/user/create'
+}
+
+enum PAGE_OPTIONS {
+  MIN = 0
+}
+
+enum LIMIT_OPTIONS {
+  MAX = 20,
+  MIN = 5
+}
 
 const API_HEADS: IApiHeads = {
   APP_ID: 'app-id',
@@ -25,6 +31,5 @@ enum ContentTypes {
 }
 
 export {
-  BASE_URL, API_HEADS, API_POINT_USER, API_POINT_POST, METHODS_QUERY, API_POINT_USER_CREATE, ContentTypes,
-  API_POINT_COMMENT
+  BASE_URL, API_HEADS, ContentTypes, API_POINTS, PAGE_OPTIONS, LIMIT_OPTIONS
 };
