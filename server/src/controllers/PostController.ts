@@ -17,7 +17,7 @@ class PostController {
       logger.error(format(LOGGER_MESSAGES.GET_POST_LIST.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
       return res.status(httpStatuses.BAD_REQUEST).json({
         status: httpStatuses.BAD_REQUEST,
-        message
+        error: { message }
       });
     }
 
@@ -26,7 +26,7 @@ class PostController {
       logger.error(format(LOGGER_MESSAGES.GET_POST_LIST.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
       return res.status(httpStatuses.BAD_REQUEST).json({
         status: httpStatuses.BAD_REQUEST,
-        message
+        error: { message }
       });
     }
 
@@ -41,7 +41,7 @@ class PostController {
       logger.error(format(LOGGER_MESSAGES.GET_POST_LIST.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
       res.status(httpStatuses.SERVER_ERROR).json({
         status: httpStatuses.SERVER_ERROR,
-        message
+        error: { message }
       });
     }
   }

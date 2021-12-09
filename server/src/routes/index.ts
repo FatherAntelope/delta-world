@@ -6,11 +6,11 @@ import postRouter from './postRouter';
 const routes: Express = Router();
 
 routes.use('', userRouter);
-routes.use('', postRouter)
+routes.use('', postRouter);
 routes.use('*', (req, res) => {
   res.status(httpStatuses.NOT_FOUND).json({
     status: httpStatuses.NOT_FOUND,
-    message: 'Not found'
+    error: { message: 'Not found' }
   });
 });
 
