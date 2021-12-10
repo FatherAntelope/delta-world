@@ -8,6 +8,7 @@ import LOGGER_MESSAGES from '../constants/loggerMessages';
 
 class UserController {
   async loginUser(req: Request, res: Response) {
+    logger.info(format(LOGGER_MESSAGES.GET_USER_LOGIN.REQUEST, JSON.stringify(req.params)));
     if (!req.params.id) {
       const message = 'ID parameter not passed';
       logger.error(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
@@ -34,6 +35,7 @@ class UserController {
   }
 
   async getUser(req: Request, res: Response) {
+    logger.info(format(LOGGER_MESSAGES.GET_USER_ID.REQUEST, JSON.stringify(req.params)));
     if (!req.params.id) {
       const message = 'ID parameter not passed';
       logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
@@ -60,9 +62,9 @@ class UserController {
   }
 
   async getUsers(req: Request, res: Response) {
+    logger.info(format(LOGGER_MESSAGES.GET_USER_LIST.REQUEST, JSON.stringify(req.query)));
     const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
     const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
-    logger.info(format(LOGGER_MESSAGES.GET_USER_LIST.REQUEST, JSON.stringify(req.query)));
 
     if (page < PAGE_OPTIONS.MIN) {
       const message = `Minimum page size ${PAGE_OPTIONS.MIN}`;

@@ -36,6 +36,17 @@ const LOGGER_MESSAGES = {
       ERROR: '[PostService.getPost] | ERROR | Response from DymMyAPI. status={} message={}'
     }
   },
+  GET_POSTS_BY_USER: {
+    REQUEST: '[PostController.getPostsByUser] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[PostController.getPostsByUser] | SUCCESS | Response to the user. data={}',
+      ERROR: '[PostController.getPostsByUser] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[PostService.getPostsByUser] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[PostService.getPostsByUser] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
+  },
   GET_USER_LOGIN: {
     REQUEST: '[UserController.loginUser] Request from the user. search={}',
     RESPONSE: {

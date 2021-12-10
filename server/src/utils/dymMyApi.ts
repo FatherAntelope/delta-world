@@ -20,6 +20,17 @@ const fetchUser = (id: string) => axios.get(BASE_URL + API_POINTS.USER + `/${id}
   }
 }).then(data => data).catch(reason => reason.response);
 
+const fetchPostsByUser = (id: string, page: number, limit: number) =>
+  axios.get(BASE_URL + API_POINTS.USER + `/${id}` + API_POINTS.POST, {
+    headers: {
+      [API_HEADS.APP_ID]: dummyapi
+    },
+    params: {
+      page: page,
+      limit: limit
+    }
+}).then(data => data).catch(reason => reason.response);
+
 const fetchPosts = (page: number, limit: number) => axios.get(BASE_URL + API_POINTS.POST, {
   headers: {
     [API_HEADS.APP_ID]: dummyapi
@@ -36,4 +47,4 @@ const fetchPost = (id: string) => axios.get(BASE_URL + API_POINTS.POST + `/${id}
   }
 }).then(data => data).catch(reason => reason.response);
 
-export { fetchUsers, fetchUser, fetchPosts, fetchPost };
+export { fetchUsers, fetchUser, fetchPosts, fetchPost, fetchPostsByUser };
