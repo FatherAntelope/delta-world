@@ -7,12 +7,10 @@ import httpStatuses from '../constants/httpStatuses';
 import PostService from '../services/PostService';
 
 class PostController {
-  async getPostsByUser(req: Request, res: Response) {
+  static async getPostsByUser(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_POSTS_BY_USER.REQUEST, JSON.stringify(
       { ...req.query, ...req.params })
     ));
-    const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
-    const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
 
     if (!req.params.id) {
       const message = 'ID parameter not passed';
@@ -22,6 +20,9 @@ class PostController {
         error: { message }
       });
     }
+
+    const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
+    const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
 
     if (page < PAGE_OPTIONS.MIN) {
       const message = `Minimum page size ${PAGE_OPTIONS.MIN}`;
@@ -61,7 +62,7 @@ class PostController {
     }
   }
 
-  async getPost(req: Request, res: Response) {
+  static async getPost(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_POST_ID.REQUEST, JSON.stringify(req.params)));
     if (!req.params.id) {
       const message = 'ID parameter not passed';
@@ -88,7 +89,7 @@ class PostController {
     }
   }
 
-  async getPosts(req: Request, res: Response) {
+  static async getPosts(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_POST_LIST.REQUEST, JSON.stringify(req.query)));
     const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
     const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
@@ -128,4 +129,4 @@ class PostController {
   }
 }
 
-export default new PostController();
+export default PostController;

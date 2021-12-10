@@ -5,27 +5,21 @@ import { getConvertDateOfPublish } from "../utils/common";
 import UserMapper from './userMapper';
 
 class PostMapper {
-  getConvertPost(postList: IResponsePost): IResponsePostConvert {
+  static getConvertPost(post: IResponsePost | IResponsePostPreview): IResponsePostConvert {
     return ({
-      id: postList.id,
-      text: postList.text,
-      image: postList.image,
-      publishDate: getConvertDateOfPublish(postList.publishDate),
-      owner: UserMapper.getConvertUserPreview(postList.owner)
+      id: post.id,
+      text: post.text,
+      image: post.image,
+      publishDate: getConvertDateOfPublish(post.publishDate),
+      owner: UserMapper.getConvertUserPreview(post.owner)
     });
   }
 
-  getConvertPosts(postList: IResponseList<IResponsePostPreview>): IResponseList<IResponsePostPreviewConvert> {
-    const data = postList.data.map((item: IResponsePostPreview) => ({
-      id: item.id,
-      text: item.text,
-      image: item.image,
-      publishDate: getConvertDateOfPublish(item.publishDate),
-      owner: UserMapper.getConvertUserPreview(item.owner)
-    }));
+  static getConvertPosts(postList: IResponseList<IResponsePostPreview>): IResponseList<IResponsePostPreviewConvert> {
+    const data = postList.data.map((item: IResponsePostPreview) => this.getConvertPost(item));
     const { page, limit, total } = postList;
     return { data, page, limit, total };
   }
 }
 
-export default new PostMapper();
+export default PostMapper;

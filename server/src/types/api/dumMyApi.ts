@@ -23,8 +23,15 @@ export interface IResponseUserPreviewConvert {
 export interface IResponseCommentPreview {
   id: string;
   message: string;
-  owner: IResponseUserPreviewConvert;
+  owner: IResponseUserPreview;
   post: string;
+  publishDate: string;
+}
+
+export interface IResponseCommentPreviewConvert {
+  id: string;
+  message: string;
+  owner: IResponseUserPreviewConvert;
   publishDate: string;
 }
 

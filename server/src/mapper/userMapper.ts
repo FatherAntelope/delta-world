@@ -7,13 +7,15 @@ import {
 import {getConvertUserFullName, getDate} from '../utils/common';
 
 class UserMapper {
-  getConvertUsersList(userList: IResponseList<IResponseUserPreview>): IResponseList<IResponseUserPreviewConvert> {
+  static getConvertUsersList(
+    userList: IResponseList<IResponseUserPreview>
+  ): IResponseList<IResponseUserPreviewConvert> {
     const data = userList.data.map((item: IResponseUserPreview) => this.getConvertUserPreview(item));
     const { page, limit, total } = userList;
     return { data, page, limit, total };
   }
 
-  getConvertUserPreview(user: any): IResponseUserPreviewConvert {
+  static getConvertUserPreview(user: any): IResponseUserPreviewConvert {
     return {
       id: user.id,
       fullName: getConvertUserFullName(user.firstName, user.lastName),
@@ -22,7 +24,7 @@ class UserMapper {
     };
   }
 
-  getConvertUser(user: IResponseUserFull): IResponseUserFullConvert {
+  static getConvertUser(user: IResponseUserFull): IResponseUserFullConvert {
     return {
       id: user.id,
       fullName: getConvertUserFullName(user.firstName, user.lastName),
@@ -36,7 +38,7 @@ class UserMapper {
     };
   }
 
-  getConvertUserAuth(user: IResponseUserFull): IResponseUserAuth {
+  static getConvertUserAuth(user: IResponseUserFull): IResponseUserAuth {
     return {
       id: user.id,
       firstName: user.firstName,
@@ -45,4 +47,4 @@ class UserMapper {
   }
 }
 
-export default new UserMapper();
+export default UserMapper;

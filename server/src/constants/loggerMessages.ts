@@ -68,7 +68,18 @@ const LOGGER_MESSAGES = {
       SUCCESS: '[PostService.getPosts] | SUCCESS | Response from DymMyAPI. status={}',
       ERROR: '[PostService.getPosts] | ERROR | Response from DymMyAPI. status={} message={}'
     }
-  }
+  },
+  GET_COMMENTS_BY_POST: {
+    REQUEST: '[CommentController.getCommentByPost] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[CommentController.getCommentByPost] | SUCCESS | Response to the user. data={}',
+      ERROR: '[CommentController.getCommentByPost] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[CommentService.getCommentByPost] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[CommentService.getCommentByPost] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
+  },
 };
 
 export default LOGGER_MESSAGES;
