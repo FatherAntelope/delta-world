@@ -30,8 +30,8 @@ class UserMapper {
       fullName: getConvertUserFullName(user.firstName, user.lastName),
       gender: user.gender,
       title: user.title,
-      registerDate: getDate(user.registerDate),
-      dateOfBirth: getDate(user.dateOfBirth),
+      registerDate: user.registerDate && getDate(user.registerDate),
+      dateOfBirth: user.dateOfBirth && getDate(user.dateOfBirth),
       email: user.email,
       phone: user.phone,
       picture: user.picture

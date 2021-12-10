@@ -7,6 +7,25 @@ import format from 'string-format';
 import LOGGER_MESSAGES from '../constants/loggerMessages';
 
 class UserController {
+  static async updateUser(req: Request, res: Response) {
+    logger.info(format(LOGGER_MESSAGES.UPDATE_USER.REQUEST, JSON.stringify(req.params)));
+
+    try {
+      const responseBody = JSON.stringify({
+        status: httpStatuses.OK, data: {...await UserService.updateUser(req.params.id, req.body)}
+      });
+      logger.info(format(LOGGER_MESSAGES.UPDATE_USER.RESPONSE.SUCCESS, responseBody));
+      res.status(httpStatuses.OK).send(responseBody);
+    } catch (e: any) {
+      const message = (e.message === String(httpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
+      logger.error(format(LOGGER_MESSAGES.UPDATE_USER.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
+      res.status(httpStatuses.SERVER_ERROR).json({
+        status: (e.message === String(httpStatuses.BAD_REQUEST)) ? httpStatuses.BAD_REQUEST : httpStatuses.SERVER_ERROR,
+        error: { message }
+      });
+    }
+  }
+
   static async createUser(req: Request, res: Response) {
     try {
       const results = await UserService.createUser(req.body);
@@ -40,14 +59,6 @@ class UserController {
 
   static async loginUser(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_USER_LOGIN.REQUEST, JSON.stringify(req.params)));
-    if (!req.params.id) {
-      const message = 'ID parameter not passed';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
-        error: { message }
-      });
-    }
 
     try {
       const results = await UserService.loginUser(req.params.id);
@@ -81,14 +92,6 @@ class UserController {
 
   static async getUser(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_USER_ID.REQUEST, JSON.stringify(req.params)));
-    if (!req.params.id) {
-      const message = 'ID parameter not passed';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
-        error: { message }
-      });
-    }
 
     try {
       const responseBody = JSON.stringify({

@@ -36,6 +36,17 @@ const LOGGER_MESSAGES = {
       ERROR: '[UserService.createUser] | ERROR | Response from DymMyAPI. status={} message={}'
     }
   },
+  UPDATE_USER: {
+    REQUEST: '[UserController.updateUser] Request from the user. search={}',
+    RESPONSE: {
+      SUCCESS: '[UserController.updateUser] | SUCCESS | Response to the user. data={}',
+      ERROR: '[UserController.updateUser] | ERROR | Response to the user. status={} message={}'
+    },
+    FETCH: {
+      SUCCESS: '[UserService.updateUser] | SUCCESS | Response from DymMyAPI. status={}',
+      ERROR: '[UserService.updateUser] | ERROR | Response from DymMyAPI. status={} message={}'
+    }
+  },
   GET_POST_ID: {
     REQUEST: '[PostController.getPost] Request from the user. search={}',
     RESPONSE: {

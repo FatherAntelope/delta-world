@@ -12,15 +12,6 @@ class PostController {
       { ...req.query, ...req.params })
     ));
 
-    if (!req.params.id) {
-      const message = 'ID parameter not passed';
-      logger.error(format(LOGGER_MESSAGES.GET_POSTS_BY_USER.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
-        error: { message }
-      });
-    }
-
     const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
     const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
 
@@ -64,14 +55,6 @@ class PostController {
 
   static async getPost(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_POST_ID.REQUEST, JSON.stringify(req.params)));
-    if (!req.params.id) {
-      const message = 'ID parameter not passed';
-      logger.error(format(LOGGER_MESSAGES.GET_POST_ID.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message));
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
-        error: { message }
-      });
-    }
 
     try {
       const responseBody = JSON.stringify({

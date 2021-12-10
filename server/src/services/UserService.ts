@@ -1,4 +1,4 @@
-import {fetchUsers, fetchUser, fetchCreateUser} from '../utils/dymMyApi';
+import {fetchUsers, fetchUser, fetchCreateUser, fetchUpdateUser} from '../utils/dymMyApi';
 import {
   IResponseList, IResponseUserAuth,
   IResponseUserFullConvert,
@@ -11,6 +11,24 @@ import UserMapper from '../mapper/userMapper';
 import httpStatuses from '../constants/httpStatuses';
 
 class UserService {
+  async updateUser(id: string, body: object): Promise<IResponseUserFullConvert> {
+    const response = await fetchUpdateUser(id, body);
+    switch (response.status) {
+      case httpStatuses.OK: {
+        logger.info(format(loggerMessages.UPDATE_USER.FETCH.SUCCESS, response.status));
+        return UserMapper.getConvertUser(await response.data);
+      }
+      case httpStatuses.BAD_REQUEST: {
+        logger.error(format(loggerMessages.UPDATE_USER.FETCH.ERROR, response.status));
+        throw new Error(String(httpStatuses.BAD_REQUEST));
+      }
+      default: {
+        logger.error(format(loggerMessages.UPDATE_USER.FETCH.ERROR, response.status, response.statusText));
+        throw new Error(String(httpStatuses.SERVER_ERROR));
+      }
+    }
+  }
+
   async createUser(body: object): Promise<IResponseUserAuth> {
     const response = await fetchCreateUser(body);
     switch (response.status) {

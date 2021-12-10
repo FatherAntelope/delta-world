@@ -20,17 +20,18 @@ const fetchUser = (id: string) => axios.get(BASE_URL + API_POINTS.USER + `/${id}
   }
 }).then(data => data).catch(reason => reason.response);
 
-const fetchCreateUser = (body: object) => axios.post(BASE_URL + API_POINTS.USER_CREATE,
-  {
-    ...body
-  },
-  {
-    headers: {
-      [API_HEADS.APP_ID]: dummyapi,
-      [API_HEADS.CONTENT_TYPE]: ContentTypes.JSON
-    },
+const fetchUpdateUser = (id: string, body: object) => axios.put(BASE_URL + API_POINTS.USER + `/${id}`, body,{
+  headers: {
+    [API_HEADS.APP_ID]: dummyapi
   }
-).then(data => data).catch(reason => reason.response);
+}).then(data => data).catch(reason => reason.response);
+
+const fetchCreateUser = (body: object) => axios.post(BASE_URL + API_POINTS.USER_CREATE, body, {
+  headers: {
+    [API_HEADS.APP_ID]: dummyapi,
+    [API_HEADS.CONTENT_TYPE]: ContentTypes.JSON
+  },
+}).then(data => data).catch(reason => reason.response);
 
 const fetchPostsByUser = (id: string, page: number, limit: number) =>
   axios.get(BASE_URL + API_POINTS.USER + `/${id}` + API_POINTS.POST, {
@@ -70,4 +71,6 @@ const fetchCommentsByPost = (id: string, page: number, limit: number) =>
     }
   }).then(data => data).catch(reason => reason.response);
 
-export { fetchUsers, fetchUser, fetchPosts, fetchPost, fetchPostsByUser, fetchCommentsByPost, fetchCreateUser };
+export {
+  fetchUsers, fetchUser, fetchPosts, fetchPost, fetchPostsByUser, fetchCommentsByPost, fetchCreateUser, fetchUpdateUser
+};
