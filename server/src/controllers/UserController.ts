@@ -7,6 +7,37 @@ import format from 'string-format';
 import LOGGER_MESSAGES from '../constants/loggerMessages';
 
 class UserController {
+  static async createUser(req: Request, res: Response) {
+    try {
+      const results = await UserService.createUser(req.body);
+      const responseBody = JSON.stringify({
+        status: httpStatuses.OK, data: { ...results }
+      });
+      logger.info(format(LOGGER_MESSAGES.CREATE_USER.RESPONSE.SUCCESS, responseBody));
+      res
+        .cookie(
+          'user_first_name', results.firstName,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
+        .cookie(
+          'user_id', results.id,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
+        .cookie(
+          'user_picture', results.picture,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
+      res.status(httpStatuses.OK).send(responseBody);
+    } catch (e: any) {
+      const message = e.message;
+      logger.error(format(LOGGER_MESSAGES.CREATE_USER.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
+      res.status(httpStatuses.BAD_REQUEST).json({
+        status: httpStatuses.BAD_REQUEST,
+        error: { message }
+      });
+    }
+  }
+
   static async loginUser(req: Request, res: Response) {
     logger.info(format(LOGGER_MESSAGES.GET_USER_LOGIN.REQUEST, JSON.stringify(req.params)));
     if (!req.params.id) {
@@ -19,10 +50,24 @@ class UserController {
     }
 
     try {
+      const results = await UserService.loginUser(req.params.id);
       const responseBody = JSON.stringify({
-        status: httpStatuses.OK, data: {...await UserService.loginUser(req.params.id)}
+        status: httpStatuses.OK, data: { ...results }
       });
       logger.info(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.SUCCESS, responseBody));
+      res
+        .cookie(
+          'user_first_name', results.firstName,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
+        .cookie(
+          'user_id', results.id,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
+        .cookie(
+          'user_picture', results.picture,
+          { expires: new Date(Date.now() + 700000000), httpOnly: true }
+        )
       res.status(httpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = (e.message === String(httpStatuses.BAD_REQUEST)) ? 'ID not valid' : 'Internal server error';
