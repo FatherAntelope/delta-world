@@ -36,9 +36,13 @@ class UserService {
         logger.info(format(loggerMessages.GET_USER_ID.FETCH.SUCCESS, response.status));
         return UserMapper.getConvertUser(await response.data);
       }
+      case httpStatuses.BAD_REQUEST: {
+        logger.error(format(loggerMessages.GET_USER_ID.FETCH.ERROR, response.status));
+        throw new Error(String(httpStatuses.BAD_REQUEST));
+      }
       default: {
         logger.error(format(loggerMessages.GET_USER_ID.FETCH.ERROR, response.status, response.statusText));
-        throw new Error(loggerMessages.GET_USER_ID.FETCH.ERROR);
+        throw new Error(String(httpStatuses.SERVER_ERROR));
       }
     }
   }

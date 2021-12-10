@@ -22,11 +22,11 @@ class UserController {
       const responseBody = JSON.stringify({
         status: httpStatuses.OK, data: {...await UserService.loginUser(req.params.id)}
       });
-      logger.info(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.SUCCESS, responseBody));
+      logger.info(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.SUCCESS, responseBody));
       res.status(httpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = (e.message === String(httpStatuses.BAD_REQUEST)) ? 'ID not valid' : 'Internal server error';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
+      logger.error(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
       res.status(httpStatuses.SERVER_ERROR).json({
         status: (e.message === String(httpStatuses.BAD_REQUEST)) ? httpStatuses.BAD_REQUEST : httpStatuses.SERVER_ERROR,
         error: { message }
@@ -51,11 +51,11 @@ class UserController {
       });
       logger.info(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.SUCCESS, responseBody));
       res.status(httpStatuses.OK).send(responseBody);
-    } catch (e) {
-      const message = 'Internal server error';
+    } catch (e: any) {
+      const message = (e.message === String(httpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
       logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message));
       res.status(httpStatuses.SERVER_ERROR).json({
-        status: httpStatuses.SERVER_ERROR,
+        status: (e.message === String(httpStatuses.BAD_REQUEST)) ? httpStatuses.BAD_REQUEST : httpStatuses.SERVER_ERROR,
         error: { message }
       });
     }
