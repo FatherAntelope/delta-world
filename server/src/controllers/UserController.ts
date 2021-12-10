@@ -4,7 +4,7 @@ import httpStatuses from '../constants/httpStatuses';
 import { LIMIT_OPTIONS, PAGE_OPTIONS } from '../constants/api/dumMyApi';
 import logger from '../logger';
 import format from 'string-format';
-import LOGGER_MESSAGES from "../constants/loggerMessages";
+import LOGGER_MESSAGES from '../constants/loggerMessages';
 
 class UserController {
   async loginUser(req: Request, res: Response) {

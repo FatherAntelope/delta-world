@@ -1,9 +1,21 @@
-import { IResponseList, IResponsePostPreview } from '../types/api/dumMyApi';
+import {
+  IResponseList, IResponsePost, IResponsePostConvert, IResponsePostPreview, IResponsePostPreviewConvert
+} from '../types/api/dumMyApi';
 import { getConvertDateOfPublish } from "../utils/common";
 import UserMapper from './userMapper';
 
 class PostMapper {
-  getConvertPosts(postList: IResponseList<IResponsePostPreview>): IResponseList<IResponsePostPreview> {
+  getConvertPost(postList: IResponsePost): IResponsePostConvert {
+    return ({
+      id: postList.id,
+      text: postList.text,
+      image: postList.image,
+      publishDate: getConvertDateOfPublish(postList.publishDate),
+      owner: UserMapper.getConvertUserPreview(postList.owner)
+    });
+  }
+
+  getConvertPosts(postList: IResponseList<IResponsePostPreview>): IResponseList<IResponsePostPreviewConvert> {
     const data = postList.data.map((item: IResponsePostPreview) => ({
       id: item.id,
       text: item.text,

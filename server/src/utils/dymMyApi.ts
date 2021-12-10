@@ -30,4 +30,10 @@ const fetchPosts = (page: number, limit: number) => axios.get(BASE_URL + API_POI
   }
 }).then(data => data).catch(reason => reason.response);
 
-export { fetchUsers, fetchUser, fetchPosts };
+const fetchPost = (id: string) => axios.get(BASE_URL + API_POINTS.POST + `/${id}`, {
+  headers: {
+    [API_HEADS.APP_ID]: dummyapi
+  }
+}).then(data => data).catch(reason => reason.response);
+
+export { fetchUsers, fetchUser, fetchPosts, fetchPost };

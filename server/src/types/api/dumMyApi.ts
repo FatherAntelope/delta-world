@@ -55,8 +55,24 @@ export interface IResponsePostPreview {
   text: string;
   image: string;
   publishDate: string;
+  likes: number;
+  tags: string[];
+  owner: IResponseUserPreview;
+}
+
+export interface IResponsePostPreviewConvert {
+  id: string;
+  text: string;
+  image: string;
+  publishDate: string;
   owner: IResponseUserPreviewConvert;
 }
+
+export interface IResponsePost extends  IResponsePostPreview {
+  link: string;
+}
+
+export interface IResponsePostConvert extends  IResponsePostPreviewConvert {}
 
 export interface ICreateUser {
   title: 'ms' | 'mr' | '';
