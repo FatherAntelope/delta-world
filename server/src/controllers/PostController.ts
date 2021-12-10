@@ -35,9 +35,7 @@ class PostController {
 
     try {
       const responseBody = JSON.stringify({
-          status: httpStatuses.OK,
-          data: {...await PostService.getPostsByUser(req.params.id, page, limit)
-        }
+        status: httpStatuses.OK, ...await PostService.getPostsByUser(req.params.id, page, limit)
       });
       logger.info(format(LOGGER_MESSAGES.GET_POSTS_BY_USER.RESPONSE.SUCCESS, responseBody));
       res.status(httpStatuses.OK).send(responseBody);

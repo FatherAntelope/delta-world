@@ -13,7 +13,6 @@ const getConvertUserFullName = (firstName: string, lastName: string): string => 
 };
 
 const getDate = (dateTime: string): string => {
-  // if (dateTime === undefined) return '';
   const date = new Date(dateTime);
   const months: string[] = [
     'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
