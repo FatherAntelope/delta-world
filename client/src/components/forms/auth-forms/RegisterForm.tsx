@@ -9,11 +9,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { ICreateUser } from '../../../types/api/dumMyApi';
-import { getJSONStringifyForRegisterUser } from '../../../utils/common';
 import { useActions } from '../../../hooks/useActions';
 import { COOKIE_LIFETIME, MAXIMUM_DATE } from '../../../constants/common';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
+import { getObjectRegisterUser } from '../../../utils/common';
 
 const RegisterForm = () => {
   const [form] = Form.useForm();
@@ -27,8 +27,7 @@ const RegisterForm = () => {
 
   const handleFinishForm = () => {
     const formData: ICreateUser = form.getFieldsValue();
-    const formBody = getJSONStringifyForRegisterUser(formData);
-    registerUserFormAction(formBody);
+    registerUserFormAction(getObjectRegisterUser(formData));
   };
 
   useEffect(() => {

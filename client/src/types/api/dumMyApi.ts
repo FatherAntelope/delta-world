@@ -57,5 +57,6 @@ export interface ICreateUser {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
+  registerDate: Date;
   phone: string;
 }

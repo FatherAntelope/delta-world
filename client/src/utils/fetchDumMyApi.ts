@@ -1,12 +1,6 @@
 import axios, { Method, AxiosRequestConfig } from 'axios';
 import {
-  API_HEADS,
-  API_KEY,
-  API_POINT_USER,
-  API_POINT_USER_CREATE, ApiPoints, BASE_SERVER_URL,
-  BASE_URL,
-  ContentTypes,
-  METHODS_QUERY
+  API_HEADS, API_KEY, API_POINT_USER, ApiPoints, BASE_SERVER_URL, ContentTypes, METHODS_QUERY
 } from '../constants/api/dumMyApi';
 
 const fetchBase = (url: string, method: Method, params?: object, body?: object) => {
@@ -40,8 +34,8 @@ const fetchPostsForm = (page: number, limit: number) => fetchBase(
   BASE_SERVER_URL + ApiPoints.POST, 'GET', { page, limit }
 );
 const fetchPostForm = (id: string) => fetchBase(`${BASE_SERVER_URL + ApiPoints.POST}/${id}`, 'GET');
-
 const fetchUserFullForm = (id: string) => fetchBase(`${BASE_SERVER_URL + ApiPoints.USER}/${id}`, 'GET');
+const fetchUserLoginForm = (id: string) => fetchBase(`${BASE_SERVER_URL + ApiPoints.USER}/${id}/login`, 'GET');
 const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
   `${BASE_SERVER_URL + ApiPoints.USER}/${id}${ApiPoints.POST}`, 'GET', { page, limit }
 );
@@ -49,12 +43,14 @@ const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetch
   `${BASE_SERVER_URL + ApiPoints.POST}/${id}${ApiPoints.COMMENT}`, 'GET', { page, limit }
 );
 
-const fetchRegisterUser = (body: string) => fetchBaseSend(BASE_URL, API_POINT_USER_CREATE, METHODS_QUERY.POST, body);
+const fetchRegisterUser = (body: object) => fetchBase(
+  BASE_SERVER_URL + ApiPoints.USER_CREATE, 'POST', undefined, body
+);
 const fetchUpdateUser = (id:string, body: string) => fetchBaseSend(
-  BASE_URL, `${API_POINT_USER}/${id}`, METHODS_QUERY.PUT, body
+  BASE_SERVER_URL, `${API_POINT_USER}/${id}`, METHODS_QUERY.PUT, body
 );
 
 export {
   fetchUsersForm, fetchPostsForm, fetchUserFullForm, fetchUserPostsForm, fetchRegisterUser, fetchPostCommentsForm,
-  fetchPostForm, fetchUpdateUser
+  fetchPostForm, fetchUpdateUser, fetchUserLoginForm
 };

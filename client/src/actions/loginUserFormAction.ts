@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
-import { fetchUserFullForm } from '../utils/fetchDumMyApi';
+import { AxiosResponse } from 'axios';
+import { fetchUserLoginForm } from '../utils/fetchDumMyApi';
 import { LoginUserFormAC, LoginUserFormACTypes } from '../types/redux/loginUserForm';
 import { EMPTY_STRING } from '../constants/common';
+import HttpStatuses from '../constants/httpStatuses';
 
 const loginUserFormAC = (id: string) => async (dispatch: Dispatch<LoginUserFormAC>) => {
   dispatch({
@@ -9,16 +11,16 @@ const loginUserFormAC = (id: string) => async (dispatch: Dispatch<LoginUserFormA
   });
 
   try {
-    const response = await fetchUserFullForm(id);
-    const loginUser = await response.json();
+    const response: AxiosResponse = await fetchUserLoginForm(id);
+    const loginUser = await response.data;
 
-    if (response.ok) {
+    if (response.status === HttpStatuses.OK) {
       dispatch({
         type: LoginUserFormACTypes.LOGIN_USER_FORM_SUCCESS,
-        payload: loginUser
+        payload: loginUser.data
       });
     } else {
-      throw new Error(`${response.status.toString()} – ${loginUser.error}`);
+      throw new Error(`${response.status.toString()} – ${loginUser.error.message}`);
     }
   } catch (e) {
     dispatch({

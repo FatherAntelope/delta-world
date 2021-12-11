@@ -22,14 +22,9 @@ const getUserGenderRu = (gender: string): string => {
   }
 };
 
-const getJSONStringifyForRegisterUser = (formData: ICreateUser): string => JSON.stringify({
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  email: formData.email,
-  phone: formData.phone,
+const getObjectRegisterUser = (formData: ICreateUser): ICreateUser => ({
+  ...formData,
   title: formData.gender === 'male' ? 'mr' : 'ms',
-  gender: formData.gender,
-  dateOfBirth: formData.dateOfBirth,
   registerDate: new Date(),
 });
 
@@ -44,5 +39,5 @@ const getJSONStringifyForEditDataUser = (formData: ICreateUser): string => JSON.
 
 export {
   getUserFullName, checkPictureAndGet, getUserGenderRu,
-  getJSONStringifyForRegisterUser, getJSONStringifyForEditDataUser
+  getObjectRegisterUser, getJSONStringifyForEditDataUser
 };
