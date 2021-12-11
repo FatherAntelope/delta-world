@@ -1,5 +1,5 @@
 import defaultUserAvatar from '../images/default-user-avatar.jpg';
-import { ICreateUser } from '../types/api/dumMyApi';
+import { ICreateUser } from '../types/api/localServer';
 
 const getUserFullName = (title: string, fullName: string): string => (
   `${title ? `${title}.` : ''} ${fullName}`
@@ -22,22 +22,12 @@ const getUserGenderRu = (gender: string): string => {
   }
 };
 
-const getObjectRegisterUser = (formData: ICreateUser): ICreateUser => ({
+const getObjectSendDataUser = (formData: ICreateUser): ICreateUser => ({
   ...formData,
   title: formData.gender === 'male' ? 'mr' : 'ms',
   registerDate: new Date(),
 });
 
-const getJSONStringifyForEditDataUser = (formData: ICreateUser): string => JSON.stringify({
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  gender: formData.gender,
-  dateOfBirth: formData.dateOfBirth,
-  phone: formData.phone,
-  title: formData.gender === 'male' ? 'mr' : 'ms',
-});
-
 export {
-  getUserFullName, checkPictureAndGet, getUserGenderRu,
-  getObjectRegisterUser, getJSONStringifyForEditDataUser
+  getUserFullName, checkPictureAndGet, getUserGenderRu, getObjectSendDataUser
 };

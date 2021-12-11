@@ -1,5 +1,5 @@
 import { IResponseCommentPreviewConvert, IResponseList } from '../types/api/dumMyApi';
-import { fetchCommentsByPost } from '../utils/dymMyApi';
+import { fetchCommentsByPost } from '../utils/api/dymMyApi';
 import logger from '../logger';
 import format from 'string-format';
 import loggerMessages from '../constants/loggerMessages';

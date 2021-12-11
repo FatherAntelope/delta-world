@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Alert } from 'antd';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { useActions } from '../../../../hooks/useActions';
-import { IResponsePostUser } from '../../../../types/api/dumMyApi';
+import { IResponsePostUser } from '../../../../types/api/localServer';
 import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS, ModalID } from '../../../../constants/common';
 import '../../../flex-grid/FlexGrid.scss';

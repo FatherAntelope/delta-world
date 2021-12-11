@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import CardPost from '../../cards/card-post/CardPost';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useActions';
-import { IResponsePostPreview } from '../../../types/api/dumMyApi';
+import { IResponsePostPreview } from '../../../types/api/localServer';
 import { checkPictureAndGet, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import { FORM_LIMIT_POSTS, ModalID } from '../../../constants/common';

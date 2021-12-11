@@ -3,7 +3,7 @@
     "port": 5000,
     "host": "localhost",
     "httpHeaders": [
-      {"option": "Access-Control-Allow-Origin", "value": "*"},
+      {"option": "Access-Control-Allow-Origin", "value": "http://localhost:3000"},
       {"option": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"},
       {"option": "Access-Control-Allow-Headers", "value": "Origin, X-Requested-With, Content-Type, Accept"}
     ]

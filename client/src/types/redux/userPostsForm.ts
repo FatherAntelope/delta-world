@@ -1,4 +1,4 @@
-import { IResponseList, IResponsePostUser } from '../api/dumMyApi';
+import { IResponseList, IResponsePostUser } from '../api/localServer';
 
 export interface IUserPostsFormState {
   userPosts: IResponseList<IResponsePostUser>;

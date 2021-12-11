@@ -1,4 +1,4 @@
-import { IResponseList, IResponseUserPreview } from '../api/dumMyApi';
+import { IResponseList, IResponseUserPreview } from '../api/localServer';
 
 export interface IUsersFormState {
   users: IResponseList<IResponseUserPreview>;

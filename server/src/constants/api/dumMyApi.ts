@@ -26,10 +26,6 @@ const API_HEADS: IApiHeads = {
   CONTENT_TYPE: 'Content-Type'
 };
 
-enum ContentTypes {
-  JSON = 'application/json;charset=utf-8',
-}
-
 export {
-  BASE_URL, API_HEADS, ContentTypes, ApiPoints, PageOptions, LimitOptions
+  BASE_URL, API_HEADS, ApiPoints, PageOptions, LimitOptions
 };

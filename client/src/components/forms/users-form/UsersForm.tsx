@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CardUser from '../../cards/card-user/CardUser';
 import '../../flex-grid/FlexGrid.scss';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { IResponseUserPreview } from '../../../types/api/dumMyApi';
+import { IResponseUserPreview } from '../../../types/api/localServer';
 import { useActions } from '../../../hooks/useActions';
 import { checkPictureAndGet, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';

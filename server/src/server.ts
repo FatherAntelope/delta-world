@@ -1,12 +1,13 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
-import { getServerConfigs, IHttpHeader } from './utils/configServer';
+import { checkExistLogsDirectory, getServerConfigs, IHttpHeader } from './utils/configServer';
 import { v4 as generateUUID } from 'uuid';
+import format from 'string-format';
 import routes from './routes';
-import logger from "./logger";
-import format from "string-format";
-import LOGGER_MESSAGES from "./constants/loggerMessages";
+import logger from './logger';
+import LOGGER_MESSAGES from './constants/loggerMessages';
 const context = require('request-context');
 
+checkExistLogsDirectory();
 const { host, port, httpHeaders } = getServerConfigs();
 const app: Express = express();
 

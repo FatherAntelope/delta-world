@@ -7,7 +7,7 @@ import { useActions } from '../../../hooks/useActions';
 import CardComment from '../../cards/card-comment/CardComment';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { FORM_LIMIT_POST_COMMENTS, ModalID } from '../../../constants/common';
-import { IResponseCommentPreview } from '../../../types/api/dumMyApi';
+import { IResponseCommentPreview } from '../../../types/api/localServer';
 import { getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import Tooltip from '../../tooltip/Tooltip';

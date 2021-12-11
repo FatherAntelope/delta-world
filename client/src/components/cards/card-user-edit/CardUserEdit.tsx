@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { COOKIE_LIFETIME, EMPTY_STRING, MAXIMUM_DATE } from '../../../constants/common';
 import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
-import { checkPictureAndGet, getJSONStringifyForEditDataUser } from '../../../utils/common';
+import { checkPictureAndGet, getObjectSendDataUser } from '../../../utils/common';
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
@@ -50,12 +50,12 @@ const CardUserEdit = ({
   }, [firstName, lastName]);
 
   const handleClickEditDataUser = () => {
-    const newDataUser = getJSONStringifyForEditDataUser(formEditDataUser.getFieldsValue());
+    const newDataUser = getObjectSendDataUser(formEditDataUser.getFieldsValue());
     updateUserFormAction(cookies.user_id, newDataUser);
   };
 
   const handleClickDeleteImage = () => {
-    updateUserFormAction(cookies.user_id, JSON.stringify({ picture: EMPTY_STRING }));
+    updateUserFormAction(cookies.user_id, { picture: EMPTY_STRING });
   };
 
   const beforeUpload = (file: any) => {
@@ -74,8 +74,9 @@ const CardUserEdit = ({
 
   useEffect(() => {
     if (sendData.sendUser.id) {
+      const userFullNamePieces: string[] = sendData.sendUser.fullName.split(' ');
       setCookies('user_id', cookies.user_id, { maxAge: COOKIE_LIFETIME });
-      setCookies('user_first_name', sendData.sendUser.firstName, { maxAge: COOKIE_LIFETIME });
+      setCookies('user_first_name', userFullNamePieces[0], { maxAge: COOKIE_LIFETIME });
       setCookies('user_picture', sendData.sendUser.picture, { maxAge: COOKIE_LIFETIME });
       loadUserFullFormAC(cookies.user_id);
       clearSendDataUserFormAction();
@@ -84,7 +85,7 @@ const CardUserEdit = ({
 
   useEffect(() => {
     if (sendImage.editImageURL) {
-      updateUserFormAction(cookies.user_id, JSON.stringify({ picture: sendImage.editImageURL }));
+      updateUserFormAction(cookies.user_id, { picture: sendImage.editImageURL });
       clearImageEditFormAC();
     }
   }, [sendImage.editImageURL]);
@@ -105,7 +106,11 @@ const CardUserEdit = ({
           showUploadList={false}
           beforeUpload={beforeUpload}
           customRequest={(info) => {
-            uploadImageEditAC(info.file);
+            const reader = new FileReader();
+            reader.readAsDataURL(info.file as Blob);
+            reader.onloadend = (e: any) => {
+              uploadImageEditAC(cookies.user_id, e.target.result);
+            };
           }}
         >
           <Button loading={sendImage.isLoading} size="small" icon={<UploadOutlined />}>

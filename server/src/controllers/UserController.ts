@@ -48,8 +48,9 @@ class UserController {
         )
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e: any) {
-      const message = e.message;
-      const status: number = HttpStatuses.SERVER_ERROR;
+      const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'Body not valid' : 'Internal server error';
+      const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
+        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
       logger.error(format(LOGGER_MESSAGES.CREATE_USER.RESPONSE.ERROR, String(status), message));
       return res.status(status).json({ status, error: { message }});
     }

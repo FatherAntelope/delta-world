@@ -1,4 +1,4 @@
-import { IResponsePostPreview } from '../api/dumMyApi';
+import { IResponsePostPreview } from '../api/localServer';
 
 export interface IPostFormState {
   post: IResponsePostPreview;

@@ -6,7 +6,7 @@ import {
 import logger from '../logger';
 import format from 'string-format';
 import loggerMessages from '../constants/loggerMessages';
-import {fetchPosts, fetchPost, fetchPostsByUser} from '../utils/dymMyApi';
+import {fetchPosts, fetchPost, fetchPostsByUser} from '../utils/api/dymMyApi';
 import PostMapper from '../mapper/postMapper';
 import HttpStatuses from '../constants/httpStatuses';
 

@@ -24,6 +24,13 @@ interface IApiKeysConfig {
 
 const path: string = './config.json';
 
+const checkExistLogsDirectory = (): void => {
+  const logsDirectory: string = getLoggerConfigs().logDirectory;
+  if (!fs.existsSync(logsDirectory)) {
+    fs.mkdirSync(logsDirectory);
+  }
+};
+
 const getServerConfigs = (): IServerConfigs => {
   return JSON.parse(fs.readFileSync(path, 'utf8')).server;
 };
@@ -36,4 +43,4 @@ const getApiKeysConfigs = (): IApiKeysConfig => {
   return JSON.parse(fs.readFileSync(path, 'utf8')).apiKeys;
 };
 
-export { getServerConfigs, getLoggerConfigs, getApiKeysConfigs, IHttpHeader };
+export { getServerConfigs, getLoggerConfigs, getApiKeysConfigs, checkExistLogsDirectory, IHttpHeader };

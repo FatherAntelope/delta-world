@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, Method } from 'axios';
-import { API_HEADS, ApiPoints, BASE_URL } from '../constants/api/dumMyApi';
-import { getApiKeysConfigs } from './configServer';
+import { API_HEADS, ApiPoints, BASE_URL } from '../../constants/api/dumMyApi';
+import { getApiKeysConfigs } from '../configServer';
 
 const { dummyapi } = getApiKeysConfigs();
 

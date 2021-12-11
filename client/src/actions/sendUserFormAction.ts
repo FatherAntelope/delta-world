@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { AxiosResponse } from 'axios';
 import { SendUserFormAC, SendUserFormACTypes } from '../types/redux/sendUserForm';
-import { fetchRegisterUser, fetchUpdateUser } from '../utils/fetchDumMyApi';
+import { fetchRegisterUser, fetchUpdateUser } from '../utils/fetchLocalServer';
 import { EMPTY_STRING } from '../constants/common';
-import { ICreateUser } from '../types/api/dumMyApi';
+import { ICreateUser } from '../types/api/localServer';
 import HttpStatuses from '../constants/httpStatuses';
 
 const registerUserFormAction = (body: ICreateUser) => async (dispatch: Dispatch<SendUserFormAC>) => {
@@ -13,14 +13,19 @@ const registerUserFormAction = (body: ICreateUser) => async (dispatch: Dispatch<
 
   try {
     const response: AxiosResponse = await fetchRegisterUser(body);
-    const userRegister = await response.data;
+
+    if (response === undefined) {
+      throw new Error('503 – Service Unavailable');
+    }
+
     if (response.status === HttpStatuses.OK) {
+      const userRegister = await response.data;
       dispatch({
         type: SendUserFormACTypes.SEND_USER_FORM_SUCCESS,
         payload: userRegister.data
       });
     } else {
-      throw new Error(`${response.status.toString()} – ${userRegister.error.message}`);
+      throw new Error(`${response.status.toString()} – ${response.data.error.message}`);
     }
   } catch (e) {
     dispatch({
@@ -30,21 +35,21 @@ const registerUserFormAction = (body: ICreateUser) => async (dispatch: Dispatch<
   }
 };
 
-const updateUserFormAction = (id: string, body: string) => async (dispatch: Dispatch<SendUserFormAC>) => {
+const updateUserFormAction = (id: string, body: object) => async (dispatch: Dispatch<SendUserFormAC>) => {
   dispatch({
     type: SendUserFormACTypes.SEND_USER_FORM,
   });
 
   try {
-    const response = await fetchUpdateUser(id, body);
-    const userUpdate = await response.json();
-    if (response.ok) {
+    const response: AxiosResponse = await fetchUpdateUser(id, body);
+    const userUpdate = await response.data;
+    if (response.status === HttpStatuses.OK) {
       dispatch({
         type: SendUserFormACTypes.SEND_USER_FORM_SUCCESS,
-        payload: userUpdate
+        payload: userUpdate.data
       });
     } else {
-      throw new Error(`${response.status.toString()} – ${userUpdate.error}`);
+      throw new Error(`${response.status.toString()} – ${response.data.error.message}`);
     }
   } catch (e) {
     dispatch({

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { AxiosResponse } from 'axios';
-import { fetchUserFullForm } from '../utils/fetchDumMyApi';
+import { fetchUserFullForm } from '../utils/fetchLocalServer';
 import { LOADING_EMULATION_TIME } from '../constants/common';
 import { UserFullFormAC, UserFullFormACTypes } from '../types/redux/userFullForm';
 import HttpStatuses from '../constants/httpStatuses';
@@ -12,9 +12,13 @@ const loadUserFullFormAC = (id: string) => async (dispatch: Dispatch<UserFullFor
 
   try {
     const response: AxiosResponse = await fetchUserFullForm(id);
-    const user = await response.data;
+
+    if (response === undefined) {
+      throw new Error('503 – Service Unavailable');
+    }
 
     if (response.status === HttpStatuses.OK) {
+      const user = await response.data;
       setTimeout(() => {
         dispatch({
           type: UserFullFormACTypes.LOAD_USER_FULL_FORM_SUCCESS,
@@ -22,7 +26,8 @@ const loadUserFullFormAC = (id: string) => async (dispatch: Dispatch<UserFullFor
         });
       }, LOADING_EMULATION_TIME);
     } else {
-      throw new Error(`${response.status.toString()} – ${user.error.message}`);
+      console.log(response);
+      throw new Error(`${response.status.toString()} – ${response.data.error.message}`);
     }
   } catch (e) {
     dispatch({

@@ -88,13 +88,3 @@ export interface IResponsePost extends  IResponsePostPreview {
 }
 
 export interface IResponsePostConvert extends  IResponsePostPreviewConvert {}
-
-export interface ICreateUser {
-  title: 'ms' | 'mr' | 'mrs' | 'miss' | 'dr' | '';
-  firstName: string;
-  lastName: string;
-  gender: 'male' | 'female' | 'other' | '';
-  email: string;
-  dateOfBirth: string;
-  phone: string;
-}

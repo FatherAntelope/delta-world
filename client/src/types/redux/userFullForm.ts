@@ -1,4 +1,4 @@
-import { IResponseUserFull } from '../api/dumMyApi';
+import { IResponseUserFull } from '../api/localServer';
 
 export interface IUserFullFormState {
   user: IResponseUserFull;

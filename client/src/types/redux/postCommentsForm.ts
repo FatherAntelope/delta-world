@@ -1,4 +1,4 @@
-import { IResponseCommentPreview, IResponseList } from '../api/dumMyApi';
+import { IResponseCommentPreview, IResponseList } from '../api/localServer';
 
 export interface IPostCommentsFormState {
   postComments: IResponseList<IResponseCommentPreview>;

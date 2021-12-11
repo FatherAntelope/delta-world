@@ -1,4 +1,4 @@
-import { IResponseUserAuth } from '../api/dumMyApi';
+import { IResponseUserAuth } from '../api/localServer';
 
 export interface ILoginUserFormState {
   loginUser: IResponseUserAuth;

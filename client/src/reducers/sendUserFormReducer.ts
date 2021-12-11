@@ -1,12 +1,7 @@
-import { EMPTY_STRING } from '../constants/common';
 import { ISendUserFormState, SendUserFormAC, SendUserFormACTypes } from '../types/redux/sendUserForm';
 
 const initialState: ISendUserFormState = {
-  sendUser: {
-    id: EMPTY_STRING,
-    picture: EMPTY_STRING,
-    firstName: EMPTY_STRING,
-  },
+  sendUser: {},
   isLoading: false
 };
 
