@@ -1,5 +1,5 @@
 import Router, { Express } from 'express';
-import httpStatuses from '../constants/httpStatuses';
+import HttpStatuses from '../constants/httpStatuses';
 import userRouter from './userRouter';
 import postRouter from './postRouter';
 import commentRouter from './commentRouter';
@@ -11,8 +11,8 @@ routes.use('', postRouter);
 routes.use('', commentRouter);
 
 routes.use('*', (req, res) => {
-  res.status(httpStatuses.NOT_FOUND).json({
-    status: httpStatuses.NOT_FOUND,
+  res.status(HttpStatuses.NOT_FOUND).json({
+    status: HttpStatuses.NOT_FOUND,
     error: { message: 'Not found' }
   });
 });

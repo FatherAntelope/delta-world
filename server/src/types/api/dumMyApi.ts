@@ -7,7 +7,7 @@ export interface IResponseList<T> {
 
 export interface IResponseUserPreview {
   id: string;
-  title: 'ms' | 'mr' | '';
+  title: 'ms' | 'mr' | 'mrs' | 'miss' | 'dr' | '';
   firstName: string;
   lastName: string;
   picture: string;
@@ -15,7 +15,7 @@ export interface IResponseUserPreview {
 
 export interface IResponseUserPreviewConvert {
   id: string;
-  title: 'ms' | 'mr' | '';
+  title: 'ms' | 'mr' | 'mrs' | 'miss' | 'dr' | '';
   fullName: string
   picture: string;
 }
@@ -82,7 +82,7 @@ export interface IResponsePost extends  IResponsePostPreview {
 export interface IResponsePostConvert extends  IResponsePostPreviewConvert {}
 
 export interface ICreateUser {
-  title: 'ms' | 'mr' | '';
+  title: 'ms' | 'mr' | 'mrs' | 'miss' | 'dr' | '';
   firstName: string;
   lastName: string;
   gender: 'male' | 'female' | 'other' | '';

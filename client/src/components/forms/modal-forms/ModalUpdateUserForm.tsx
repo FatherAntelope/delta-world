@@ -9,6 +9,7 @@ import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeChec
 const ModalPostForm = () => {
   const modals = useTypedSelector((state) => state.modalsForm);
   const { user } = useTypedSelector((state) => state.userFullForm);
+  const [firstName, lastName] = user.fullName.split('');
   const modalOpenUpdateUserStore = modals[ModalID.UPDATE_USER];
   const { closeModalsFormAC } = useActions();
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
@@ -26,8 +27,8 @@ const ModalPostForm = () => {
       <CardUserEdit
         avatar={user.picture}
         gender={user.gender}
-        firstName={user.firstName}
-        lastName={user.lastName}
+        firstName={firstName}
+        lastName={lastName}
         dateOfBirth={user.dateOfBirth}
         phone={user.phone}
       />

@@ -8,8 +8,7 @@ export interface IResponseList<T> {
 export interface IResponseUserPreview {
   id: string;
   title: 'ms' | 'mr' | '';
-  firstName: string;
-  lastName: string;
+  fullName: string;
   picture: string;
 }
 

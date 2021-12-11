@@ -2,6 +2,7 @@
   "name": "delta-world-server",
   "version": "1.0.0",
   "description": "",
+  "author": "FatherAntelope",
   "main": "./dist/server.js",
   "scripts": {
     "build:ts": "tsc --watch",
@@ -9,7 +10,6 @@
     "start:dev": "nodemon src/server.ts",
     "dev": "concurrently --kill-others \"npm run build:ts\" \"npm run start:dev\""
   },
-  "author": "FatherAntelope",
   "license": "ISC",
   "devDependencies": {
     "@types/axios": "^0.14.0",

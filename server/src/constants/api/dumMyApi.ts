@@ -5,18 +5,18 @@ interface IApiHeads {
 
 const BASE_URL: string = 'https://dummyapi.io/data/v1';
 
-enum API_POINTS {
+enum ApiPoints {
   USER = '/user',
   POST = '/post',
   COMMENT = '/comment',
   USER_CREATE = '/user/create'
 }
 
-enum PAGE_OPTIONS {
+enum PageOptions {
   MIN = 0
 }
 
-enum LIMIT_OPTIONS {
+enum LimitOptions {
   MAX = 20,
   MIN = 5
 }
@@ -31,5 +31,5 @@ enum ContentTypes {
 }
 
 export {
-  BASE_URL, API_HEADS, ContentTypes, API_POINTS, PAGE_OPTIONS, LIMIT_OPTIONS
+  BASE_URL, API_HEADS, ContentTypes, ApiPoints, PageOptions, LimitOptions
 };

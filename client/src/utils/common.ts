@@ -1,8 +1,8 @@
 import defaultUserAvatar from '../images/default-user-avatar.jpg';
 import { ICreateUser } from '../types/api/dumMyApi';
 
-const getUserFullName = (title: string, firstName: string, lastName: string): string => (
-  `${title ? `${title}.` : ''} ${firstName} ${lastName}`
+const getUserFullName = (title: string, fullName: string): string => (
+  `${title ? `${title}.` : ''} ${fullName}`
 );
 
 const checkPictureAndGet = (picture: string): string => (

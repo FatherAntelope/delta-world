@@ -50,8 +50,7 @@ const UsersForm = () => {
                   <Link to={`/user/${item.id}`}>
                     {getUserFullName(
                       t(`commons.userAppeal.${item.title}`),
-                      item.firstName,
-                      item.lastName
+                      item.fullName
                     )}
                   </Link>
                 </Tooltip>

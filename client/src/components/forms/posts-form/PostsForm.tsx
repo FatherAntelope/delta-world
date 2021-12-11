@@ -7,7 +7,7 @@ import CardPost from '../../cards/card-post/CardPost';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useActions';
 import { IResponsePostPreview } from '../../../types/api/dumMyApi';
-import { checkPictureAndGet, getDateTimePublication, getUserFullName } from '../../../utils/common';
+import { checkPictureAndGet, getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import { FORM_LIMIT_POSTS, ModalID } from '../../../constants/common';
 import Tooltip from '../../tooltip/Tooltip';
@@ -57,13 +57,12 @@ const PostsForm = () => {
                   <Link to={`/user/${item.owner.id}`}>
                     {getUserFullName(
                       t(`commons.userAppeal.${item.owner.title}`),
-                      item.owner.firstName,
-                      item.owner.lastName
+                      item.owner.fullName
                     )}
                   </Link>
                 </Tooltip>
                 )}
-              dateOfPublication={getDateTimePublication(item.publishDate)}
+              dateOfPublication={item.publishDate}
             >
               <div style={{ width: '100%', cursor: 'pointer' }} onClick={() => handleOpenModal(item.id)}>
                 <CardPost.Image imageURL={item.image} />

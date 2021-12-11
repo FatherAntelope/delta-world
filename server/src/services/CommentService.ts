@@ -4,7 +4,7 @@ import logger from '../logger';
 import format from 'string-format';
 import loggerMessages from '../constants/loggerMessages';
 import CommentMapper from '../mapper/commentMapper';
-import httpStatuses from '../constants/httpStatuses';
+import HttpStatuses from '../constants/httpStatuses';
 
 class CommentService {
   static async getCommentsByPost(
@@ -12,7 +12,7 @@ class CommentService {
   ): Promise<IResponseList<IResponseCommentPreviewConvert>> {
     const response = await fetchCommentsByPost(id, page, limit);
     switch (response.status) {
-      case httpStatuses.OK: {
+      case HttpStatuses.OK: {
         logger.info(format(loggerMessages.GET_COMMENTS_BY_POST.FETCH.SUCCESS, response.status));
         return CommentMapper.getConvertComments(await response.data);
       }

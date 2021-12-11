@@ -44,7 +44,7 @@ const UserFullForm = () => {
         id={user.id}
         imageURL={checkPictureAndGet(user.picture)}
         fullName={getUserFullName(
-          t(`commons.userAppeal.${user.title}`), user.firstName, user.lastName
+          t(`commons.userAppeal.${user.title}`), user.fullName
         )}
         gender={t(`commons.userGender.${user.gender}`)}
         dateOfBirth={getDateRU(user.dateOfBirth)}

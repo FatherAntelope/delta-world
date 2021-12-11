@@ -2,8 +2,8 @@ import { Response, Request } from 'express';
 import logger from '../logger';
 import format from 'string-format';
 import LOGGER_MESSAGES from '../constants/loggerMessages';
-import { LIMIT_OPTIONS, PAGE_OPTIONS } from '../constants/api/dumMyApi';
-import httpStatuses from '../constants/httpStatuses';
+import { LimitOptions, PageOptions } from '../constants/api/dumMyApi';
+import HttpStatuses from '../constants/httpStatuses';
 import CommentService from '../services/CommentService';
 
 class CommentController {
@@ -12,45 +12,45 @@ class CommentController {
       { ...req.query, ...req.params })
     ));
 
-    const page: number = req.query.page ? Number(req.query.page) : PAGE_OPTIONS.MIN;
-    const limit: number = req.query.limit ? Number(req.query.limit) : LIMIT_OPTIONS.MAX;
+    const page: number = req.query.page ? Number(req.query.page) : PageOptions.MIN;
+    const limit: number = req.query.limit ? Number(req.query.limit) : LimitOptions.MAX;
 
-    if (page < PAGE_OPTIONS.MIN) {
-      const message = `Minimum page size ${PAGE_OPTIONS.MIN}`;
+    if (page < PageOptions.MIN) {
+      const message = `Minimum page size ${PageOptions.MIN}`;
       logger.error(
-        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message)
+        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(HttpStatuses.BAD_REQUEST), message)
       );
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
+      return res.status(HttpStatuses.BAD_REQUEST).json({
+        status: HttpStatuses.BAD_REQUEST,
         error: { message }
       });
     }
 
-    if (limit < LIMIT_OPTIONS.MIN || limit > LIMIT_OPTIONS.MAX) {
-      const message = `Minimum limit size ${LIMIT_OPTIONS.MIN} and maximum ${LIMIT_OPTIONS.MAX}`;
+    if (limit < LimitOptions.MIN || limit > LimitOptions.MAX) {
+      const message = `Minimum limit size ${LimitOptions.MIN} and maximum ${LimitOptions.MAX}`;
       logger.error(
-        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(httpStatuses.BAD_REQUEST), message)
+        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(HttpStatuses.BAD_REQUEST), message)
       );
-      return res.status(httpStatuses.BAD_REQUEST).json({
-        status: httpStatuses.BAD_REQUEST,
+      return res.status(HttpStatuses.BAD_REQUEST).json({
+        status: HttpStatuses.BAD_REQUEST,
         error: { message }
       });
     }
 
     try {
       const responseBody = JSON.stringify({
-        status: httpStatuses.OK,
+        status: HttpStatuses.OK,
         ...await CommentService.getCommentsByPost(req.params.id, page, limit)
       });
       logger.info(format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.SUCCESS, responseBody));
-      res.status(httpStatuses.OK).send(responseBody);
+      res.status(HttpStatuses.OK).send(responseBody);
     } catch (e) {
       const message = 'Internal server error';
       logger.error(
-        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(httpStatuses.SERVER_ERROR), message)
+        format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message)
       );
-      res.status(httpStatuses.SERVER_ERROR).json({
-        status: httpStatuses.SERVER_ERROR,
+      res.status(HttpStatuses.SERVER_ERROR).json({
+        status: HttpStatuses.SERVER_ERROR,
         error: { message }
       });
     }

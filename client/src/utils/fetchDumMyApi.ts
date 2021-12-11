@@ -1,14 +1,26 @@
+import axios, { Method, AxiosRequestConfig } from 'axios';
 import {
   API_HEADS,
   API_KEY,
   API_POINT_COMMENT,
   API_POINT_POST,
   API_POINT_USER,
-  API_POINT_USER_CREATE,
+  API_POINT_USER_CREATE, ApiPoints, BASE_SERVER_URL,
   BASE_URL,
   ContentTypes,
   METHODS_QUERY
 } from '../constants/api/dumMyApi';
+
+const fetchBase1 = (url: string, method: Method, params?: object, body?: object) => {
+  let config: AxiosRequestConfig = {
+    method,
+  };
+
+  if (params) config = { ...config, params };
+  if (body) config = { ...config, data: body };
+
+  return axios(url, config).then((data) => data).catch((reason) => reason.response);
+};
 
 const fetchBase = (baseURL: string, apiPoint: string, searchParams?: Record<string, any>) => {
   let url = baseURL + apiPoint;
@@ -35,16 +47,21 @@ const fetchBaseSend = (baseURL: string, apiPoint: string, method: string, body?:
   });
 };
 
-const fetchUsersForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_USER, { page, limit });
+const fetchUsersForm = (page: number, limit: number) => fetchBase1(
+  BASE_SERVER_URL + ApiPoints.USER, 'GET', { page, limit }
+);
+const fetchPostsForm = (page: number, limit: number) => fetchBase1(
+  BASE_SERVER_URL + ApiPoints.POST, 'GET', { page, limit }
+);
+const fetchPostForm = (id: string) => fetchBase1(`${BASE_SERVER_URL + ApiPoints.POST}/${id}`, 'GET');
+
 const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}/${id}`);
-const fetchPostForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_POST}/${id}`);
 const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
   BASE_URL, `${API_POINT_USER}/${id}${API_POINT_POST}`, { page, limit }
 );
 const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetchBase(
   BASE_URL, `${API_POINT_POST}/${id}${API_POINT_COMMENT}`, { page, limit }
 );
-const fetchPostsForm = (page: number, limit: number) => fetchBase(BASE_URL, API_POINT_POST, { page, limit });
 
 const fetchRegisterUser = (body: string) => fetchBaseSend(BASE_URL, API_POINT_USER_CREATE, METHODS_QUERY.POST, body);
 const fetchUpdateUser = (id:string, body: string) => fetchBaseSend(

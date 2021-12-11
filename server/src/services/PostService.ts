@@ -8,7 +8,7 @@ import format from 'string-format';
 import loggerMessages from '../constants/loggerMessages';
 import {fetchPosts, fetchPost, fetchPostsByUser} from '../utils/dymMyApi';
 import PostMapper from '../mapper/postMapper';
-import httpStatuses from '../constants/httpStatuses';
+import HttpStatuses from '../constants/httpStatuses';
 
 class PostService {
   static async getPostsByUser(
@@ -16,17 +16,17 @@ class PostService {
   ): Promise<IResponseList<IResponsePostPreviewConvert>> {
     const response = await fetchPostsByUser(id, page, limit);
     switch (response.status) {
-      case httpStatuses.OK: {
+      case HttpStatuses.OK: {
         logger.info(format(loggerMessages.GET_POSTS_BY_USER.FETCH.SUCCESS, response.status));
         return PostMapper.getConvertPosts(await response.data);
       }
-      case httpStatuses.BAD_REQUEST: {
+      case HttpStatuses.BAD_REQUEST: {
         logger.error(format(loggerMessages.GET_POSTS_BY_USER.FETCH.ERROR, response.status));
-        throw new Error(String(httpStatuses.BAD_REQUEST));
+        throw new Error(String(HttpStatuses.BAD_REQUEST));
       }
       default: {
         logger.error(format(loggerMessages.GET_POSTS_BY_USER.FETCH.ERROR, response.status, response.statusText));
-        throw new Error(String(httpStatuses.SERVER_ERROR));
+        throw new Error(String(HttpStatuses.SERVER_ERROR));
       }
     }
   }
@@ -34,17 +34,17 @@ class PostService {
   static async getPost(id: string): Promise<IResponsePostConvert> {
     const response = await fetchPost(id);
     switch (response.status) {
-      case httpStatuses.OK: {
+      case HttpStatuses.OK: {
         logger.info(format(loggerMessages.GET_POST_ID.FETCH.SUCCESS, response.status));
         return PostMapper.getConvertPost(await response.data);
       }
-      case httpStatuses.BAD_REQUEST: {
+      case HttpStatuses.BAD_REQUEST: {
         logger.error(format(loggerMessages.GET_POST_ID.FETCH.ERROR, response.status));
-        throw new Error(String(httpStatuses.BAD_REQUEST));
+        throw new Error(String(HttpStatuses.BAD_REQUEST));
       }
       default: {
         logger.error(format(loggerMessages.GET_POST_ID.FETCH.ERROR, response.status, response.statusText));
-        throw new Error(String(httpStatuses.SERVER_ERROR));
+        throw new Error(String(HttpStatuses.SERVER_ERROR));
       }
     }
   }
@@ -52,7 +52,7 @@ class PostService {
   static async getPosts(page: number, limit: number): Promise<IResponseList<IResponsePostPreviewConvert>> {
     const response = await fetchPosts(page, limit);
     switch (response.status) {
-      case httpStatuses.OK: {
+      case HttpStatuses.OK: {
         logger.info(format(loggerMessages.GET_POST_LIST.FETCH.SUCCESS, response.status));
         return PostMapper.getConvertPosts(await response.data);
       }

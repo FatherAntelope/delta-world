@@ -49,8 +49,7 @@ const CommentsForm = () => {
                     <span onClick={closeModalsFormAC}>
                       {getUserFullName(
                         t(`commons.userAppeal.${item.owner.title}`),
-                        item.owner.firstName,
-                        item.owner.lastName
+                        item.owner.fullName
                       )}
                     </span>
                   </Link>
