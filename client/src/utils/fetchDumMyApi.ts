@@ -54,7 +54,7 @@ const fetchPostsForm = (page: number, limit: number) => fetchBase1(
 );
 const fetchPostForm = (id: string) => fetchBase1(`${BASE_SERVER_URL + ApiPoints.POST}/${id}`, 'GET');
 
-const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}/${id}`);
+const fetchUserFullForm = (id: string) => fetchBase1(`${BASE_SERVER_URL + ApiPoints.USER}/${id}`, 'GET');
 const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
   BASE_URL, `${API_POINT_USER}/${id}${API_POINT_POST}`, { page, limit }
 );

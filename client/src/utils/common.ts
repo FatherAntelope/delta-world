@@ -22,15 +22,6 @@ const getUserGenderRu = (gender: string): string => {
   }
 };
 
-const getDateRU = (dateTime: string): string => {
-  const date = new Date(dateTime);
-  const months: string[] = [
-    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-  ];
-
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-};
-
 const getJSONStringifyForRegisterUser = (formData: ICreateUser): string => JSON.stringify({
   firstName: formData.firstName,
   lastName: formData.lastName,
@@ -52,6 +43,6 @@ const getJSONStringifyForEditDataUser = (formData: ICreateUser): string => JSON.
 });
 
 export {
-  getUserFullName, checkPictureAndGet, getUserGenderRu, getDateRU,
+  getUserFullName, checkPictureAndGet, getUserGenderRu,
   getJSONStringifyForRegisterUser, getJSONStringifyForEditDataUser
 };
