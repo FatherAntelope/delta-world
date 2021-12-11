@@ -32,6 +32,7 @@ class UserMapper {
       title: user.title,
       registerDate: user.registerDate && getDate(user.registerDate),
       dateOfBirth: user.dateOfBirth && getDate(user.dateOfBirth),
+      dateOfBirthOriginal: user.dateOfBirth,
       email: user.email,
       phone: user.phone,
       picture: user.picture

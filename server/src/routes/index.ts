@@ -13,7 +13,7 @@ routes.use('', commentRouter);
 routes.use('*', (req, res) => {
   res.status(HttpStatuses.NOT_FOUND).json({
     status: HttpStatuses.NOT_FOUND,
-    error: { message: 'Not found' }
+    error: { message: 'End point not found' }
   });
 });
 

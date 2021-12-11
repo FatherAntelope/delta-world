@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Alert } from 'antd';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { useActions } from '../../../../hooks/useActions';
-import { IResponsePostPreview } from '../../../../types/api/dumMyApi';
+import { IResponsePostUser } from '../../../../types/api/dumMyApi';
 import CardPost from '../../../cards/card-post/CardPost';
 import { FORM_LIMIT_USER_POSTS, ModalID } from '../../../../constants/common';
 import '../../../flex-grid/FlexGrid.scss';
@@ -40,7 +40,7 @@ const UserPostsForm = () => {
   return (
     <>
       <div className="row">
-        {userPosts.data.map((item: IResponsePostPreview) => (
+        {userPosts.data.map((item: IResponsePostUser) => (
           <div className="col-4" key={item.id}>
             <CardPost.Mini
               isDarkTheme={themeCheckboxContext.isDarkTheme}

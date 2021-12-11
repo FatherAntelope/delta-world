@@ -16,8 +16,6 @@ enum ApiPoints {
 const BASE_URL: string = 'https://dummyapi.io/data/v1';
 const API_POINT_USER: string = '/user';
 const API_POINT_USER_CREATE: string = '/user/create';
-const API_POINT_POST: string = '/post';
-const API_POINT_COMMENT: string = '/comment';
 
 const METHODS_QUERY = {
   POST: 'POST',
@@ -35,6 +33,6 @@ enum ContentTypes {
 }
 
 export {
-  BASE_URL, API_KEY, API_HEADS, API_POINT_USER, API_POINT_POST, METHODS_QUERY, API_POINT_USER_CREATE, ContentTypes,
-  API_POINT_COMMENT, BASE_SERVER_URL, ApiPoints
+  BASE_URL, API_KEY, API_HEADS, API_POINT_USER, METHODS_QUERY, API_POINT_USER_CREATE, ContentTypes,
+  BASE_SERVER_URL, ApiPoints
 };

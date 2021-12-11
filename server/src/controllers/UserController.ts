@@ -18,11 +18,11 @@ class UserController {
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
-      logger.error(format(LOGGER_MESSAGES.UPDATE_USER.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message));
-      res.status(HttpStatuses.SERVER_ERROR).json({
-        status: (e.message === String(HttpStatuses.BAD_REQUEST)) ? HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR,
-        error: { message }
-      });
+      const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
+        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+
+      logger.error(format(LOGGER_MESSAGES.UPDATE_USER.RESPONSE.ERROR, String(status), message));
+      res.status(status).json({ status, error: { message } });
     }
   }
 
@@ -49,11 +49,9 @@ class UserController {
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = e.message;
-      logger.error(format(LOGGER_MESSAGES.CREATE_USER.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message));
-      res.status(HttpStatuses.BAD_REQUEST).json({
-        status: HttpStatuses.BAD_REQUEST,
-        error: { message }
-      });
+      const status: number = HttpStatuses.SERVER_ERROR;
+      logger.error(format(LOGGER_MESSAGES.CREATE_USER.RESPONSE.ERROR, String(status), message));
+      return res.status(status).json({ status, error: { message }});
     }
   }
 
@@ -82,11 +80,11 @@ class UserController {
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'ID not valid' : 'Internal server error';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message));
-      res.status(HttpStatuses.SERVER_ERROR).json({
-        status: (e.message === String(HttpStatuses.BAD_REQUEST)) ? HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR,
-        error: { message }
-      });
+      const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
+        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+
+      logger.error(format(LOGGER_MESSAGES.GET_USER_LOGIN.RESPONSE.ERROR, String(status), message));
+      res.status(status).json({ status, error: { message } });
     }
   }
 
@@ -101,11 +99,11 @@ class UserController {
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e: any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message));
-      res.status(HttpStatuses.SERVER_ERROR).json({
-        status: (e.message === String(HttpStatuses.BAD_REQUEST)) ? HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR,
-        error: { message }
-      });
+      const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
+        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+
+      logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(status), message));
+      res.status(status).json({ status, error: { message } });
     }
   }
 
@@ -116,20 +114,16 @@ class UserController {
 
     if (page < PageOptions.MIN) {
       const message = `Minimum page size ${PageOptions.MIN}`;
-      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(HttpStatuses.BAD_REQUEST), message));
-      return res.status(HttpStatuses.BAD_REQUEST).json({
-        status: HttpStatuses.BAD_REQUEST,
-        error: { message }
-      });
+      const status: number = HttpStatuses.BAD_REQUEST;
+      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(status), message));
+      return res.status(status).json({ status, error: { message }});
     }
 
     if (limit < LimitOptions.MIN || limit > LimitOptions.MAX) {
       const message = `Minimum limit size ${LimitOptions.MIN} and maximum ${LimitOptions.MAX}`;
-      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(HttpStatuses.BAD_REQUEST), message));
-      return res.status(HttpStatuses.BAD_REQUEST).json({
-        status: HttpStatuses.BAD_REQUEST,
-        error: { message }
-      });
+      const status: number = HttpStatuses.BAD_REQUEST;
+      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(status), message));
+      return res.status(status).json({ status, error: { message }});
     }
 
     try {
@@ -140,11 +134,9 @@ class UserController {
       res.status(HttpStatuses.OK).send(responseBody);
     } catch (e) {
       const message = 'Internal server error';
-      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(HttpStatuses.SERVER_ERROR), message));
-      res.status(HttpStatuses.SERVER_ERROR).json({
-        status: HttpStatuses.SERVER_ERROR,
-        error: { message }
-      });
+      const status: number = HttpStatuses.SERVER_ERROR;
+      logger.error(format(LOGGER_MESSAGES.GET_USER_LIST.RESPONSE.ERROR, String(status), message));
+      return res.status(status).json({ status, error: { message }});
     }
   }
 }

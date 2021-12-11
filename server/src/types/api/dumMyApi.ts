@@ -47,6 +47,7 @@ export interface IResponseUserFullConvert extends IResponseUserPreviewConvert {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
+  dateOfBirthOriginal: string;
   registerDate: string;
   phone: string;
 }
@@ -73,6 +74,13 @@ export interface IResponsePostPreviewConvert {
   image: string;
   publishDate: string;
   owner: IResponseUserPreviewConvert;
+}
+
+export interface IResponsePostUserConvert {
+  id: string;
+  text: string;
+  image: string;
+  publishDate: string;
 }
 
 export interface IResponsePost extends  IResponsePostPreview {

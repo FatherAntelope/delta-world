@@ -1,7 +1,7 @@
-import { IResponseList, IResponsePostPreview } from '../api/dumMyApi';
+import { IResponseList, IResponsePostUser } from '../api/dumMyApi';
 
 export interface IUserPostsFormState {
-  userPosts: IResponseList<IResponsePostPreview>;
+  userPosts: IResponseList<IResponsePostUser>;
   isLoading: boolean;
   error?: string;
 }
@@ -18,7 +18,7 @@ interface ILoadUserPostsFormAC {
 
 interface ILoadUserPostsFormSuccessAC {
   type: UserPostsFormACTypes.LOAD_USER_POSTS_FORM_SUCCESS;
-  payload: IResponseList<IResponsePostPreview>;
+  payload: IResponseList<IResponsePostUser>;
 }
 
 interface ILoadUserPostsFormErrorAC {

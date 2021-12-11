@@ -24,6 +24,7 @@ export interface IResponseUserFull extends IResponseUserPreview {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
+  dateOfBirthOriginal: string;
   registerDate: string;
   phone: string;
 }
@@ -40,6 +41,13 @@ export interface IResponsePostPreview {
   image: string;
   publishDate: string;
   owner: IResponseUserPreview;
+}
+
+export interface IResponsePostUser {
+  id: string;
+  text: string;
+  image: string;
+  publishDate: string;
 }
 
 export interface ICreateUser {

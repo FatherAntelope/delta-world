@@ -1,7 +1,7 @@
 import {
   IResponseList,
   IResponsePostConvert,
-  IResponsePostPreviewConvert
+  IResponsePostPreviewConvert, IResponsePostUserConvert
 } from '../types/api/dumMyApi';
 import logger from '../logger';
 import format from 'string-format';
@@ -13,12 +13,12 @@ import HttpStatuses from '../constants/httpStatuses';
 class PostService {
   static async getPostsByUser(
     id: string, page: number, limit: number
-  ): Promise<IResponseList<IResponsePostPreviewConvert>> {
+  ): Promise<IResponseList<IResponsePostUserConvert>> {
     const response = await fetchPostsByUser(id, page, limit);
     switch (response.status) {
       case HttpStatuses.OK: {
         logger.info(format(loggerMessages.GET_POSTS_BY_USER.FETCH.SUCCESS, response.status));
-        return PostMapper.getConvertPosts(await response.data);
+        return PostMapper.getConvertUsersPosts(await response.data);
       }
       case HttpStatuses.BAD_REQUEST: {
         logger.error(format(loggerMessages.GET_POSTS_BY_USER.FETCH.ERROR, response.status));
