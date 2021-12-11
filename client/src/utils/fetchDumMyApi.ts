@@ -2,7 +2,6 @@ import axios, { Method, AxiosRequestConfig } from 'axios';
 import {
   API_HEADS,
   API_KEY,
-  API_POINT_COMMENT,
   API_POINT_POST,
   API_POINT_USER,
   API_POINT_USER_CREATE, ApiPoints, BASE_SERVER_URL,
@@ -59,8 +58,8 @@ const fetchUserFullForm = (id: string) => fetchBase(BASE_URL, `${API_POINT_USER}
 const fetchUserPostsForm = (id: string, page: number, limit: number) => fetchBase(
   BASE_URL, `${API_POINT_USER}/${id}${API_POINT_POST}`, { page, limit }
 );
-const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetchBase(
-  BASE_URL, `${API_POINT_POST}/${id}${API_POINT_COMMENT}`, { page, limit }
+const fetchPostCommentsForm = (id: string, page: number, limit: number) => fetchBase1(
+  `${BASE_SERVER_URL + ApiPoints.POST}/${id}${ApiPoints.COMMENT}`, 'GET', { page, limit }
 );
 
 const fetchRegisterUser = (body: string) => fetchBaseSend(BASE_URL, API_POINT_USER_CREATE, METHODS_QUERY.POST, body);

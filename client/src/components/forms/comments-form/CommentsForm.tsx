@@ -8,7 +8,7 @@ import CardComment from '../../cards/card-comment/CardComment';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { FORM_LIMIT_POST_COMMENTS, ModalID } from '../../../constants/common';
 import { IResponseCommentPreview } from '../../../types/api/dumMyApi';
-import { getDateTimePublication, getUserFullName } from '../../../utils/common';
+import { getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import Tooltip from '../../tooltip/Tooltip';
 import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
@@ -55,7 +55,7 @@ const CommentsForm = () => {
                   </Link>
                 </Tooltip>
               )}
-              dateOfPublication={getDateTimePublication(item.publishDate)}
+              dateOfPublication={item.publishDate}
             />
           </div>
         ))}
