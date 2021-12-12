@@ -1,8 +1,20 @@
 {
   "name": "delta-world-server",
   "version": "1.0.0",
-  "description": "",
-  "author": "FatherAntelope",
+  "description": "Server for the 'delta-world-client' application",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FatherAntelope/delta-world.git"
+  },
+  "author": {
+    "name": "FatherAntelope",
+    "email": "gorbunov.vladlen2014@gmail.com",
+    "url": "https://github.com/FatherAntelope"
+  },
+  "contributors": [
+    "Konstantin Timoshkin <> (https://github.com/KTimoshkin)"
+  ],
+  "private": true,
   "main": "./dist/server.js",
   "scripts": {
     "build:ts": "tsc --watch",

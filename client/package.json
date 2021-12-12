@@ -1,7 +1,19 @@
 {
   "name": "delta-world-client",
-  "version": "1.0.1",
-  "author": "FatherAntelope",
+  "version": "1.1.0",
+  "description": "Client application 'delta-world-client'",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FatherAntelope/delta-world.git"
+  },
+  "author": {
+    "name": "FatherAntelope",
+    "email": "gorbunov.vladlen2014@gmail.com",
+    "url": "https://github.com/FatherAntelope"
+  },
+  "contributors": [
+    "Konstantin Timoshkin <> (https://github.com/KTimoshkin)"
+  ],
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
