@@ -58,7 +58,7 @@ const CardUserEdit = ({
     updateUserFormAction(cookies.user_id, { picture: EMPTY_STRING });
   };
 
-  const beforeUpload = (file: any) => {
+  const beforeUploadCallback = (file: any) => {
     const imgType = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
     const imgSize = file.size / 1024 / 1024 < 2;
 
@@ -70,6 +70,14 @@ const CardUserEdit = ({
     }
 
     return imgType && imgSize;
+  };
+
+  const customRequestCallback = (info: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(info.file as Blob);
+    reader.onloadend = (e: any) => {
+      uploadImageEditAC(cookies.user_id, e.target.result);
+    };
   };
 
   useEffect(() => {
@@ -104,14 +112,8 @@ const CardUserEdit = ({
           multiple={false}
           accept="image/jpeg, image/png"
           showUploadList={false}
-          beforeUpload={beforeUpload}
-          customRequest={(info) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(info.file as Blob);
-            reader.onloadend = (e: any) => {
-              uploadImageEditAC(cookies.user_id, e.target.result);
-            };
-          }}
+          beforeUpload={beforeUploadCallback}
+          customRequest={customRequestCallback}
         >
           <Button loading={sendImage.isLoading} size="small" icon={<UploadOutlined />}>
             {t('cardUserEdit.button.updatePhoto')}

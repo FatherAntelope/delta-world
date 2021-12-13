@@ -1,6 +1,8 @@
 import SimpleLogger from 'simple-node-logger';
-import { getLoggerConfigs } from './utils/configServer';
+import { checkExistLogsDirectory, getLoggerConfigs } from './utils/configServer';
 const context = require('request-context');
+
+checkExistLogsDirectory();
 
 const loggerOptions = getLoggerConfigs();
 const log = SimpleLogger.createRollingFileLogger(loggerOptions);
