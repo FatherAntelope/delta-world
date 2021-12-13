@@ -10,13 +10,15 @@ const context = require('request-context');
 const { host, port, httpHeaders } = getServerConfigs();
 const app: Express = express();
 
-app.use(express.json()).use(context.middleware('request'));
-app.use((req: Request, res: Response, next: NextFunction) => {
-  context.set('uuid', generateUUID());
-  res.type('text/plain');
-  httpHeaders.forEach((httpHeader: IHttpHeader) => res.set(httpHeader.option, httpHeader.value));
-  next();
-});
+app
+  .use(express.json({limit: '20mb'}))
+  .use(context.middleware('request'))
+  .use((req: Request, res: Response, next: NextFunction) => {
+    context.set('uuid', generateUUID());
+    res.type('text/plain');
+    httpHeaders.forEach((httpHeader: IHttpHeader) => res.set(httpHeader.option, httpHeader.value));
+    next();
+  });
 app.use('/api', routes);
 
 app.listen(port, host, () => {
