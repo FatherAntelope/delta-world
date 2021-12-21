@@ -36,11 +36,13 @@ class CommentController {
       });
       logger.info(format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.SUCCESS, responseBody));
       res.status(HttpStatuses.OK).send(responseBody);
-    } catch (e) {
-      const message = 'Internal server error';
-      const status: number = HttpStatuses.SERVER_ERROR;
+    } catch (e: any) {
+      const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'Post not found' : 'Internal server error';
+      const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
+        HttpStatuses.NOT_FOUND : HttpStatuses.SERVER_ERROR;
+
       logger.error(format(LOGGER_MESSAGES.GET_COMMENTS_BY_POST.RESPONSE.ERROR, String(status), message));
-      return res.status(status).json({ status, error: { message }});
+      res.status(status).json({ status, error: { message } });
     }
   }
 }

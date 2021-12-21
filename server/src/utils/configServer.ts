@@ -26,9 +26,7 @@ const path: string = './config.json';
 
 const checkExistLogsDirectory = (): void => {
   const logsDirectory: string = getLoggerConfigs().logDirectory;
-  if (!fs.existsSync(logsDirectory)) {
-    fs.mkdirSync(logsDirectory);
-  }
+  !fs.existsSync(logsDirectory) && fs.mkdirSync(logsDirectory);
 };
 
 const getServerConfigs = (): IServerConfigs => {

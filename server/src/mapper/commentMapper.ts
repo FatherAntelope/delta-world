@@ -13,7 +13,6 @@ class CommentMapper {
     const data = commentList.data.map((item: IResponseCommentPreview) => ({
       id: item.id,
       message: item.message,
-      image: getConvertDateOfPublish(item.publishDate),
       publishDate: getConvertDateOfPublish(item.publishDate),
       owner: UserMapper.getConvertUserPreview(item.owner)
     }));

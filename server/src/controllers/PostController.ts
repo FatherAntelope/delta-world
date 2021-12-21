@@ -38,7 +38,7 @@ class PostController {
     } catch (e:any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
       const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
-        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+        HttpStatuses.NOT_FOUND : HttpStatuses.SERVER_ERROR;
 
       logger.error(format(LOGGER_MESSAGES.GET_POSTS_BY_USER.RESPONSE.ERROR, String(status), message));
       res.status(status).json({ status, error: { message } });
@@ -57,7 +57,7 @@ class PostController {
     } catch (e:any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'Post not found' : 'Internal server error';
       const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
-        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+        HttpStatuses.NOT_FOUND : HttpStatuses.SERVER_ERROR;
 
       logger.error(format(LOGGER_MESSAGES.GET_POST_ID.RESPONSE.ERROR, String(status), message));
       res.status(status).json({ status, error: { message } });

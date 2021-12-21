@@ -16,9 +16,13 @@ class CommentService {
         logger.info(format(loggerMessages.GET_COMMENTS_BY_POST.FETCH.SUCCESS, response.status));
         return CommentMapper.getConvertComments(await response.data);
       }
+      case HttpStatuses.BAD_REQUEST: {
+        logger.info(format(loggerMessages.GET_COMMENTS_BY_POST.FETCH.ERROR, response.status));
+        throw new Error(String(HttpStatuses.BAD_REQUEST));
+      }
       default: {
         logger.error(format(loggerMessages.GET_COMMENTS_BY_POST.FETCH.ERROR, response.status, response.statusText));
-        throw new Error(loggerMessages.GET_COMMENTS_BY_POST.FETCH.ERROR);
+        throw new Error(String(HttpStatuses.SERVER_ERROR));
       }
     }
   }
