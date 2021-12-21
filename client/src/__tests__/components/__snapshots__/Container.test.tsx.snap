@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container component testing: Render with snapshot: 1`] = `
+<Container>
+  <div
+    className="container"
+  >
+    <h1>
+      Тест
+    </h1>
+  </div>
+</Container>
+`;

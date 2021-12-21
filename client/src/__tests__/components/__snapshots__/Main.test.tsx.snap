@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu component testing: Render with snapshot: 1`] = `
+<Main
+  isDarkTheme={true}
+  paddings={
+    Object {
+      "bottom": 10,
+      "top": 10,
+    }
+  }
+>
+  <main
+    className="main main_theme_dark "
+    style={
+      Object {
+        "paddingBottom": "10px",
+        "paddingTop": "10px",
+      }
+    }
+  >
+    <h1>
+      Тест
+    </h1>
+  </main>
+</Main>
+`;

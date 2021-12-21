@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Segment component testing: Render with snapshot: 1`] = `
+<Segment
+  isDarkTheme={true}
+>
+  <div
+    className="segment segment_theme_dark "
+  >
+    <h1>
+      Тест
+    </h1>
+  </div>
+</Segment>
+`;

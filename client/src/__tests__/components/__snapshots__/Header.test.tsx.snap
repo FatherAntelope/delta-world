@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component testing: Render with snapshot: 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <HashRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 3,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/login",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Header
+        isDarkTheme={true}
+      >
+        <header
+          className="header header_theme_dark "
+        >
+          <Component>
+            <div
+              className="header__body"
+            >
+              <Component
+                isDarkTheme={true}
+              >
+                <div
+                  className="
+      header__burger header__burger_active header__burger_theme_dark
+      "
+                  onClick={[Function]}
+                >
+                  <span
+                    className="header__burger-icon header__burger-icon_theme_dark"
+                  />
+                </div>
+              </Component>
+              <Component
+                src="src"
+                text="Пример"
+              >
+                <div
+                  className="header__logo"
+                >
+                  <div
+                    className="header__logo-img"
+                  >
+                    <img
+                      alt="main-icon"
+                      src="src"
+                    />
+                  </div>
+                  <p
+                    className="header__logo-text"
+                  >
+                    Пример
+                  </p>
+                </div>
+              </Component>
+              <Component
+                authData={
+                  Object {
+                    "userAvatarSrc": "src",
+                    "userFirstName": "src",
+                    "userID": "src",
+                  }
+                }
+                isDarkTheme={true}
+              >
+                <div
+                  className="header__auth"
+                >
+                  <div
+                    className="header__auth-avatar"
+                  >
+                    <Avatar
+                      alt="user-avatar"
+                      shape="circle"
+                      size="default"
+                      src="src"
+                    >
+                      <span
+                        className="ant-avatar ant-avatar-circle ant-avatar-image"
+                        style={Object {}}
+                      >
+                        <img
+                          alt="user-avatar"
+                          onError={[Function]}
+                          src="src"
+                        />
+                      </span>
+                    </Avatar>
+                    <p
+                      className="header__auth-text header__auth-text_theme_dark "
+                      onClick={[Function]}
+                    >
+                      src
+                    </p>
+                  </div>
+                  <div
+                    className="header__auth-divider"
+                  />
+                  <p
+                    className="header__auth-text header__auth-text_active"
+                    onClick={[Function]}
+                  >
+                    header.auth.logout
+                  </p>
+                </div>
+              </Component>
+              <Link
+                to="/login"
+              >
+                <LinkAnchor
+                  href="#/login"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="#/login"
+                    onClick={[Function]}
+                  />
+                </LinkAnchor>
+              </Link>
+              <Link
+                to="/register"
+              >
+                <LinkAnchor
+                  href="#/register"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="#/register"
+                    onClick={[Function]}
+                  />
+                </LinkAnchor>
+              </Link>
+            </div>
+          </Component>
+        </header>
+      </Header>
+    </Router>
+  </HashRouter>
+</Provider>
+`;

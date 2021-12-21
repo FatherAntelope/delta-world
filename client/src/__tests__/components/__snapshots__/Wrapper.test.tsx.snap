@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wrapper component testing: Render with snapshot: 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Wrapper>
+    <div
+      className="wrapper wrapper_scroll_hidden"
+    >
+      <div
+        className="wrapper__grid"
+      />
+    </div>
+  </Wrapper>
+</Provider>
+`;

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardComment component testing: Render with snapshot: 1`] = `
+<CardComment
+  dateOfPublication="18.18.2018"
+  isDarkTheme={true}
+  text="Текст"
+  userAvatarURL="url"
+  userFullName="Полное Имя"
+>
+  <div
+    className="card-comment card-comment_theme_dark"
+  >
+    <div
+      className="card-comment__content"
+    >
+      <div
+        className="card-comment__avatar"
+      >
+        <Avatar
+          shape="circle"
+          size="default"
+          src="url"
+        >
+          <span
+            className="ant-avatar ant-avatar-circle ant-avatar-image"
+            style={Object {}}
+          >
+            <img
+              onError={[Function]}
+              src="url"
+            />
+          </span>
+        </Avatar>
+      </div>
+      <div
+        className="card-comment__body"
+      >
+        <div
+          className="card-comment__info"
+        >
+          <div
+            className="card-comment__name card-comment__name_theme_dark"
+          >
+            Полное Имя
+          </div>
+          <div
+            className="card-comment__date card-comment__name_theme_date"
+          >
+            18.18.2018
+          </div>
+        </div>
+        <p
+          className="card-comment__text"
+        >
+          Текст
+        </p>
+      </div>
+    </div>
+  </div>
+</CardComment>
+`;

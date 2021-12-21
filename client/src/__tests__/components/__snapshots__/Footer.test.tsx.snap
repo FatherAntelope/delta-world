@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component testing: Render with snapshot: 1`] = `
+<Footer
+  isDarkTheme={false}
+>
+  <footer
+    className="footer  "
+  >
+    <Component>
+      <div
+        className="footer__body"
+      >
+        Тест1
+      </div>
+    </Component>
+    <Component>
+      <p
+        className="footer__copyright"
+      >
+        Тест2
+      </p>
+    </Component>
+  </footer>
+</Footer>
+`;

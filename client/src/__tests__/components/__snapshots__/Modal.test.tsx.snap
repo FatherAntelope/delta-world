@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component testing: Render with simulate click and snapshot: 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Modal
+    isActive={true}
+    isDarkTheme={true}
+    size="mini"
+  >
+    <div
+      className="modal modal_active"
+    >
+      <div
+        className="modal__close modal__close_theme_dark"
+        onClick={[Function]}
+      >
+        <span
+          className="modal__close-icon modal__close-icon_theme_dark"
+        />
+      </div>
+      <div
+        className="modal__dialog modal__dialog_mini "
+      >
+        <div
+          className="
+          modal__content 
+          modal__content_active 
+          modal__content_theme_dark
+          "
+          onClick={[Function]}
+        >
+          <h1>
+            Тест
+          </h1>
+        </div>
+      </div>
+    </div>
+  </Modal>
+</Provider>
+`;

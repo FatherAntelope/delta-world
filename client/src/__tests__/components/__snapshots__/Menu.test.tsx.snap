@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component testing: Render with snapshot: 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Menu
+    isDarkTheme={true}
+  >
+    <nav
+      className="
+      menu menu_mobile-slide_active menu_theme_dark
+      "
+    >
+      <Component
+        isDarkTheme={true}
+        label="Меню 1"
+      >
+        <div
+          className="menu__item menu__item_theme_dark "
+          onClick={[Function]}
+        >
+          <span
+            style={
+              Object {
+                "marginLeft": 7,
+              }
+            }
+          >
+            Меню 1
+          </span>
+        </div>
+      </Component>
+    </nav>
+  </Menu>
+</Provider>
+`;
