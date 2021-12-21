@@ -7,8 +7,8 @@ import { useActions } from '../../../hooks/useActions';
 import CardComment from '../../cards/card-comment/CardComment';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { FORM_LIMIT_POST_COMMENTS, ModalID } from '../../../constants/common';
-import { IResponseCommentPreview } from '../../../types/api/dumMyApi';
-import { getDateTimePublication, getUserFullName } from '../../../utils/common';
+import { IResponseCommentPreview } from '../../../types/api/localServer';
+import { getUserFullName } from '../../../utils/common';
 import Preloader from '../../preloader/Preloader';
 import Tooltip from '../../tooltip/Tooltip';
 import { ThemeCheckboxContext } from '../../../contexts/theme-checkbox/ThemeCheckboxContext';
@@ -49,14 +49,13 @@ const CommentsForm = () => {
                     <span onClick={closeModalsFormAC}>
                       {getUserFullName(
                         t(`commons.userAppeal.${item.owner.title}`),
-                        item.owner.firstName,
-                        item.owner.lastName
+                        item.owner.fullName
                       )}
                     </span>
                   </Link>
                 </Tooltip>
               )}
-              dateOfPublication={getDateTimePublication(item.publishDate)}
+              dateOfPublication={item.publishDate}
             />
           </div>
         ))}

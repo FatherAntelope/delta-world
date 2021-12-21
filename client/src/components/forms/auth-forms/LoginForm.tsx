@@ -22,9 +22,7 @@ const LoginForm = () => {
   const themeCheckboxContext = useContext(ThemeCheckboxContext);
 
   const handleFinishForm = () => {
-    if (!cookies.user_id) {
-      loginUserFormAC(form.getFieldValue('userID'));
-    }
+    loginUserFormAC(form.getFieldValue('userID'));
   };
 
   useEffect(() => {

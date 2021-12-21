@@ -8,8 +8,7 @@ export interface IResponseList<T> {
 export interface IResponseUserPreview {
   id: string;
   title: 'ms' | 'mr' | '';
-  firstName: string;
-  lastName: string;
+  fullName: string;
   picture: string;
 }
 
@@ -25,6 +24,7 @@ export interface IResponseUserFull extends IResponseUserPreview {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
+  dateOfBirthOriginal: string;
   registerDate: string;
   phone: string;
 }
@@ -43,6 +43,13 @@ export interface IResponsePostPreview {
   owner: IResponseUserPreview;
 }
 
+export interface IResponsePostUser {
+  id: string;
+  text: string;
+  image: string;
+  publishDate: string;
+}
+
 export interface ICreateUser {
   title: 'ms' | 'mr' | '';
   firstName: string;
@@ -50,5 +57,6 @@ export interface ICreateUser {
   gender: 'male' | 'female' | 'other' | '';
   email: string;
   dateOfBirth: string;
+  registerDate: Date;
   phone: string;
 }

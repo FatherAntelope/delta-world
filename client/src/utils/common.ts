@@ -1,8 +1,8 @@
 import defaultUserAvatar from '../images/default-user-avatar.jpg';
-import { ICreateUser } from '../types/api/dumMyApi';
+import { ICreateUser } from '../types/api/localServer';
 
-const getUserFullName = (title: string, firstName: string, lastName: string): string => (
-  `${title ? `${title}.` : ''} ${firstName} ${lastName}`
+const getUserFullName = (title: string, fullName: string): string => (
+  `${title ? `${title}.` : ''} ${fullName}`
 );
 
 const checkPictureAndGet = (picture: string): string => (
@@ -22,46 +22,12 @@ const getUserGenderRu = (gender: string): string => {
   }
 };
 
-const getDateRU = (dateTime: string): string => {
-  const date = new Date(dateTime);
-  const months: string[] = [
-    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-  ];
-
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-};
-
-const getDateTimePublication = (dateTime: string): string => {
-  const date = new Date(dateTime);
-  const months: string[] = [
-    'янв.', 'фев.', 'марта', 'апр.', 'мая', 'июня', 'июля', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.'
-  ];
-  return `${date.getDate()} ${months[date.getMonth()]}${
-    new Date().getFullYear() !== date.getFullYear() ? ` ${date.getFullYear()} г.` : ''
-  } в ${date.getHours()}:${date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes()}`;
-};
-
-const getJSONStringifyForRegisterUser = (formData: ICreateUser): string => JSON.stringify({
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  email: formData.email,
-  phone: formData.phone,
+const getObjectSendDataUser = (formData: ICreateUser): ICreateUser => ({
+  ...formData,
   title: formData.gender === 'male' ? 'mr' : 'ms',
-  gender: formData.gender,
-  dateOfBirth: formData.dateOfBirth,
   registerDate: new Date(),
 });
 
-const getJSONStringifyForEditDataUser = (formData: ICreateUser): string => JSON.stringify({
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  gender: formData.gender,
-  dateOfBirth: formData.dateOfBirth,
-  phone: formData.phone,
-  title: formData.gender === 'male' ? 'mr' : 'ms',
-});
-
 export {
-  getUserFullName, checkPictureAndGet, getDateTimePublication, getUserGenderRu, getDateRU,
-  getJSONStringifyForRegisterUser, getJSONStringifyForEditDataUser
+  getUserFullName, checkPictureAndGet, getUserGenderRu, getObjectSendDataUser
 };

@@ -1,25 +1,30 @@
 import { Dispatch } from 'redux';
-import { RcFile } from 'antd/lib/upload';
+import { AxiosResponse } from 'axios';
 import { EMPTY_STRING } from '../constants/common';
 import { ImageEditFormAC, ImageEditFormACTypes } from '../types/redux/imageEditForm';
-import { fetchUploadImage } from '../utils/imgbbApi';
+import { fetchUpdateUser } from '../utils/fetchLocalServer';
+import HttpStatuses from '../constants/httpStatuses';
 
-const uploadImageEditAC = (file: string | RcFile | Blob) => async (dispatch: Dispatch<ImageEditFormAC>) => {
+const uploadImageEditAC = (id: string, file: Blob) => async (dispatch: Dispatch<ImageEditFormAC>) => {
   dispatch({
     type: ImageEditFormACTypes.IMAGE_EDIT_FORM
   });
 
   try {
-    const response = await fetchUploadImage(file);
-    const image = await response.json();
+    const response: AxiosResponse = await fetchUpdateUser(id, { picture: file });
 
-    if (response.ok) {
+    if (response === undefined) {
+      throw new Error('503 – Service Unavailable');
+    }
+
+    if (response.status === HttpStatuses.OK) {
+      const image = await response.data;
       dispatch({
         type: ImageEditFormACTypes.IMAGE_EDIT_FORM_SUCCESS,
-        payload: image.data.url
+        payload: image.data.picture
       });
     } else {
-      throw new Error(`${response.status.toString()} – ${image.error.message}`);
+      throw new Error(`${response.status.toString()} – ${response.data.error.message}`);
     }
   } catch (e) {
     dispatch({

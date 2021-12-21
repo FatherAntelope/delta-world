@@ -1,7 +1,7 @@
-import { IResponseUserAuth } from '../api/dumMyApi';
+import { IResponseUserAuth, IResponseUserFull } from '../api/localServer';
 
 export interface ISendUserFormState {
-  sendUser: IResponseUserAuth;
+  sendUser: any;
   isLoading: boolean;
   error?: string;
 }
@@ -19,7 +19,7 @@ interface ISendUserFormAC {
 
 interface ISendUserFormSuccessAC {
   type: SendUserFormACTypes.SEND_USER_FORM_SUCCESS;
-  payload: IResponseUserAuth;
+  payload: IResponseUserAuth | IResponseUserFull;
 }
 
 interface ISendUserFormErrorAC {
@@ -29,7 +29,7 @@ interface ISendUserFormErrorAC {
 
 interface ISendUserFormClearAC {
   type: SendUserFormACTypes.SEND_USER_FORM_CLEAR;
-  payload: IResponseUserAuth;
+  payload: IResponseUserAuth | IResponseUserFull;
 }
 
 export type SendUserFormAC = ISendUserFormAC | ISendUserFormSuccessAC | ISendUserFormErrorAC | ISendUserFormClearAC;

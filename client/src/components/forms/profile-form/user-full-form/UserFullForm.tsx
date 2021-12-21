@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import Preloader from '../../../preloader/Preloader';
 import {
-  checkPictureAndGet, getDateRU, getUserFullName
+  checkPictureAndGet, getUserFullName
 } from '../../../../utils/common';
 import CardUser from '../../../cards/card-user/CardUser';
 import '../../../flex-grid/FlexGrid.scss';
@@ -44,11 +44,11 @@ const UserFullForm = () => {
         id={user.id}
         imageURL={checkPictureAndGet(user.picture)}
         fullName={getUserFullName(
-          t(`commons.userAppeal.${user.title}`), user.firstName, user.lastName
+          t(`commons.userAppeal.${user.title}`), user.fullName
         )}
         gender={t(`commons.userGender.${user.gender}`)}
-        dateOfBirth={getDateRU(user.dateOfBirth)}
-        dateOfRegister={getDateRU(user.registerDate)}
+        dateOfBirth={user.dateOfBirth}
+        dateOfRegister={user.registerDate}
         email={user.email}
         phone={user.phone}
       />

@@ -10,8 +10,8 @@ const initialState: IUserFullFormState = {
     email: EMPTY_STRING,
     registerDate: EMPTY_STRING,
     dateOfBirth: EMPTY_STRING,
-    firstName: EMPTY_STRING,
-    lastName: EMPTY_STRING,
+    dateOfBirthOriginal: EMPTY_STRING,
+    fullName: EMPTY_STRING,
     title: EMPTY_STRING
   },
   isLoading: false
