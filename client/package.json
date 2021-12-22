@@ -60,7 +60,9 @@
       "src/index.tsx",
       "react-app-env-d.ts",
       "src/components/app",
-      "src/types"
+      "src/types",
+      "src/actions/index.ts",
+      "src/store"
     ]
   },
   "eslintConfig": {
