@@ -154,7 +154,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                   >
                     <input
                       accept="image/jpeg, image/png"
-                      key="rc-upload-1640118386467-3"
+                      key="rc-upload-1640189443333-3"
                       multiple={false}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -1599,7 +1599,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                                     value={"1972-08-07T22:16:47.420Z"}
                                   >
                                     <Picker
-                                      defaultPickerValue={"2005-12-21T20:26:28.300Z"}
+                                      defaultPickerValue={"2005-12-22T16:10:45.683Z"}
                                       disabledDate={[Function]}
                                       format="DD.MM.YYYY"
                                       id="formEditDataUser_dateOfBirth"
@@ -1687,7 +1687,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                                               "rangeItem": [Function],
                                             }
                                           }
-                                          defaultPickerValue={"2005-12-21T20:26:28.300Z"}
+                                          defaultPickerValue={"2005-12-22T16:10:45.683Z"}
                                           disabledDate={[Function]}
                                           format="DD.MM.YYYY"
                                           generateConfig={
@@ -1821,7 +1821,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                                                 "rangeItem": [Function],
                                               }
                                             }
-                                            defaultPickerValue={"2005-12-21T20:26:28.300Z"}
+                                            defaultPickerValue={"2005-12-22T16:10:45.683Z"}
                                             disabledDate={[Function]}
                                             format="DD.MM.YYYY"
                                             generateConfig={
@@ -1969,7 +1969,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                                                         "rangeItem": [Function],
                                                       }
                                                     }
-                                                    defaultPickerValue={"2005-12-21T20:26:28.300Z"}
+                                                    defaultPickerValue={"2005-12-22T16:10:45.683Z"}
                                                     disabledDate={[Function]}
                                                     format="DD.MM.YYYY"
                                                     generateConfig={
@@ -2198,7 +2198,7 @@ exports[`CardUserEdit component testing: Render snapshot 1`] = `
                                                           "rangeItem": [Function],
                                                         }
                                                       }
-                                                      defaultPickerValue={"2005-12-21T20:26:28.300Z"}
+                                                      defaultPickerValue={"2005-12-22T16:10:45.683Z"}
                                                       disabledDate={[Function]}
                                                       format="DD.MM.YYYY"
                                                       generateConfig={

@@ -1357,7 +1357,7 @@ exports[`RegisterForm component form testing: Render with snapshot 1`] = `
                                           update={1}
                                         >
                                           <Picker
-                                            defaultPickerValue={"2005-12-21T20:26:29.690Z"}
+                                            defaultPickerValue={"2005-12-22T16:10:47.591Z"}
                                             disabledDate={[Function]}
                                             format="DD.MM.YYYY"
                                             id="formRegisterUser_dateOfBirth"
@@ -1444,7 +1444,7 @@ exports[`RegisterForm component form testing: Render with snapshot 1`] = `
                                                     "rangeItem": [Function],
                                                   }
                                                 }
-                                                defaultPickerValue={"2005-12-21T20:26:29.690Z"}
+                                                defaultPickerValue={"2005-12-22T16:10:47.591Z"}
                                                 disabledDate={[Function]}
                                                 format="DD.MM.YYYY"
                                                 generateConfig={
@@ -1577,7 +1577,7 @@ exports[`RegisterForm component form testing: Render with snapshot 1`] = `
                                                       "rangeItem": [Function],
                                                     }
                                                   }
-                                                  defaultPickerValue={"2005-12-21T20:26:29.690Z"}
+                                                  defaultPickerValue={"2005-12-22T16:10:47.591Z"}
                                                   disabledDate={[Function]}
                                                   format="DD.MM.YYYY"
                                                   generateConfig={
@@ -1724,7 +1724,7 @@ exports[`RegisterForm component form testing: Render with snapshot 1`] = `
                                                               "rangeItem": [Function],
                                                             }
                                                           }
-                                                          defaultPickerValue={"2005-12-21T20:26:29.690Z"}
+                                                          defaultPickerValue={"2005-12-22T16:10:47.591Z"}
                                                           disabledDate={[Function]}
                                                           format="DD.MM.YYYY"
                                                           generateConfig={
@@ -1953,7 +1953,7 @@ exports[`RegisterForm component form testing: Render with snapshot 1`] = `
                                                                 "rangeItem": [Function],
                                                               }
                                                             }
-                                                            defaultPickerValue={"2005-12-21T20:26:29.690Z"}
+                                                            defaultPickerValue={"2005-12-22T16:10:47.591Z"}
                                                             disabledDate={[Function]}
                                                             format="DD.MM.YYYY"
                                                             generateConfig={

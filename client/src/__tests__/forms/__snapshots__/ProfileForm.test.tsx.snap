@@ -532,7 +532,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                   >
                                     <input
                                       accept="image/jpeg, image/png"
-                                      key="rc-upload-1640118386561-2"
+                                      key="rc-upload-1640189443414-2"
                                       multiple={false}
                                       onChange={[Function]}
                                       onClick={[Function]}
@@ -1976,7 +1976,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                                     update={2}
                                                   >
                                                     <Picker
-                                                      defaultPickerValue={"2005-12-21T20:26:28.436Z"}
+                                                      defaultPickerValue={"2005-12-22T16:10:45.800Z"}
                                                       disabledDate={[Function]}
                                                       format="DD.MM.YYYY"
                                                       id="formEditDataUser_dateOfBirth"
@@ -2063,7 +2063,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                                               "rangeItem": [Function],
                                                             }
                                                           }
-                                                          defaultPickerValue={"2005-12-21T20:26:28.436Z"}
+                                                          defaultPickerValue={"2005-12-22T16:10:45.800Z"}
                                                           disabledDate={[Function]}
                                                           format="DD.MM.YYYY"
                                                           generateConfig={
@@ -2196,7 +2196,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                                                 "rangeItem": [Function],
                                                               }
                                                             }
-                                                            defaultPickerValue={"2005-12-21T20:26:28.436Z"}
+                                                            defaultPickerValue={"2005-12-22T16:10:45.800Z"}
                                                             disabledDate={[Function]}
                                                             format="DD.MM.YYYY"
                                                             generateConfig={
@@ -2343,7 +2343,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                                                         "rangeItem": [Function],
                                                                       }
                                                                     }
-                                                                    defaultPickerValue={"2005-12-21T20:26:28.436Z"}
+                                                                    defaultPickerValue={"2005-12-22T16:10:45.800Z"}
                                                                     disabledDate={[Function]}
                                                                     format="DD.MM.YYYY"
                                                                     generateConfig={
@@ -2572,7 +2572,7 @@ exports[`ProfileForm component form testing: Render with snapshot 1`] = `
                                                                           "rangeItem": [Function],
                                                                         }
                                                                       }
-                                                                      defaultPickerValue={"2005-12-21T20:26:28.436Z"}
+                                                                      defaultPickerValue={"2005-12-22T16:10:45.800Z"}
                                                                       disabledDate={[Function]}
                                                                       format="DD.MM.YYYY"
                                                                       generateConfig={
