@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Segment component testing: Render with snapshot: 1`] = `
+<Tooltip
+  isDarkTheme={true}
+  textInfo="Подсказка"
+>
+  <div
+    className="tooltip"
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="tooltip__info tooltip__info_theme_dark"
+    >
+      Подсказка
+    </div>
+    <h1>
+      Тест
+    </h1>
+  </div>
+</Tooltip>
+`;

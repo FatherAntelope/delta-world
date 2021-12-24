@@ -49,7 +49,7 @@ const loginUserSetValuesFormAC = (
   id: string, picture: string, firstName: string
 ) => (dispatch: Dispatch<LoginUserFormAC>) => {
   dispatch({
-    type: LoginUserFormACTypes.LOGIN_USER_FORM_CLEAR,
+    type: LoginUserFormACTypes.LOGIN_USER_FORM_SET_VALUES,
     payload: {
       id,
       picture,

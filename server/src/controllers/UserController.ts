@@ -19,7 +19,7 @@ class UserController {
     } catch (e: any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
       const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
-        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+        HttpStatuses.NOT_FOUND : HttpStatuses.SERVER_ERROR;
 
       logger.error(format(LOGGER_MESSAGES.UPDATE_USER.RESPONSE.ERROR, String(status), message));
       res.status(status).json({ status, error: { message } });
@@ -101,7 +101,7 @@ class UserController {
     } catch (e: any) {
       const message = (e.message === String(HttpStatuses.BAD_REQUEST)) ? 'User not found' : 'Internal server error';
       const status: number = (e.message === String(HttpStatuses.BAD_REQUEST)) ?
-        HttpStatuses.BAD_REQUEST : HttpStatuses.SERVER_ERROR;
+        HttpStatuses.NOT_FOUND : HttpStatuses.SERVER_ERROR;
 
       logger.error(format(LOGGER_MESSAGES.GET_USER_ID.RESPONSE.ERROR, String(status), message));
       res.status(status).json({ status, error: { message } });

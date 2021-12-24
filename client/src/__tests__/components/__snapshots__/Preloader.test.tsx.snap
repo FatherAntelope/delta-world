@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preloader component testing: Render with snapshot: 1`] = `
+<div
+  className="preloader"
+>
+  <Spin
+    indicator={
+      <ForwardRef(LoadingOutlined)
+        className="preloader__spin "
+        spin={true}
+      />
+    }
+    size="default"
+    spinning={true}
+    wrapperClassName=""
+  />
+</div>
+`;

@@ -2,7 +2,7 @@ import defaultUserAvatar from '../images/default-user-avatar.jpg';
 import { ICreateUser } from '../types/api/localServer';
 
 const getUserFullName = (title: string, fullName: string): string => (
-  `${title ? `${title}.` : ''} ${fullName}`
+  `${title ? `${title}.` : ''} ${fullName}`.trim()
 );
 
 const checkPictureAndGet = (picture: string): string => (

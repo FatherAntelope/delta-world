@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { AxiosResponse } from 'axios';
 import { fetchPostCommentsForm } from '../utils/fetchLocalServer';
-import { LOADING_EMULATION_TIME } from '../constants/common';
+// import { LOADING_EMULATION_TIME } from '../constants/common';
 import { PostCommentsFormAC, PostCommentsFormACTypes } from '../types/redux/postCommentsForm';
 import HttpStatuses from '../constants/httpStatuses';
 
@@ -21,14 +21,14 @@ const loadPostCommentsFormAC = (
 
     if (response.status === HttpStatuses.OK) {
       const postComments = await response.data;
-      setTimeout(() => {
-        dispatch({
-          type: PostCommentsFormACTypes.LOAD_POST_COMMENTS_FORM_SUCCESS,
-          payload: {
-            data: postComments.data, total: postComments.total, page: postComments.page, limit: postComments.limit
-          }
-        });
-      }, LOADING_EMULATION_TIME);
+      // setTimeout(() => {
+      dispatch({
+        type: PostCommentsFormACTypes.LOAD_POST_COMMENTS_FORM_SUCCESS,
+        payload: {
+          data: postComments.data, total: postComments.total, page: postComments.page, limit: postComments.limit
+        }
+      });
+      // }, LOADING_EMULATION_TIME);
     } else {
       throw new Error(`${response.status.toString()} – ${response.data.error.message}`);
     }
